@@ -11,7 +11,8 @@ export default {
     name: String,
     origin: String,
     price: String,
-    //gr: String
+    image: String,
+    amount: String
   },
   data(){
       return {
@@ -19,7 +20,8 @@ export default {
             spiceName: this.name,
             spiceOrigin: this.origin,
             spicePrice: this.price,
-            //spiceGr: this.gr,
+            spiceImage: this.image,
+            spiceAmount: this.amount,
             spiceQuantity: 1,
           }
       }
@@ -27,6 +29,7 @@ export default {
   methods:{
     addToCart(){
       $('#miniCart').modal('show');
+      this.item.spiceAmount = this.amount;
       this.$store.commit('addToCart', this.item)
     }
   }

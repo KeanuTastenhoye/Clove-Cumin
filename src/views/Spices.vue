@@ -11,13 +11,11 @@
           <div class="card-body text-center">
             <h5 class="card-title">{{spice.name}}</h5>
             <p class="card-text">{{spice.origin}} <br> {{spice.price | currency('€ ')}} </p>
-            <!--
-            <select v-model="spice.gr">
-              <option default></option>
-              <option v-for="(gram, index) in spice.amounts" :key="index" @select="updateData">{{gram}}</option>
-            </select>-->
-            <!--<add-to-cart :gr="spice.gr" :price="spice.price" :origin="spice.origin" :name="spice.name"> </add-to-cart>-->
-            <add-to-cart :price="spice.price" :origin="spice.origin" :name="spice.name"> </add-to-cart>
+            <!--<select v-model="spice.amount" class="mb-2"  @change="updateAmount(spice.name, spice.amount)">-->
+            <select v-model="spice.amount" class="mb-2">
+              <option v-for="gram in spice.amounts" :key="gram">{{gram}}</option>
+            </select>
+            <add-to-cart :amount="spice.amount" :image="spice.image" :price="spice.price" :origin="spice.origin" :name="spice.name"> </add-to-cart>
           </div>
         </div>
       </div>
@@ -42,14 +40,14 @@ export default {
         spices: [],
         spice: {
           name:null,
-          origin: null,
+          origin:null,
           price:null,
-          //gr: null,
+          amount:null,
           image:null,
           amounts:[],
           images:[]
         },
-        activeItem: null,
+        activeItem:null,
     }
   },
   firestore(){
@@ -58,13 +56,13 @@ export default {
     }
   },
   methods: {
-    /*
-    updateData() {
-      this.spice = spice.data();
-      this.activeItem = spice.id;
-      db.collection('spices'.doc(this.activeItem).update(this.spice))
-    }
-    */
+    /*updateAmount(nme, amt) {
+      this.spices.forEach(sp => {
+        if (sp.name === nme) {
+          sp.amount = amt;
+        }
+      });
+    }*/
   }
 };
 </script>

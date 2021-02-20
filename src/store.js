@@ -19,11 +19,17 @@ export default new Vuex.Store({
     },
     mutations:{
       addToCart(state, item){
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName );
-        if(found){
-          found.spiceQuantity++;
-        } else{
+        let found = state.cart.find(spice => spice.spiceName == item.spiceName);
+        if (!found) {
           state.cart.push(item);
+        } else {
+          console.log('FOUND: ' + found.spiceName + ' ' + found.spiceAmount);
+          console.log('ITEM: ' + item.spiceName + ' ' + item.spiceAmount);
+            if (found && found.spiceAmount != item.spiceAmount) {
+              state.cart.push(item);
+            } else {
+              found.spiceQuantity++;
+            }
         }
         this.commit('saveData');
       },

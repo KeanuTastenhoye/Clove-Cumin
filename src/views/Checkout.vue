@@ -13,6 +13,7 @@
                 <h5 class="mt-0">{{item.spiceName}} <span class='float-right' @click="$store.commit('removeFromCart',item)">X</span> </h5>
                   <p class="mt-0">{{item.spiceOrigin}}</p>
                   <p class="mt-0">{{item.spicePrice | currency('€ ')}}</p>
+                  <p class="mt-0">{{item.spiceAmount}} gram</p>
                   <p class="dropdown">
                     <a class="dropdown-toggle text-secondary" data-toggle="dropdown">Quantity: {{item.spiceQuantity}} </a>
                     <ul class="dropdown-menu" role="menu">
@@ -74,6 +75,8 @@
               </div>
             </div>
           </form>
+          <br>
+          <p><strong>Total price: </strong> {{this.$store.getters.totalPrice | currency('€ ')}}</p>
         </div>
       </div>
     </div>
@@ -105,25 +108,27 @@ export default {
           userPhone: null,
           productName: [],
           productQuantity: [],
+          productPrice: [],
+          productAmount: [],
           totalPrice: null
         },
     }
   },
-  /*
   firestore(){
-      //const user = fb.auth().currentUser;
-      return {
-        //profile: db.collection('profiles').doc(user.uid),
-      }
-  },*/
+    return {
+        orders: db.collection('orders')
+    }
+  },
   methods: {
     saveData() {
       this.checkout.totalPrice = this.$store.getters.totalPrice;
       this.$store.state.cart.forEach(item => {
         this.checkout.productName.push(item.spiceName);
         this.checkout.productQuantity.push(item.spiceQuantity);
+        this.checkout.productPrice.push(item.spicePrice);
+        this.checkout.productAmount.push(item.spiceAmount);
       });
-      db.collection("orders").add(this.checkout);
+      db.collection('orders').add(this.checkout);
       this.$store.state.cart.forEach(item => {
         this.$store.commit('removeFromCart', item)
       })

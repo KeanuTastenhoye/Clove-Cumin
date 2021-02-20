@@ -15,7 +15,6 @@
               <p><strong>Your address</strong></p>
               <div v-for="order in userCheck" :key="order">
                 <p>{{order.userAddress}} <br> {{order.userPostCode}} {{order.userCity}} </p>
-                <p></p>
               </div>
             </div>
           </div>
@@ -61,6 +60,7 @@ export default {
     userCheck: function () {
       const activeUserMail = fb.auth().currentUser.email;
       activeUserMail.toLowerCase();
+      console.log(this.info.filter(order => order.userMail.toLowerCase() === activeUserMail))
       return this.info.filter(order => order.userMail.toLowerCase() === activeUserMail);
     }
   }

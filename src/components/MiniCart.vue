@@ -19,7 +19,7 @@
                   </h5>
                   <p class="mt-0">{{item.spiceOrigin}}</p>
                   <p class="mt-0">{{item.spicePrice | currency('€ ')}}</p>
-                  <!--<p class="mt-0">{{item.spiceGr}} gram</p>-->
+                  <p class="mt-0">{{item.spiceAmount}} gram</p>
                   <p class="mt-0">Quantity : {{item.spiceQuantity }}</p>
                   <hr>
                 </div>
