@@ -2,6 +2,8 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import User from "./views/User.vue";
+import Recipes from "./views/Recipes.vue";
+import Rubs from "./views/Rubs.vue";
 import Spices from "./views/Spices.vue";
 import Orders from "./views/Orders.vue";
 import Profile from "./views/Profile.vue";
@@ -17,6 +19,16 @@ const router =  new Router({
       path: "/",
       name: "home",
       component: Home
+    },
+    {
+      path: "/recipes",
+      name: "recipes",
+      component: Recipes
+    },
+    {
+      path: "/rubs",
+      name: "rubs",
+      component: Rubs
     },
     {
       path: "/spices",

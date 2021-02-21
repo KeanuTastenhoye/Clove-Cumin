@@ -1,5 +1,5 @@
 <template>
-  <div class="chekout">
+  <div class="checkout">
     <Navbar></Navbar>
     <Login></Login>
     <div class="container mt-5 pt-5">
@@ -133,7 +133,7 @@ export default {
         this.$store.commit('removeFromCart', item)
       })
     },
-  }
+  },
 }
 </script>
 

@@ -49,7 +49,7 @@
                 <h5 class="text-center">Create New Account</h5>
                 <div class="form-group">
                   <label for="name">Your name</label>
-                  <input type="text" v-model="name" class="form-control" id="name" placeholder="Your nice name">
+                  <input type="text" v-model="name" class="form-control" id="name" placeholder="Your name">
                 </div>
                 <div class="form-group">
                   <label for="email">Email address</label>
@@ -81,7 +81,6 @@ export default {
   },
   data() {
     return {
-      //? Data that visitor enters when they sign up
       name: null,
       email: null,
       password: null,
@@ -112,7 +111,7 @@ export default {
     },
     login() {
       fb.auth().signInWithEmailAndPassword(this.loginEmail, this.loginPassword)
-        .then((user) => {
+        .then(() => {
             console.log(this.loginEmail + ' is succesfully logged in');
             //? Hides the Account menu
             $('#login').modal('hide');
@@ -133,11 +132,21 @@ export default {
     logout() {
       fb.auth().signOut()
         .then(() => { 
-            console.log(this.name + ' is succesfully logged out');
             //? Hides the Account menu
             $('#login').modal('hide');
         })
         .catch((error) => { console.log(error); });
+    }
+  },
+  computed: {
+    isLoggedIn: function () {
+      const activeUserMail = fb.auth().currentUser.email;
+      activeUserMail.toLowerCase();
+      if (activeUserMail != null || activeUserMail != 'undefined') {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 };

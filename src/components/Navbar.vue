@@ -12,6 +12,12 @@
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
+              <router-link to="/recipes" class="nav-link">Recipes</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/rubs" class="nav-link">Rubs</router-link>
+            </li>
+            <li class="nav-item">
               <router-link to="/spices" class="nav-link">Spices</router-link>
             </li>
             <li class="nav-item" v-if="user">
