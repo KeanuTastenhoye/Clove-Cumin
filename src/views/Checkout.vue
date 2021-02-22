@@ -1,5 +1,5 @@
 <template>
-  <div class="checkout">
+  <div class="chekout">
     <Navbar></Navbar>
     <Login></Login>
     <div class="container mt-5 pt-5">
@@ -35,7 +35,7 @@
           </ul>
         </div>
         <div class="col-md-4">
-          <form>
+          <form v-on:submit.prevent="saveData">
             <div class="form-row">
               <div class="col-md-12">
                 <label for="validMail"></label>
@@ -71,7 +71,7 @@
               </div>
               <div class="col-md-12 mt-4">
                 <label for="save"></label>
-                <input type="submit" id="save" @click="saveData" value="Opslaan" class="btn btn-primary w-100">
+                <input type="submit" id="save" value="Opslaan" class="btn btn-primary w-100">
               </div>
             </div>
           </form>
@@ -122,6 +122,7 @@ export default {
   methods: {
     saveData() {
       this.checkout.totalPrice = this.$store.getters.totalPrice;
+      
       this.$store.state.cart.forEach(item => {
         this.checkout.productName.push(item.spiceName);
         this.checkout.productQuantity.push(item.spiceQuantity);
@@ -129,11 +130,11 @@ export default {
         this.checkout.productAmount.push(item.spiceAmount);
       });
       db.collection('orders').add(this.checkout);
-      this.$store.state.cart.forEach(item => {
-        this.$store.commit('removeFromCart', item)
+      this.checkout.productName.forEach(item => {
+        this.$store.commit('emptyCart');
       })
     },
-  },
+  }
 }
 </script>
 

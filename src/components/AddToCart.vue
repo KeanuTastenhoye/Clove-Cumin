@@ -10,7 +10,6 @@ export default {
   props: {
     name: String,
     origin: String,
-    price: String,
     image: String,
     amount: String
   },
@@ -19,9 +18,9 @@ export default {
           item :{
             spiceName: this.name,
             spiceOrigin: this.origin,
-            spicePrice: this.price,
+            spicePrice: '5',
             spiceImage: this.image,
-            spiceAmount: this.amount,
+            spiceAmount: '20',
             spiceQuantity: 1,
           }
       }
@@ -29,10 +28,20 @@ export default {
   methods:{
     addToCart(){
       $('#miniCart').modal('show');
-      this.item.spiceAmount = this.amount;
+      //this.item.spiceAmount = this.getAmountPrice;
       this.$store.commit('addToCart', this.item)
+    },
+    /*
+    getPriceAmount() {
+      var pr = this.amount.slice(13,18);
+      return pr.trim();
+    },
+    getAmountPrice() {
+      var am = this.amount.slice(0,3);
+      return am.trim();
     }
-  }
+    */
+  },
 };
 </script>
 

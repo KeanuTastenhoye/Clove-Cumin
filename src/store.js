@@ -19,26 +19,33 @@ export default new Vuex.Store({
     },
     mutations:{
       addToCart(state, item){
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName);
-        if (!found) {
-          state.cart.push(item);
-        } else {
-          console.log('FOUND: ' + found.spiceName + ' ' + found.spiceAmount);
-          console.log('ITEM: ' + item.spiceName + ' ' + item.spiceAmount);
-            if (found && found.spiceAmount != item.spiceAmount) {
+          if (window.localStorage.getItem('cart') == null) {
+            window.localStorage.setItem('cart', JSON.stringify(item));
+            state.cart.push(item);
+          } else {
+            let found = state.cart.find(spice => spice.spiceName == item.spiceName);
+            if (!found) {
               state.cart.push(item);
-            } else {
-              found.spiceQuantity++;
             }
-        }
-        this.commit('saveData');
+              else if (found && found.spiceAmount != item.spiceAmount) {
+                state.cart.push(item);
+              } else {
+                found.spiceQuantity++;
+              }
+          }
+          this.commit('saveData');
       },
       saveData(state){
         window.localStorage.setItem('cart', JSON.stringify(state.cart));
       },
       removeFromCart(state, item){
           let index = state.cart.indexOf(item);
+          console.log(item.spiceName);
           state.cart.splice(index,1);
+        this.commit('saveData');
+      },
+      emptyCart(state) {
+        state.cart.splice(0,1);
         this.commit('saveData');
       },
       changeQuantity1(state, item) {
