@@ -11,13 +11,10 @@
           <div class="card-body text-center">
             <h5 class="card-title">{{spice.name}}</h5>
             <p class="card-text">{{spice.origin}}</p>
-            <!--<select v-model="spice.amount" class="mb-2">
-              <option v-for="gram in spice.amounts" :key="gram">{{gram}}</option>
-            </select>-->
             <select v-model="spice.amountP" class="mb-2">
               <option v-for="gr in spice.amountPrice" :key="gr">{{gr[0]}} gram - {{gr[1] | currency('€ ')}}</option>
             </select>
-            <add-to-cart :amount="spice.amountP" :image="spice.image" :origin="spice.origin" :name="spice.name"> </add-to-cart>
+            <add-to-cart :amountP="spice.amountP" :image="spice.image" :origin="spice.origin" :name="spice.name"> </add-to-cart>
           </div>
         </div>
       </div>
@@ -56,15 +53,6 @@ export default {
     return {
       spices: db.collection('spices'),
     }
-  },
-  methods: {
-    /*updateAmount(nme, amt) {
-      this.spices.forEach(sp => {
-        if (sp.name === nme) {
-          sp.amount = amt;
-        }
-      });
-    }*/
   }
 };
 </script>

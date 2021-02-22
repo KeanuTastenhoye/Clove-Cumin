@@ -40,7 +40,6 @@ export default new Vuex.Store({
       },
       removeFromCart(state, item){
           let index = state.cart.indexOf(item);
-          console.log(item.spiceName);
           state.cart.splice(index,1);
         this.commit('saveData');
       },

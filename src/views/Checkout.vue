@@ -13,7 +13,7 @@
                 <h5 class="mt-0">{{item.spiceName}} <span class='float-right' @click="$store.commit('removeFromCart',item)">X</span> </h5>
                   <p class="mt-0">{{item.spiceOrigin}}</p>
                   <p class="mt-0">{{item.spicePrice | currency('€ ')}}</p>
-                  <p class="mt-0">{{item.spiceAmount}} gram</p>
+                  <p class="mt-0">{{item.spiceAmount}}</p>
                   <p class="dropdown">
                     <a class="dropdown-toggle text-secondary" data-toggle="dropdown">Quantity: {{item.spiceQuantity}} </a>
                     <ul class="dropdown-menu" role="menu">

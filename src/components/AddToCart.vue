@@ -11,16 +11,16 @@ export default {
     name: String,
     origin: String,
     image: String,
-    amount: String
+    amountP: String,
   },
   data(){
       return {
           item :{
             spiceName: this.name,
             spiceOrigin: this.origin,
-            spicePrice: '5',
+            spicePrice: this.price,
             spiceImage: this.image,
-            spiceAmount: '20',
+            spiceAmount: this.amount,
             spiceQuantity: 1,
           }
       }
@@ -28,19 +28,10 @@ export default {
   methods:{
     addToCart(){
       $('#miniCart').modal('show');
-      //this.item.spiceAmount = this.getAmountPrice;
+      this.item.spiceAmount = this.amountP.substring(0, this.amountP.indexOf('-'));
+      this.item.spicePrice = this.amountP.slice(-5);
       this.$store.commit('addToCart', this.item)
-    },
-    /*
-    getPriceAmount() {
-      var pr = this.amount.slice(13,18);
-      return pr.trim();
-    },
-    getAmountPrice() {
-      var am = this.amount.slice(0,3);
-      return am.trim();
     }
-    */
   },
 };
 </script>

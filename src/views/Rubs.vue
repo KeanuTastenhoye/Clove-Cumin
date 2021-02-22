@@ -10,12 +10,11 @@
           <img class="card-img-top" :src="rub.image" alt="Card image" style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
           <div class="card-body text-center">
             <h5 class="card-title">{{rub.name}}</h5>
-            <p class="card-text">{{rub.origin}} <br> {{rub.price | currency('€ ')}} </p>
-            <!--<select v-model="rub.amount" class="mb-2"  @change="updateAmount(rub.name, rub.amount)">-->
-            <select v-model="rub.amount" class="mb-2">
-              <option v-for="gram in rub.amounts" :key="gram">{{gram}}</option>
+            <p class="card-text">{{rub.origin}}</p>
+            <select v-model="rub.amountP" class="mb-2">
+              <option v-for="gr in rub.amountPrice" :key="gr">{{gr[0]}} gram - {{gr[1] | currency('€ ')}}</option>
             </select>
-            <add-to-cart :amount="rub.amount" :image="rub.image" :price="rub.price" :origin="rub.origin" :name="rub.name"> </add-to-cart>
+            <add-to-cart :amountP="rub.amountP" :image="rub.image" :origin="rub.origin" :name="rub.name"> </add-to-cart>
           </div>
         </div>
       </div>
@@ -54,15 +53,6 @@ export default {
     return {
       rubs: db.collection('rubs'),
     }
-  },
-  methods: {
-    /*updateAmount(nme, amt) {
-      this.rubs.forEach(sp => {
-        if (sp.name === nme) {
-          sp.amount = amt;
-        }
-      });
-    }*/
   }
 };
 </script>

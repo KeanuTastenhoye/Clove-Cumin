@@ -11,25 +11,10 @@
           <div class="card-body text-center">
             <h5 class="card-title">{{recipe.name}}</h5>
             <p class="card-text">{{recipe.origin}}</p>
-            <select v-model="recipe.servingPrice.serving" class="mb-2">
-              <option v-for="serving in recipe.servingPrice.serving" :key="serving">Portie voor {{serving}}</option>
+            <select v-model="recipe.amountP" class="mb-2">
+              <option v-for="gr in recipe.amountPrice" :key="gr">{{gr[0]}} porties - {{gr[1] | currency('€ ')}}</option>
             </select>
-            <!--
-            <div class="row">
-              <div class="col">
-                <div class="form-check form-check" v-for="(serving, index) in recipe.servingPrice.serving" :key="index">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="serving">
-                  <label class="form-check-label" for="inlineCheckbox1">Portie voor: {{serving}}</label>
-                </div>
-              </div>
-              <div class="col">
-                <div v-for="(price, index) in recipe.servingPrice.price" :key="index">
-                  <p class="form-check-label" for="inlineCheckbox1">{{price | currency('€ ')}}</p>
-                </div>
-              </div>
-            </div>
-            -->
-            <add-to-cart :serving="recipe.servingPrice.serving" :image="recipe.image" :origin="recipe.origin" :name="recipe.name"> </add-to-cart>
+            <add-to-cart :amountP="recipe.amountP" :image="recipe.image" :origin="recipe.origin" :name="recipe.name"> </add-to-cart>
           </div>
         </div>
       </div>
@@ -56,8 +41,9 @@ export default {
           name:null,
           origin:null,
           price:null,
-          serving:null,
+          amount:null,
           image:null,
+          amounts:[],
           images:[]
         },
         activeItem:null,
