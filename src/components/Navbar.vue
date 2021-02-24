@@ -1,6 +1,6 @@
 <template>
   <div>
-   <nav class="navbar custom-nav fixed-top navbar-expand-lg navbar-light bg-light">
+   <nav class="navbar custom-nav fixed-top navbar-expand-lg navbar-light">
      <div class="container">
       <router-link class="navbar-brand" to="/">Vue Shop</router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +54,7 @@ export default {
     .navbar.custom-nav{
       padding-top:16px;
       padding-bottom:16px;
-      background-color: #fff !important;
+      //background-color: #fff !important;
     }
    }
 </style>

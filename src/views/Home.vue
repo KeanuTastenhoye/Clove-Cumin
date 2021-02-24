@@ -33,4 +33,7 @@ export default {
 </script>
 
 <style>
+.home {
+  background-color: bisque;
+}
 </style>

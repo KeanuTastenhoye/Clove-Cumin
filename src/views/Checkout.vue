@@ -35,7 +35,7 @@
           </ul>
         </div>
         <div class="col-md-4">
-          <form v-on:submit.prevent="saveData">
+          <form v-on:submit.prevent="saveData" id="checkoutForm" name="checkoutForm">
             <div class="form-row">
               <div class="col-md-12">
                 <label for="validMail"></label>
@@ -71,7 +71,7 @@
               </div>
               <div class="col-md-12 mt-4">
                 <label for="save"></label>
-                <input type="submit" id="save" value="Opslaan" class="btn btn-primary w-100">
+                <input type="submit" id="save" value="Plaats bestelling" class="btn btn-primary w-100">
               </div>
             </div>
           </form>
@@ -133,6 +133,14 @@ export default {
       this.checkout.productName.forEach(item => {
         this.$store.commit('emptyCart');
       })
+      this.checkout.userMail = "";
+      this.checkout.userName = "";
+      this.checkout.userSex = "";
+      this.checkout.userBirthday = "";
+      this.checkout.userAddress = "";
+      this.checkout.userPostCode = "";
+      this.checkout.userCity = "";
+      this.checkout.userPhone = "";
     },
   }
 }

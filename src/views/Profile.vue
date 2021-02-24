@@ -133,7 +133,7 @@ export default {
     userCheck: function () {
       const activeUserMail = fb.auth().currentUser.email;
       activeUserMail.toLowerCase();
-      return this.userdata.filter(u => u.userMail.toLowerCase() === activeUserMail);
+      return this.userdata.filter(u => u.userMail.toLowerCase() === activeUserMail.toLowerCase());
     },
   },
   methods: {

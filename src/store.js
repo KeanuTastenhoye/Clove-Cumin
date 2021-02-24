@@ -23,7 +23,7 @@ export default new Vuex.Store({
             window.localStorage.setItem('cart', JSON.stringify(item));
             state.cart.push(item);
           } else {
-            let found = state.cart.find(spice => spice.spiceName == item.spiceName);
+            let found = state.cart.find(spice => spice.spiceName === item.spiceName);
             if (!found) {
               state.cart.push(item);
             }

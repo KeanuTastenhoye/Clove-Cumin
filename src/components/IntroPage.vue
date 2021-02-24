@@ -14,7 +14,7 @@
         </div>
         <div class="float-right">
           <div class="graphic">
-            <img src="/img/CloveCumin.jpg" alt="Clove & Cumin logo" heigh="350" width="350">
+            <img src="/img/CloveCumin.png" alt="Clove & Cumin logo" heigh="350" width="350">
           </div>
         </div>
       </div>
