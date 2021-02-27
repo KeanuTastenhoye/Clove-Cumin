@@ -23,15 +23,13 @@ export default new Vuex.Store({
             window.localStorage.setItem('cart', JSON.stringify(item));
             state.cart.push(item);
           } else {
-            let found = state.cart.find(spice => spice.spiceName === item.spiceName);
+            let found = state.cart.find(spice => spice.spiceName === item.spiceName && spice.spiceAmount === item.spiceAmount);
             if (!found) {
               state.cart.push(item);
+            } else {
+              console.log('found: ' + found.spiceName + ' ' + found.spiceAmount);
+              found.spiceQuantity++;
             }
-              else if (found && found.spiceAmount != item.spiceAmount) {
-                state.cart.push(item);
-              } else {
-                found.spiceQuantity++;
-              }
           }
           this.commit('saveData');
       },

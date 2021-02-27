@@ -21,6 +21,7 @@ export default {
             spicePrice: this.price,
             spiceImage: this.image,
             spiceAmount: this.amount,
+            spiceDiffAmounts: [],
             spiceQuantity: 1,
           }
       }
@@ -28,8 +29,10 @@ export default {
   methods:{
     addToCart(){
       $('#miniCart').modal('show');
-      this.item.spiceAmount = this.amountP.substring(0, this.amountP.indexOf('-'));
-      this.item.spicePrice = this.amountP.slice(-5);
+      this.item.spiceAmount = this.amountP.substring(0, this.amountP.indexOf('-')).trim();
+      this.item.spicePrice = this.amountP.slice(-5).trim();
+      this.item.spiceDiffAmounts.push(this.item.spiceAmount);
+      console.log('Add to cart: ' + this.item.spiceAmount);
       this.$store.commit('addToCart', this.item)
     }
   },
