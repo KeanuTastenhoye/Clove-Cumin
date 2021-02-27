@@ -2,7 +2,7 @@
   <div class="chekout">
     <Navbar></Navbar>
     <Login></Login>
-    <div class="container mt-5 pt-5">
+    <div class="container">
       <div class="row">
         <div class="col-md-8">
           <h4 class="py-4">Checkout page</h4>
@@ -147,4 +147,9 @@ export default {
 </script>
 
 <style>
+  .chekout {
+    background-color: bisque;
+    padding-top: 7rem;
+    width: 100%;
+  }
 </style>

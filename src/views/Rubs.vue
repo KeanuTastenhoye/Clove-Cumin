@@ -11,7 +11,40 @@
             <select v-model="rub.amountP" class="mb-2">
               <option v-for="gr in rub.amountPrice" :key="gr">{{gr[0]}} gram - {{gr[1] | currency('€ ')}}</option>
             </select>
-            <add-to-cart :amountP="rub.amountP" :image="rub.image" :origin="rub.origin" :name="rub.name"> </add-to-cart>
+            <div class="row">
+              <div class="col">
+                <add-to-cart :amountP="rub.amountP" :image="rub.image" :origin="rub.origin" :name="rub.name"> </add-to-cart>
+              </div>
+              <div class="col">
+                <button class="btn btn-secondary" @click="info(rub)">More info</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="rubInfo" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-mdialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <img :src="selectedRub.image" alt="spice image">
+              </div>
+              <div class="col">
+                <h5><strong>{{selectedRub.name}}</strong></h5>
+                <p><u>Origin:</u> {{selectedRub.origin}}</p>
+                <p><u>Soorten opties:</u></p>
+                <ul v-for="ap in selectedRub.amountPrice" :key="ap"> 
+                  <li>{{ap[0]}} gram - {{ap[1] | currency('€ ')}}</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -46,11 +79,18 @@ export default {
           images:[]
         },
         activeItem:null,
+        selectedRub: ''
     }
   },
   firestore(){
     return {
       rubs: db.collection('rubs'),
+    }
+  },
+  methods: {
+    info(rub) {
+      $('#rubInfo').modal('show');
+      this.selectedRub = rub;
     }
   }
 };

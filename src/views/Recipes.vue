@@ -11,7 +11,40 @@
             <select v-model="recipe.amountP" class="mb-2">
               <option v-for="gr in recipe.amountPrice" :key="gr">{{gr[0]}} porties - {{gr[1] | currency('€ ')}}</option>
             </select>
-            <add-to-cart :amountP="recipe.amountP" :image="recipe.image" :origin="recipe.origin" :name="recipe.name"> </add-to-cart>
+            <div class="row">
+              <div class="col">
+                <add-to-cart :amountP="recipe.amountP" :image="recipe.image" :origin="recipe.origin" :name="recipe.name"> </add-to-cart>
+              </div>
+              <div class="col">
+                <button class="btn btn-secondary" @click="info(recipe)">More info</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="recipeInfo" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-mdialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <img :src="selectedRecipe.image" alt="spice image">
+              </div>
+              <div class="col">
+                <h5><strong>{{selectedRecipe.name}}</strong></h5>
+                <p><u>Origin:</u> {{selectedRecipe.origin}}</p>
+                <p><u>Soorten opties:</u></p>
+                <ul v-for="ap in selectedRecipe.amountPrice" :key="ap"> 
+                  <li>{{ap[0]}} porties - {{ap[1] | currency('€ ')}}</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -46,11 +79,18 @@ export default {
           images:[]
         },
         activeItem:null,
+        selectedRecipe: ''
     }
   },
   firestore(){
     return {
       recipes: db.collection('recipes'),
+    }
+  },
+  methods: {
+    info(recipe) {
+      $('#recipeInfo').modal('show');
+      this.selectedRecipe = recipe;
     }
   }
 };

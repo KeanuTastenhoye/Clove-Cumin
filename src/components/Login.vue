@@ -95,6 +95,7 @@ export default {
             console.log(this.name + ' is succesfully signed in');
             //? Hides the Account menu
             $('#login').modal('hide');
+            this.$router.push('/');
         })
         .catch(function(error) {
             var errorCode = error.code;
@@ -115,6 +116,7 @@ export default {
             console.log(this.loginEmail + ' is succesfully logged in');
             //? Hides the Account menu
             $('#login').modal('hide');
+            this.$router.push('/');
         })
         .catch(function(error) {
             var errorCode = error.code;
@@ -134,6 +136,7 @@ export default {
         .then(() => { 
             //? Hides the Account menu
             $('#login').modal('hide');
+            this.$router.push('/');
         })
         .catch((error) => { console.log(error); });
     }

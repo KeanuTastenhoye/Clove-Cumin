@@ -1,4 +1,3 @@
-//* This page is the part underneath the navbar on the home page
 <template>
   <div class="introPage">
     <div class="container h-100">

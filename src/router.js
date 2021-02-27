@@ -5,8 +5,6 @@ import User from "./views/User.vue";
 import Recipes from "./views/Recipes.vue";
 import Rubs from "./views/Rubs.vue";
 import Spices from "./views/Spices.vue";
-import Orders from "./views/Orders.vue";
-import Profile from "./views/Profile.vue";
 import {fb} from './firebase'
 
 Vue.use(Router);
@@ -40,18 +38,6 @@ const router =  new Router({
       name: "user",
       component: User,
       meta: { requiresAuth: true },
-      children:[
-        {
-          path: "profile",
-          name: "profile",
-          component: Profile
-        },
-        {
-          path: "orders",
-          name: "orders",
-          component: Orders
-        }
-      ]
     },
     {
       path: "/checkout",

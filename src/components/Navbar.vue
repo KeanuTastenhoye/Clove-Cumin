@@ -54,7 +54,6 @@ export default {
     .navbar.custom-nav{
       padding-top:16px;
       padding-bottom:16px;
-      //background-color: #fff !important;
     }
    }
 </style>
