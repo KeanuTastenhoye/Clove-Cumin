@@ -16,15 +16,12 @@
                     <p>{{u.userName}} <br> {{u.userMail}} <br> {{u.userPhone}} <br> {{u.userSex}} <br> {{u.userBirthday}} </p>
                   </div>
                   <div class="col text-left">
-                    <p>{{u.userAddress}} {{u.userBus}} <br>{{u.userPostCode}} {{u.userCity}} </p>
+                    <p>{{u.userAddress}} {{u.userBus}} <br>{{u.userPostcode}} {{u.userCity}} </p>
                   </div>
                 </div>
                 <div class="text-center">
                   <button @click="editData(u)" class="btn btn-primary"> Edit </button>
                 </div>
-              </div>
-              <div class="text-center">
-                <button v-if="nieuweUser" @click="addData()" class="btn btn-primary"> Add </button>
               </div>
             </div>
           </div>
@@ -92,14 +89,13 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button @click="saveData()" type="button" class="btn btn-primary" v-if="modal == 'add'">Add data</button>
-            <button @click="updateData()" type="button" class="btn btn-primary" v-if="modal == 'edit'">Apply changes</button>
+            <button @click="updateData()" type="button" class="btn btn-primary" >Apply changes</button>
           </div>
         </div>
       </div>
     </div>
     <hr style="height:1px;border-width:0;color:gray;background-color:gray;width:50%">
-    <div class="container pt-4">
+    <div class="container py-4">
       <h3 class="text-center">Order Overview</h3>
       <div>
         <div v-for="order in userCheckO" :key="order">
@@ -128,6 +124,7 @@
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -178,16 +175,6 @@ export default {
     }
   },
   methods:{
-    saveData() {
-      db.collection('userdata').add(this.profile);
-      this.nieuweUser = false;
-      $('#profile').modal('hide');
-    },
-    addData() {
-      this.modal = 'add';
-      this.nieuweUser = false;
-      $('#profile').modal('show');
-    },
     editData(user) {
       this.modal = 'edit';
       this.profile = user;

@@ -35,7 +35,7 @@
           </ul>
         </div>
         <div class="col-md-4">
-          <form v-on:submit.prevent="saveData" id="checkoutForm" name="checkoutForm">
+          <form v-on:submit.prevent="saveData" id="checkoutForm" name="checkoutForm" v-if="!user">
             <div class="form-row">
               <div class="col-md-12">
                 <label for="validMail"></label>
@@ -61,6 +61,10 @@
                 <label for="validAddress"></label>
                 <input type="text" id="validAddress" v-model="checkout.userAddress" placeholder="Address" class="form-control" required>
               </div>
+              <div class="col-md-12">
+                <label for="validBus"></label>
+                <input type="text" id="validBus" v-model="checkout.userBus" placeholder="Bus" class="form-control" required>
+              </div>
               <div class="col-md-4">
                 <label for="validPostCode"></label>
                 <input type="text" id="validPostCode" v-model="checkout.userPostCode" placeholder="Postcode" class="form-control" required>
@@ -80,6 +84,7 @@
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -104,19 +109,21 @@ export default {
           userBirthday: null,
           userAddress: null,
           userPostCode: null,
+          userBus: null,
           userCity: null,
           userPhone: null,
           productName: [],
           productQuantity: [],
           productPrice: [],
           productAmount: [],
-          totalPrice: null
+          totalPrice: null,
         },
+        user: null,
     }
   },
   firestore(){
     return {
-        orders: db.collection('orders')
+        orders: db.collection('orders'),
     }
   },
   methods: {
@@ -142,6 +149,9 @@ export default {
       this.checkout.userCity = "";
       this.checkout.userPhone = "";
     },
+  },
+  created () { 
+    this.user = fb.auth().currentUser || false;
   }
 }
 </script>

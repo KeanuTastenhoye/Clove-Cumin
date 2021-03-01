@@ -48,22 +48,49 @@
               <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab">
                 <h5 class="text-center">Create New Account</h5>
                 <div class="form-group">
-                  <label for="name">Your name</label>
-                  <input type="text" v-model="name" class="form-control" id="name" placeholder="Your name">
+                  <label for="userdata.userName">Your name</label>
+                  <input type="text" v-model="userdata.userName" class="form-control" placeholder="Your name">
                 </div>
                 <div class="form-group">
-                  <label for="email">Email address</label>
-                  <input type="email"  v-model="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                  <label for="userdata.userMail">Email address</label>
+                  <input type="email"  v-model="userdata.userMail" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" v-model="password" class="form-control" id="password" placeholder="Password">
+                  <input type="password" v-model="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <label for="userdata.userPhone">Your Phone</label>
+                  <input type="text" v-model="userdata.userPhone" class="form-control" placeholder="Your phone">
+                </div>
+                <div class="form-group">
+                  <label for="userdata.userSex">Your Sex</label>
+                  <input type="text" v-model="userdata.userSex" class="form-control" placeholder="Your sex">
+                </div>
+                <div class="form-group">
+                  <label for="userdata.userBirthday">Your Birthday</label>
+                  <input type="text" v-model="userdata.userBirthday" class="form-control" placeholder="Your birthday">
+                </div>
+                <div class="form-group">
+                  <label for="userdata.userAddress">Your Address</label>
+                  <input type="text" v-model="userdata.userAddress" class="form-control" placeholder="Your address">
+                </div>
+                <div class="form-group">
+                  <label for="userdata.userBus">Your Bus</label>
+                  <input type="text" v-model="userdata.userBus" class="form-control" placeholder="Your Bus">
+                </div>
+                <div class="form-group">
+                  <label for="userdata.userPostCode">Your PostCode</label>
+                  <input type="text" v-model="userdata.userPostCode" class="form-control" placeholder="Your post code">
+                </div>
+                <div class="form-group">
+                  <label for="userdata.userCity">Your City</label>
+                  <input type="text" v-model="userdata.userCity" class="form-control" placeholder="Your city">
                 </div>
                 <div class="form-group">
                   <button class="btn btn-primary" @click="register">Signup</button>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -73,7 +100,7 @@
 </template>
 
 <script>
-import {fb} from '../firebase'
+import {fb, db} from '../firebase'
 export default {
   name: "Login",
   props: {
@@ -81,18 +108,28 @@ export default {
   },
   data() {
     return {
-      name: null,
-      email: null,
       password: null,
       loginEmail: null,
-      loginPassword: null
+      loginPassword: null,
+      userdata: {
+        userName: null,
+        userMail: null,
+        userPhone: null,
+        userSex: null,
+        userBirthday: null,
+        userAddress: null,
+        userBus: null,
+        userPostCode: null,
+        userCity: null
+      }
     }
   },
   methods: {
     register(){
-      fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+      fb.auth().createUserWithEmailAndPassword(this.userdata.userMail, this.password)
         .then(() => {
-            console.log(this.name + ' is succesfully signed in');
+            console.log(this.userdata.userName + ' is succesfully signed in');
+            db.collection('userdata').add(this.userdata);
             //? Hides the Account menu
             $('#login').modal('hide');
             this.$router.push('/');

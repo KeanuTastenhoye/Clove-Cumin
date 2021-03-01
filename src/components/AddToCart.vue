@@ -21,19 +21,17 @@ export default {
             spicePrice: this.price,
             spiceImage: this.image,
             spiceAmount: this.amount,
-            spiceDiffAmounts: [],
             spiceQuantity: 1,
           }
       }
   },
   methods:{
     addToCart(){
-      $('#miniCart').modal('show');
-      this.item.spiceAmount = this.amountP.substring(0, this.amountP.indexOf('-')).trim();
-      this.item.spicePrice = this.amountP.slice(-5).trim();
-      this.item.spiceDiffAmounts.push(this.item.spiceAmount);
-      console.log('Add to cart: ' + this.item.spiceAmount);
+      var array = this.amountP.split('-');
+      this.item.spiceAmount = array[0].trim();
+      this.item.spicePrice = array[1].substring(2).trim();
       this.$store.commit('addToCart', this.item)
+      $('#miniCart').modal('show');
     }
   },
 };

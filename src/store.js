@@ -6,7 +6,8 @@ let cart = window.localStorage.getItem('cart');
 
 export default new Vuex.Store({
     state: {
-      cart: cart ? JSON.parse(cart) : [],
+      //cart: cart ? JSON.parse(cart) : [],
+      cart: JSON.parse(window.localStorage.getItem('cart')),
     },
     getters: {
       totalPrice: state => {
@@ -20,18 +21,30 @@ export default new Vuex.Store({
     mutations:{
       addToCart(state, item){
           if (window.localStorage.getItem('cart') == null) {
-            window.localStorage.setItem('cart', JSON.stringify(item));
-            state.cart.push(item);
+            var varr = '[]';
+            var obj = JSON.parse(varr);
+            obj.push(item);
+            window.localStorage.setItem('cart', JSON.stringify(obj));
           } else {
-            let found = state.cart.find(spice => spice.spiceName === item.spiceName && spice.spiceAmount === item.spiceAmount);
-            if (!found) {
-              state.cart.push(item);
-            } else {
-              console.log('found: ' + found.spiceName + ' ' + found.spiceAmount);
-              found.spiceQuantity++;
+            var arr = JSON.parse(window.localStorage.getItem('cart'));
+            var found = false;
+            var i;
+            for (i = 0; i < arr.length; i++) {
+              if (arr[i].spiceAmount == item.spiceAmount && arr[i].spiceName == item.spiceName) {
+                arr[i].spiceQuantity++;
+                found = true;
+                break;
+              } 
             }
+
+            if (arr === [] || !found) {
+              arr.push(item);
+            }
+            
+            window.localStorage.setItem('cart', JSON.stringify(arr));
+
           }
-          this.commit('saveData');
+          //this.commit('saveData');
       },
       saveData(state){
         window.localStorage.setItem('cart', JSON.stringify(state.cart));
@@ -46,7 +59,7 @@ export default new Vuex.Store({
         this.commit('saveData');
       },
       changeQuantity1(state, item) {
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName );
+        let found = state.cart.find(spice => spice.spiceName == item.spiceName && spice.spiceAmount == item.spiceAmount);
 
         if(found){
           found.spiceQuantity=1;
@@ -56,7 +69,7 @@ export default new Vuex.Store({
         this.commit('saveData');
       },
       changeQuantity2(state, item) {
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName );
+        let found = state.cart.find(spice => spice.spiceName == item.spiceName && spice.spiceAmount == item.spiceAmount);
 
         if(found){
           found.spiceQuantity=2;
@@ -66,7 +79,7 @@ export default new Vuex.Store({
         this.commit('saveData');
       },
       changeQuantity3(state, item) {
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName );
+        let found = state.cart.find(spice => spice.spiceName == item.spiceName && spice.spiceAmount == item.spiceAmount);
         if(found){
           found.spiceQuantity=3;
         } else{
@@ -75,7 +88,7 @@ export default new Vuex.Store({
         this.commit('saveData');
       },
       changeQuantity4(state, item) {
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName );
+        let found = state.cart.find(spice => spice.spiceName == item.spiceName && spice.spiceAmount == item.spiceAmount);
 
         if(found){
           found.spiceQuantity=4;
@@ -85,7 +98,7 @@ export default new Vuex.Store({
         this.commit('saveData');
       },
       changeQuantity5(state, item) {
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName );
+        let found = state.cart.find(spice => spice.spiceName == item.spiceName && spice.spiceAmount == item.spiceAmount);
 
         if(found){
           found.spiceQuantity=5;
@@ -95,7 +108,7 @@ export default new Vuex.Store({
         this.commit('saveData');
       },
       changeQuantity6(state, item) {
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName );
+        let found = state.cart.find(spice => spice.spiceName == item.spiceName && spice.spiceAmount == item.spiceAmount);
 
         if(found){
           found.spiceQuantity=6;
@@ -105,7 +118,7 @@ export default new Vuex.Store({
         this.commit('saveData');
       },
       changeQuantity7(state, item) {
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName );
+        let found = state.cart.find(spice => spice.spiceName == item.spiceName && spice.spiceAmount == item.spiceAmount);
 
         if(found){
           found.spiceQuantity=7;
@@ -115,7 +128,7 @@ export default new Vuex.Store({
         this.commit('saveData');
       },
       changeQuantity8(state, item) {
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName );
+        let found = state.cart.find(spice => spice.spiceName == item.spiceName && spice.spiceAmount == item.spiceAmount);
 
         if(found){
           found.spiceQuantity=8;
@@ -125,7 +138,7 @@ export default new Vuex.Store({
         this.commit('saveData');
       },
       changeQuantity9(state, item) {
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName );
+        let found = state.cart.find(spice => spice.spiceName == item.spiceName && spice.spiceAmount == item.spiceAmount);
 
         if(found){
           found.spiceQuantity=9;
@@ -135,7 +148,7 @@ export default new Vuex.Store({
         this.commit('saveData');
       },
       changeQuantity10(state, item) {
-        let found = state.cart.find(spice => spice.spiceName == item.spiceName );
+        let found = state.cart.find(spice => spice.spiceName == item.spiceName && spice.spiceAmount == item.spiceAmount);
 
         if(found){
           found.spiceQuantity=10;

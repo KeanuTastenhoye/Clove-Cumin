@@ -1,7 +1,7 @@
 <template>
   <div class="recipes">
     <Navbar></Navbar>
-    <div class="container">
+    <div class="container pb-5">
       <div class="card-deck" style="margin-left:1rem; margin-right: 1rem;">
         <div class="card text-gray bg-light" style="width: 18rem;" v-for="(recipe, index) in recipes" :key="index">
           <img class="card-img-top" :src="recipe.image" alt="Card image" style="width: auto; height: auto; margin-left: auto; margin-right: auto;">
@@ -51,6 +51,7 @@
     </div>
     <Login></Login>
     <MiniCart></MiniCart>
+    <Footer></Footer>
   </div>
 </template>
 

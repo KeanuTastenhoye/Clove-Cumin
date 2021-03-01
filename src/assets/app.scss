@@ -1,8 +1,15 @@
 @import '~bootstrap/scss/bootstrap';
 @import './admin.scss';
 
+html {
+    height: 100%;
+    background-color: bisque;
+}
+
 body{
     font-family: 'Nunito', sans-serif !important;
+    height: 100%;
+    background-color: bisque;
 }
 .custom-btn{
     // border-radius: 10rem;
