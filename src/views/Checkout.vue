@@ -63,7 +63,7 @@
               </div>
               <div class="col-md-12">
                 <label for="validBus"></label>
-                <input type="text" id="validBus" v-model="checkout.userBus" placeholder="Bus" class="form-control" required>
+                <input type="text" id="validBus" v-model="checkout.userBus" placeholder="Bus" class="form-control">
               </div>
               <div class="col-md-4">
                 <label for="validPostCode"></label>
@@ -81,6 +81,7 @@
           </form>
           <br>
           <p><strong>Total price: </strong> {{this.$store.getters.totalPrice | currency('€ ')}}</p>
+          <button class="btn btn-secondary" @click="save()" v-if="user">Place order</button>
         </div>
       </div>
     </div>
@@ -118,6 +119,14 @@ export default {
           productAmount: [],
           totalPrice: null,
         },
+        checkoutB: {
+          userMail: null,
+          productName: [],
+          productQuantity: [],
+          productPrice: [],
+          productAmount: [],
+          totalPrice: null,
+        },
         user: null,
     }
   },
@@ -145,10 +154,26 @@ export default {
       this.checkout.userSex = "";
       this.checkout.userBirthday = "";
       this.checkout.userAddress = "";
+      this.checkout.userBus = "";
       this.checkout.userPostCode = "";
       this.checkout.userCity = "";
       this.checkout.userPhone = "";
     },
+    save() {
+      this.checkoutB.totalPrice = this.$store.getters.totalPrice;
+      this.checkoutB.userMail = fb.auth().currentUser.email;
+      
+      this.$store.state.cart.forEach(item => {
+        this.checkoutB.productName.push(item.spiceName);
+        this.checkoutB.productQuantity.push(item.spiceQuantity);
+        this.checkoutB.productPrice.push(item.spicePrice);
+        this.checkoutB.productAmount.push(item.spiceAmount);
+      });
+      db.collection('orders').add(this.checkoutB);
+      this.checkoutB.productName.forEach(item => {
+        this.$store.commit('emptyCart');
+      })
+    }
   },
   created () { 
     this.user = fb.auth().currentUser || false;
