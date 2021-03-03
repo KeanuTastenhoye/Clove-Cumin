@@ -12,12 +12,14 @@ export default {
     origin: String,
     image: String,
     amountP: String,
+    crushS: String,
   },
   data(){
       return {
           item :{
             spiceName: this.name,
             spiceOrigin: this.origin,
+            spiceCrush: this.crushS,
             spicePrice: this.price,
             spiceImage: this.image,
             spiceAmount: this.amount,
@@ -27,9 +29,12 @@ export default {
   },
   methods:{
     addToCart(){
+      console.log('this c: ' + this.crushS);
       var array = this.amountP.split('-');
       this.item.spiceAmount = array[0].trim();
       this.item.spicePrice = array[1].substring(2).trim();
+      this.item.spiceCrush = this.crushS;
+      console.log('item c: ' + this.item.spiceName + ' ' + this.item.spiceCrush);
       this.$store.commit('addToCart', this.item)
       $('#miniCart').modal('show');
     }

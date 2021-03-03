@@ -41,7 +41,7 @@
                 <p><u>Origin:</u> {{selectedRub.origin}}</p>
                 <p><u>Soorten opties:</u></p>
                 <ul v-for="ap in selectedRub.amountPrice" :key="ap"> 
-                  <li>{{ap[0]}} gram - {{ap[1] | currency('€ ')}}</li>
+                  <li>{{ap[0]}} gram - € {{ap[1]}}</li>
                 </ul>
               </div>
             </div>
@@ -50,6 +50,7 @@
       </div>
     </div>
     <Login></Login>
+    <Logout></Logout>
     <MiniCart></MiniCart>
     <Footer></Footer>
   </div>

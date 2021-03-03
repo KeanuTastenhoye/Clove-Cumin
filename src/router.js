@@ -5,6 +5,7 @@ import User from "./views/User.vue";
 import Recipes from "./views/Recipes.vue";
 import Rubs from "./views/Rubs.vue";
 import Spices from "./views/Spices.vue";
+import OrderConfirmation from "./views/OrderConfirmation.vue";
 import {fb} from './firebase'
 
 Vue.use(Router);
@@ -44,7 +45,12 @@ const router =  new Router({
       name: "checkout",
       component: () =>
         import("./views/Checkout.vue")
-    }
+    },
+    {
+      path: "/orderConfirmation",
+      name: "orderConfirmation",
+      component: OrderConfirmation
+    },
   ]
 });
 

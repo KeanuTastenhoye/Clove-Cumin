@@ -16,7 +16,6 @@ Vue.use(VueFirestore, {
 
 Vue.use(VueFirestore)
 
-//? For currency
 import Vue2Filters from 'vue2-filters'
 Vue.use(Vue2Filters)
 
@@ -42,6 +41,7 @@ import store from './store.js';
 Vue.component('Navbar', require('./components/Navbar.vue').default);
 Vue.component('Footer', require('./components/Footer.vue').default);
 Vue.component('Login', require('./components/Login.vue').default);
+Vue.component('Logout', require('./components/Logout.vue').default);
 Vue.component('AddToCart', require('./components/AddToCart.vue').default);
 Vue.component('MiniCart', require('./components/MiniCart.vue').default);
 

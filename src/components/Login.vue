@@ -8,9 +8,6 @@
             <!--Login Buttons: Login or sign up-->
             <ul class="nav nav-fill nav-pills mb-3" id="pills-tab" role="tablist">
               <li class="nav-item">
-                <a class="nav-link" id="pills-logout-tab" data-toggle="pill" href="#pills-logout" role="tab" aria-controls="pills-logout" aria-selected="false">Logout</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
               </li>
               <li class="nav-item">
@@ -19,14 +16,6 @@
             </ul>
 
             <div class="tab-content" id="pills-tabContent">
-
-              <!--Logout form-->
-              <div class="tab-pane fade" id="pills-logout" role="tabpanel" aria-labelledby="pills-logout-tab">
-                <h5 class="text-center">Are you sure?</h5>
-                <div class="form-group">
-                  <button class="btn btn-primary" @click="logout">Logout</button>
-                </div>
-              </div>
 
               <!--Login form-->
               <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
@@ -167,26 +156,6 @@ export default {
 
             console.log(error);
         });
-    },
-    logout() {
-      fb.auth().signOut()
-        .then(() => { 
-            //? Hides the Account menu
-            $('#login').modal('hide');
-            this.$router.push('/');
-        })
-        .catch((error) => { console.log(error); });
-    }
-  },
-  computed: {
-    isLoggedIn: function () {
-      const activeUserMail = fb.auth().currentUser.email;
-      activeUserMail.toLowerCase();
-      if (activeUserMail != null || activeUserMail != 'undefined') {
-        return true;
-      } else {
-        return false;
-      }
     }
   }
 };

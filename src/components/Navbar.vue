@@ -25,7 +25,8 @@
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <a class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#login">Account</a>
+            <a class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#login" v-if="!user">Login</a>
+            <a class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target="#logout" v-if="user">Logout</a>
             <a class="btn btn-outline-info border-0 mx-2 my-2 my-sm-0" data-toggle="modal" data-target="#miniCart">
               <i class="fas fa-cart-plus"></i>
             </a>

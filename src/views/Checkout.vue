@@ -2,6 +2,8 @@
   <div class="chekout">
     <Navbar></Navbar>
     <Login></Login>
+    <Logout></Logout>
+    <MiniCart></MiniCart>
     <div class="container">
       <div class="row">
         <div class="col-md-8">
@@ -12,8 +14,9 @@
               <div class="media-body">
                 <h5 class="mt-0">{{item.spiceName}} <span class='float-right' @click="$store.commit('removeFromCart',item)">X</span> </h5>
                   <p class="mt-0">{{item.spiceOrigin}}</p>
-                  <p class="mt-0">{{item.spicePrice | currency('€ ')}}</p>
+                  <p class="mt-0">€ {{item.spicePrice}}</p>
                   <p class="mt-0">{{item.spiceAmount}}</p>
+                  <p class="mt-0">{{item.spiceCrush}}</p>
                   <p class="dropdown">
                     <a class="dropdown-toggle text-secondary" data-toggle="dropdown">Quantity: {{item.spiceQuantity}} </a>
                     <ul class="dropdown-menu" role="menu">
@@ -80,7 +83,7 @@
             </div>
           </form>
           <br>
-          <p><strong>Total price: </strong> {{this.$store.getters.totalPrice | currency('€ ')}}</p>
+          <p><strong>Total price: </strong> € {{this.$store.getters.totalPrice}}</p>
           <button class="btn btn-secondary" @click="save()" v-if="user">Place order</button>
         </div>
       </div>
@@ -117,6 +120,7 @@ export default {
           productQuantity: [],
           productPrice: [],
           productAmount: [],
+          productCrush: [],
           totalPrice: null,
         },
         checkoutB: {
@@ -125,6 +129,7 @@ export default {
           productQuantity: [],
           productPrice: [],
           productAmount: [],
+          productCrush: [],
           totalPrice: null,
         },
         user: null,
@@ -144,6 +149,7 @@ export default {
         this.checkout.productQuantity.push(item.spiceQuantity);
         this.checkout.productPrice.push(item.spicePrice);
         this.checkout.productAmount.push(item.spiceAmount);
+        this.checkout.productCrush.push(item.spiceCrush);
       });
       db.collection('orders').add(this.checkout);
       this.checkout.productName.forEach(item => {
@@ -158,6 +164,7 @@ export default {
       this.checkout.userPostCode = "";
       this.checkout.userCity = "";
       this.checkout.userPhone = "";
+      this.$router.push('/orderConfirmation');
     },
     save() {
       this.checkoutB.totalPrice = this.$store.getters.totalPrice;
@@ -168,11 +175,13 @@ export default {
         this.checkoutB.productQuantity.push(item.spiceQuantity);
         this.checkoutB.productPrice.push(item.spicePrice);
         this.checkoutB.productAmount.push(item.spiceAmount);
+        this.checkoutB.productCrush.push(item.spiceCrush);
       });
       db.collection('orders').add(this.checkoutB);
       this.checkoutB.productName.forEach(item => {
         this.$store.commit('emptyCart');
       })
+      this.$router.push('/orderConfirmation');
     }
   },
   created () { 

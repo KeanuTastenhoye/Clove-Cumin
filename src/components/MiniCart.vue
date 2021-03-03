@@ -18,9 +18,10 @@
                     <span class='float-right' @click="$store.commit('removeFromCart',item)">X</span>
                   </h5>
                   <p class="mt-0">{{item.spiceOrigin}}</p>
-                  <p class="mt-0">{{item.spicePrice | currency('€ ')}}</p>
+                  <p class="mt-0">€ {{item.spicePrice}}</p>
                   <p class="mt-0">{{item.spiceAmount}}</p>
-                  <p class="mt-0">Quantity : {{item.spiceQuantity }}</p>
+                  <p class="mt-0">Quantity: {{item.spiceQuantity}}</p>
+                  <p class="mt-0">{{item.spiceCrush}}</p>
                   <hr>
                 </div>
               </li>

@@ -2,6 +2,7 @@
   <div class="user">
     <Navbar></Navbar>
     <Login></Login>
+    <Logout></Logout>
     <MiniCart></MiniCart>
 
     <div class="container">

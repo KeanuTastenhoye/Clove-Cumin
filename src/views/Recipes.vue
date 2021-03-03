@@ -9,7 +9,7 @@
             <h5 class="card-title">{{recipe.name}}</h5>
             <p class="card-text">{{recipe.origin}}</p>
             <select v-model="recipe.amountP" class="mb-2">
-              <option v-for="gr in recipe.amountPrice" :key="gr">{{gr[0]}} porties - {{gr[1] | currency('€ ')}}</option>
+              <option v-for="gr in recipe.amountPrice" :key="gr">{{gr[0]}} porties - € {{gr[1]}}</option>
             </select>
             <div class="row">
               <div class="col">
@@ -32,24 +32,24 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row">
+            <div class="row text-center">
               <div class="col">
                 <img :src="selectedRecipe.image" alt="spice image">
               </div>
-              <div class="col">
-                <h5><strong>{{selectedRecipe.name}}</strong></h5>
+            </div>
+                <h5 class="text-center"><strong>{{selectedRecipe.name}}</strong></h5>
                 <p><u>Origin:</u> {{selectedRecipe.origin}}</p>
                 <p><u>Soorten opties:</u></p>
                 <ul v-for="ap in selectedRecipe.amountPrice" :key="ap"> 
-                  <li>{{ap[0]}} porties - {{ap[1] | currency('€ ')}}</li>
+                  <li>{{ap[0]}} porties - € {{ap[1]}}</li>
                 </ul>
-              </div>
-            </div>
+                <p><u>Uitleg:</u> <br>{{selectedRecipe.description}}</p>
           </div>
         </div>
       </div>
     </div>
     <Login></Login>
+    <Logout></Logout>
     <MiniCart></MiniCart>
     <Footer></Footer>
   </div>
