@@ -1,101 +1,43 @@
 <template>
   <div>
-  <!-- Footer -->
   <footer>
-    <!--
-      <div class="container">
-      <div class="row pt-3">
-        <div class="col-lg-4 col-md-6 mb-lg-0 text-center"><img src="/img/CloveCumin.png" alt="Clove&Cumin logo" width="180" class="mb-3">
-          <p class="font-italic text-muted">Hi, we are a student company, kindly follow us </p>
-        </div>
-        <div class="col-lg-2 col-md-6 mb-lg-0 pt-3">
-          <h6 class="text-uppercase font-weight-bold mb-4">Shop</h6>
-          <ul class="list-unstyled mb-0">
-            <li class="mb-2"><a href="#" class="text-muted">Recipe boxes</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Gift boxes</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Spice mixes/ rubs</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Spices</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0 pt-3">
-          <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
-          <ul class="list-unstyled mb-0">
-            <li class="mb-2"><a href="#" class="text-muted">Login</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Register</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Home </a></li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-md-6 mb-lg-0 pt-3">
-          <h6 class="text-uppercase font-weight-bold mb-4">Newsletter</h6>
-          <p class="text-muted mb-4">Subscribe to pur email listing for Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nostrum corrupti animi fugiat deserunt sint facilis cupiditate.</p>
-          <div class="p-1 rounded border">
-            <div class="input-group">
-              <input type="email" placeholder="Enter your email address" aria-describedby="button-addon1" class="form-control border-0 shadow-0">
-              <div class="input-group-append">
-                <button id="button-addon1" type="submit" class="btn btn-link"><i class="fa fa-paper-plane"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row text-center">
-        <div class="col mb-s0 py-2">
-          <a href="#" target="_blank" title="linkedin"><i class="fab fa-linkedin fa-2x"></i></a>
-        </div>
-        <div class="col">
-         <a href="#" target="_blank" title="facebook"><i class="fab fa-facebook fa-2x"></i></a>
-        </div>
-        <div class="col">
-          <a href="#" target="_blank" title="instagram"><i class="fab fa-instagram fa-2x"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-light">
-      <div class="container text-center">
-        <p class="text-muted mb-0 py-2">© 2019 Bootstrapious All rights reserved.</p>
-      </div>
-    </div> 
-    -->
-
     <div>
     <div class="card">
         <div class="row mb-4 ">
             <div class="col-md-4 col-sm-11 col-xs-11">
-                <div class="footer-text pull-left">
+                <div class="footer-text">
                     <div class="d-flex">
-                      
-                        <h1 class="font-weight-bold mr-2 px-3" style="color:#16151a; background-color:#957bda"> Clove</h1>
-                        <h1 style="color: #957bda">& Cumin</h1>
+                        <img src="/img/CloveCuminT.png" style="width:200px; margin-left:auto; margin-right:auto;" alt="logo">
                     </div>
-                    <p class="card-text">* disclaimer* Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi non pariatur numquam animi nam at impedit odit nisi.</p>
-                    <div class="social mt-2 mb-3"> <i class="fab fa-facebook fa-3x"></i> <i class="fab fa-instagram fa-3x"></i> <i class="fab fa-linkedin fa-3x"></i></div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-1 col-xs-1 mb-2"></div>
             <div class="col-md-2 col-sm-4 col-xs-4">
                 <h5 class="heading">Shop</h5>
                 <ul>
                     <li>Home</li>
-                    <li>Recipie</li>
+                    <li>Recipes</li>
                     <li>Spice mixes (rubs)</li>
-                    <li>Spcies</li>
+                    <li>Spices</li>
                 </ul>
             </div>
-            <div class="col-md-2 col-sm-4 col-xs-4">
+            <div class="col-md-3 col-sm-4 col-xs-4">
                 <h5 class="heading">Menu</h5>
                 <ul class="card-text">
-                    <li>Login/ log out/ sign up</li>
+                    <li>Login / Log out / Sign up</li>
                     <li>Profile data</li>
                     <li>Order history</li>
                 </ul>
             </div>
-            <div class="col-md-2 col-sm-4 col-xs-4">
+            <div class="col-md-3 col-sm-4 col-xs-4">
                 <h5 class="heading">Contact us</h5>
                 <ul class="card-text">
-                    <li>email@gmail.com</li>
-                    <li>TEL: 047852495132</li>
-                    <li>FAQ</li>
+                    <li>letscook@clovencumin.com</li>
+                    <li>0475 86 25 80</li>
+                    <div class="social mt-2 mb-3">
+                      <i class="fab fa-facebook fa-3x"></i>
+                      <i class="fab fa-instagram fa-3x"></i>
+                      <i class="fab fa-linkedin fa-3x"></i>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -103,7 +45,7 @@
         <div class="row" style="font-size:10px;">
             <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="pull-left">
-                    <p><i class="fa fa-copyright"></i> 2020 thezpdesign</p>
+                    <p><i class="fa fa-copyright"></i> Clove & Cumin</p>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6">

@@ -1,6 +1,6 @@
 <template>
-  <div class="addToCart">
-    <button class="btn btn-secondary" @click="addToCart"> Add to Cart </button>    
+  <div class="addToCart text-center">
+    <button class="btn btn-secondary" @click="addToCart"> Add to cart</button>
   </div>
 </template>
 
@@ -29,12 +29,12 @@ export default {
   },
   methods:{
     addToCart(){
-      console.log('this c: ' + this.crushS);
-      var array = this.amountP.split('-');
-      this.item.spiceAmount = array[0].trim();
-      this.item.spicePrice = array[1].substring(2).trim();
+      this.item.spiceAmount = this.amountP[0] + ' gram';
+      this.item.spicePrice = this.amountP[1];
       this.item.spiceCrush = this.crushS;
-      console.log('item c: ' + this.item.spiceName + ' ' + this.item.spiceCrush);
+      this.item.spiceImage = this.image;
+      this.item.spiceName = this.name;
+      this.item.spiceOrigin = this.origin;
       this.$store.commit('addToCart', this.item)
       $('#miniCart').modal('show');
     }

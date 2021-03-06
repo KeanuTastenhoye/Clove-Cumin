@@ -110,16 +110,20 @@
               <p v-for="pa in order.productAmount" :key="pa">{{pa}}</p>
             </div>
             <div class="col text-center">
+              <p><strong>Form?</strong></p>
+              <p v-for="pc in order.productCrush" :key="pc">{{pc}}</p>
+            </div>
+            <div class="col text-center">
               <p><strong>Quantity</strong></p>
               <p v-for="pq in order.productQuantity" :key="pq">{{pq}}</p>
             </div>
             <div class="col text-center">
               <p><strong>Price</strong></p>
-              <p v-for="pp in order.productPrice" :key="pp">{{pp | currency('€ ')}}</p>
+              <p v-for="pp in order.productPrice" :key="pp">€ {{pp}}</p>
             </div>
           </div>
           <div class="text-center">
-            <p><strong>Total Price:</strong> {{order.totalPrice | currency('€ ')}}</p>
+            <p><strong>Total Price:</strong> € {{order.totalPrice}}</p>
           </div>
           <hr>
         </div>

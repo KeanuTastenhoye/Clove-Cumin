@@ -8,17 +8,30 @@
       <div class="row">
         <div class="col-md-8">
           <h4 class="py-4">Checkout page</h4>
-          <ul>
-            <li v-for="item in this.$store.state.cart" :key="item" class="media">
-              <img :src="item.spiceImage" width="80px" class="align-self-center mr-3" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">{{item.spiceName}} <span class='float-right' @click="$store.commit('removeFromCart',item)">X</span> </h5>
-                  <p class="mt-0">{{item.spiceOrigin}}</p>
-                  <p class="mt-0">€ {{item.spicePrice}}</p>
-                  <p class="mt-0">{{item.spiceAmount}}</p>
-                  <p class="mt-0">{{item.spiceCrush}}</p>
-                  <p class="dropdown">
-                    <a class="dropdown-toggle text-secondary" data-toggle="dropdown">Quantity: {{item.spiceQuantity}} </a>
+          <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Origin</th>
+                <th scope="col">Portion</th>
+                <th scope="col">Form</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Delete?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in this.$store.state.cart" :key="item">
+                <th><img :src="item.spiceImage" width="80px" class="align-self-center mr-3" alt=""></th>
+                <td>{{item.spiceName}}</td>
+                <td>{{item.spiceOrigin}}</td>
+                <td>{{item.spiceAmount}}</td>
+                <td>{{item.spiceCrush}}</td>
+                <td>€ {{item.spicePrice}}</td>
+                <td>
+                  <a class="dropdown-toggle text-secondary" data-toggle="dropdown">{{item.spiceQuantity}} </a>
                     <ul class="dropdown-menu" role="menu">
                       <li><a @click="$store.commit('changeQuantity1', item)">1</a></li>
                       <li><a @click="$store.commit('changeQuantity2', item)">2</a></li>
@@ -31,11 +44,12 @@
                       <li><a @click="$store.commit('changeQuantity9', item)">9</a></li>
                       <li><a @click="$store.commit('changeQuantity10', item)">10</a></li>
                     </ul>
-                  </p>
-                <hr>
-              </div>
-            </li>
-          </ul>
+                </td>
+                <td class="text-center" @click="$store.commit('removeFromCart',item)">X</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
         </div>
         <div class="col-md-4">
           <form v-on:submit.prevent="saveData" id="checkoutForm" name="checkoutForm" v-if="!user">
