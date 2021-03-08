@@ -43,22 +43,6 @@ export default new Vuex.Store({
               window.localStorage.setItem('cart', JSON.stringify(arr));
               state.cart = JSON.parse(window.localStorage.getItem('cart'));
           }
-         /*
-         var found = false;
-         var i;
-         for (i = 0; i < state.cart.length; i++) {
-            if (state.cart[i].spiceAmount == item.spiceAmount && state.cart[i].spiceName == item.spiceName) {
-              console.log('i: ' + state.cart[i].spiceName + ' ' + state.cart[i].spiceAmount);
-              state.cart[i].spiceQuantity++;
-              found = true;
-              break;
-            }
-         }
-         if (state.cart === [] || !found) {
-           state.cart.push(item);
-         }
-         this.commit('saveData');
-         */
       },
       saveData(state){
         window.localStorage.setItem('cart', JSON.stringify(state.cart));

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Navbar></Navbar>
-    <IntroPage/>
+    <IntroPage></IntroPage>
     <!--
             <div class="content">
               <div class="content__container">
@@ -27,6 +27,7 @@
               <div class="col px-5 py-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem sed modi tenetur rem facere beatae nobis eligendi, id omnis laborum vero, nostrum ea odio eos similique nisi provident esse asperiores!</div>
               <div class="col px-5 py-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dolorem id nulla mollitia voluptatibus aliquam maxime! Neque pariatur dolores similique non labore quo, explicabo tempora quas libero dolorum cupiditate. At!</div>
             </div>
+    
     <Login></Login>
     <Logout></Logout>
     <MiniCart></MiniCart>
@@ -49,6 +50,7 @@ export default {
 .home {
   background-color: bisque;
 }
+
 .parallax {
   background-image: url("/img/teamPic.jpg");
   min-height: 300px;

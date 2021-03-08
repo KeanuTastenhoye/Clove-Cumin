@@ -52,7 +52,6 @@ export default {
 
 <style scoped lang="scss">
   .introPage{
-    padding-top: 7rem;
     width: 100%;
     text-align: left;
   }

@@ -35,7 +35,8 @@ export default {
       this.item.spiceImage = this.image;
       this.item.spiceName = this.name;
       this.item.spiceOrigin = this.origin;
-      this.$store.commit('addToCart', this.item)
+      this.$store.commit('addToCart', this.item);
+      $('#spiceInfo').modal('hide');
       $('#miniCart').modal('show');
     }
   },

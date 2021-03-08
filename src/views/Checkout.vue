@@ -56,7 +56,7 @@
             <div class="form-row">
               <div class="col-md-12">
                 <label for="validMail"></label>
-                <input type="text" id="validMail" v-model="checkout.userMail" placeholder="Email" class="form-control" required>
+                <input type="email" id="validMail" v-model="checkout.userMail" placeholder="Email" class="form-control" required>
               </div>
               <div class="col-md-12">
                 <label for="validName"></label>
@@ -64,7 +64,7 @@
               </div>
               <div class="col-md-12">
                 <label for="validPhone"></label>
-                <input type="text" id="validPhone" v-model="checkout.userPhone" placeholder="Gsm nr" class="form-control" required>
+                <input type="tel" id="validPhone" v-model="checkout.userPhone" placeholder="Gsm nr" class="form-control" pattern="0[0-9]{9}" required>
               </div>
               <div class="col-md-6">
                 <label for="validSex"></label>
@@ -72,7 +72,7 @@
               </div>
               <div class="col-md-6">
                 <label for="validBirthday"></label>
-                <input type="text" id="validBirthday" v-model="checkout.userBirthday" placeholder="Geboortedatum" class="form-control" required>
+                <input type="date" id="validBirthday" v-model="checkout.userBirthday" placeholder="Geboortedatum" class="form-control" required>
               </div>
               <div class="col-md-12">
                 <label for="validAddress"></label>
@@ -84,7 +84,7 @@
               </div>
               <div class="col-md-4">
                 <label for="validPostCode"></label>
-                <input type="text" id="validPostCode" v-model="checkout.userPostCode" placeholder="Postcode" class="form-control" required>
+                <input type="number" id="validPostCode" v-model="checkout.userPostCode" placeholder="Postcode" class="form-control" required>
               </div>
               <div class="col-md-8">
                 <label for="validCity"></label>
@@ -107,6 +107,25 @@
 </template>
 
 <script>
+
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
 import { VueEditor } from "vue2-editor";
 import { fb, db} from '../firebase';
 

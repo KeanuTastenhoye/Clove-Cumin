@@ -4,7 +4,7 @@
 
     <div class="container pb-5">
       <div class="row row-cols-1 row-cols-md-3">
-        <div class="col mb-4" v-for="(spice, index) in spices" :key="index">
+        <div class="col mb-4" v-for="(spice, index) in spices" :key="index" data-aos="fade-up">
           <div class="card-deck" style="margin-left:1rem; margin-right: 1rem;">
             <div class="card text-gray bg-light border-danger con" style="width: 18rem;">
               <img class="card-img-top image" :src="spice.image" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;" @click="info(spice)">
@@ -90,6 +90,7 @@
     <Footer></Footer>
   </div>
 </template>
+
 
 <script>
 import { VueEditor } from "vue2-editor";
@@ -189,5 +190,59 @@ export default {
 img {
   width: 250px;
 }
+
+
+// Imports
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+
+// Varibles
+$main-font: 'Roboto',sans-serif;
+$primary-color: #57e2b2;
+$light-gray: #f8f8f8;
+$main-font-color: #808080;
+$main-font-weight: 300;
+
+// Basic
+body {
+  background-color: $light-gray;
+  font-family: $main-font;
+  font-weight: $main-font-weight;
+}
+
+
+// Tables
+.card {
+  border: 0;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 3px 0px 0 rgba(0, 0, 0, .08);
+  box-shadow: 0 3px 0px 0 rgba(0, 0, 0, .08);
+  transition: all .3s ease-in-out;
+  padding: 2.25rem 0;
+  position: relative;
+  will-change:transform; 
+  
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px;
+    background-color: $primary-color;
+    transition: 0.5s;
+  }
+  
+  &:hover {
+    transform: scale(1.05);
+    -webkit-box-shadow: 0 20px 35px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 20px 35px 0 rgba(0, 0, 0, .08);
+    
+    &:after {
+      width: 100%;
+    }
+    
+  }
+}
+
 
 </style>
