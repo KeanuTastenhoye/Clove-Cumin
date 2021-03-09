@@ -11,32 +11,36 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-4 col-xs-4">
-                <h5 class="heading">Shop</h5>
-                <ul>
-                    <li>Home</li>
-                    <li>Recipes</li>
-                    <li>Spice mixes (rubs)</li>
-                    <li>Spices</li>
+            <div class="col-md-2 col-sm-4 col-xs-4 text-center divS">
+                <h4 class="heading pt-5">Shop</h4>
+                <ul class="card-text ulS pt-5">
+                    <li class="px-2">
+                        <router-link to="/boxes">Boxes</router-link>
+                    </li>
+                    <li class="px-2">
+                        <router-link to="/recipes">Recipes</router-link>
+                    </li>
+                    <li class="px-2">
+                        <router-link to="/rubs">Rubs</router-link>
+                    </li>
+                    <li class="px-2">
+                        <router-link to="/spices">Spices</router-link>
+                    </li>
                 </ul>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-4">
-                <h5 class="heading">Menu</h5>
-                <ul class="card-text">
-                    <li>Login / Log out / Sign up</li>
-                    <li>Profile data</li>
-                    <li>Order history</li>
+            <div class="col-md-3 col-sm-4 col-xs-4 text-center divS">
+                <h4 class="heading pt-5">Contact us</h4>
+                <ul class="card-text ulS pt-5">
+                    <li class="px-2">letscook@clovencumin.com</li>
+                    <li class="px-2">0475 86 25 80</li>
                 </ul>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-4">
-                <h5 class="heading">Contact us</h5>
-                <ul class="card-text">
-                    <li>letscook@clovencumin.com</li>
-                    <li>0475 86 25 80</li>
+            <div class="col-md-3 col-sm-4 col-xs-4 text-center">
+                <h4 class="heading pt-5">FOLLOW US!</h4>
+                <ul class="card-text pt-4">
                     <div class="social mt-2 mb-3">
-                      <i class="fab fa-facebook fa-3x"></i>
-                      <i class="fab fa-instagram fa-3x"></i>
-                      <i class="fab fa-linkedin fa-3x"></i>
+                      <i class="fab fa-facebook fa-3x px-2"></i>
+                      <i class="fab fa-instagram fa-3x px-2"></i>
                     </div>
                 </ul>
             </div>
@@ -84,10 +88,20 @@ body {
     color: rgb(189, 196, 203)
 }
 
+a {
+    color: white ;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FBBC0E;
+    cursor: pointer
+}
+
 .card {
     padding: 2% 7%;
-    color: #646771;
-    background-color: #16151a
+    color: white;
+    background-color: #3A2F25 
 }
 
 ul {
@@ -97,11 +111,11 @@ ul {
 }
 
 ul>li {
-    padding: 4px
+    padding: 4px;
 }
 
 ul>li:hover {
-    color: #957bda;
+    color: #FBBC0E;
     cursor: pointer
 }
 
@@ -115,7 +129,7 @@ hr {
 }
 
 .social>i:hover {
-    color: #957bda;
+    color: #AC0818 ;
     cursor: pointer
 }
 
@@ -125,10 +139,22 @@ hr {
 
 .heading {
     font-family: 'Titillium Web', sans-serif;
-    color: white
+    color: #FBBC0E
 }
 
 .divider {
     border-top: 2px solid rgba(189, 196, 203, 0.5);
+}
+
+i {
+    color:#FBBC0E;
+}
+
+.divS {
+    display: inline;
+}
+
+.ulS li {
+    display: inline;
 }
 </style>

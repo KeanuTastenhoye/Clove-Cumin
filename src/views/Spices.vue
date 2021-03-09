@@ -6,7 +6,7 @@
       <div class="row row-cols-1 row-cols-md-3">
         <div class="col mb-4" v-for="(spice, index) in spices" :key="index" data-aos="fade-up">
           <div class="card-deck" style="margin-left:1rem; margin-right: 1rem;">
-            <div class="card text-gray bg-light border-danger con" style="width: 18rem;">
+            <div class="card text-gray bg-light con" style="width: 18rem;">
               <img class="card-img-top image" :src="spice.image" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;" @click="info(spice)">
               <div class="card-header bg-light">
                 <h4 class="text-center" @click="info(spice)">{{spice.name}}</h4>
@@ -25,10 +25,10 @@
     </div>
 
     <div class="modal fade" id="spiceInfo" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-mdialog-centered" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-                <h5><strong>{{selectedSpice.name}}</strong></h5>
+                <h4><strong>{{selectedSpice.name}}</strong></h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -62,7 +62,7 @@
       <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="spiceDescr">Modal title</h5>
+            <h4 class="modal-title" id="spiceDescr"><strong>{{selectedSpice.name}}</strong></h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -77,8 +77,8 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="info(selectedSpice)">Buy</button>
+            <button type="button" class="btn" style="background-color: #AC0818; color: white" data-dismiss="modal">Close</button>
+            <button type="button" class="btn" style="background-color: #64A425; color: white" @click="info(selectedSpice)">Buy</button>
           </div>
         </div>
       </div>
@@ -143,9 +143,13 @@ export default {
  
 <style scoped lang="scss">
 .spices {
-    background-color: bisque;
     padding-top: 7rem;
     width: 100%;
+}
+
+.modal-header {
+  background-color: #FBBC0E;
+  color:white;
 }
 
 .con {
@@ -197,7 +201,7 @@ img {
 
 // Varibles
 $main-font: 'Roboto',sans-serif;
-$primary-color: #57e2b2;
+$primary-color: #64A425;
 $light-gray: #f8f8f8;
 $main-font-color: #808080;
 $main-font-weight: 300;
@@ -217,7 +221,7 @@ body {
   -webkit-box-shadow: 0 3px 0px 0 rgba(0, 0, 0, .08);
   box-shadow: 0 3px 0px 0 rgba(0, 0, 0, .08);
   transition: all .3s ease-in-out;
-  padding: 2.25rem 0;
+  //padding: 2.25rem 0;
   position: relative;
   will-change:transform; 
   

@@ -8,21 +8,21 @@
           </ol>
           <div class="carousel-inner " >
             <div class="carousel-item active">
-              <img class="d-block w-100" src="/img/slideshow/test.jpg" alt="First slide">
+              <img class="d-block w-100" src="/img/slideshow/Banner.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
                   <h5>testtt</h5>
                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat explicabo voluptates praesentium eaque repellat, harum quisquam doloribus eveniet iste? Doloribus repellendus, distinctio est voluptatibus dicta et exercitationem vero omnis cupiditate!.</p>
                 </div>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="/img/slideshow/first.jpg" alt="Second slide">
+              <img class="d-block w-100" src="/img/slideshow/Tripple.png" alt="Second slide">
                 <div class="carousel-caption d-none d-md-block">
                   <h5>This is the second photo</h5>
                   <p>yeah looks mad cool bruh</p>
                 </div>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="/img/slideshow/Second.jpg" alt="Third slide">
+              <img class="d-block w-100" src="/img/slideshow/First.jpg" alt="Third slide">
                 <div class="carousel-caption d-none d-md-block">
                   <h5>Last</h5>
                   <p>I am the best pîcture</p>
