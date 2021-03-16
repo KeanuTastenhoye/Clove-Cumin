@@ -1,6 +1,7 @@
 <template>
   <div class="spices">
     <Navbar></Navbar>
+    <Disclaimer></Disclaimer>
 
     <div class="container pb-5">
       <div class="row row-cols-1 row-cols-md-3">
@@ -39,21 +40,26 @@
                 <img :src="selectedSpice.image" alt="spice image" style="width: 200px; margin-left: auto; margin-right: auto;">
               </div>
               <div class="col">
-                <p><u>Origin:</u> {{selectedSpice.origin}}</p>
-                <p class="float-left pt-2">Wich option would you like?</p>
-                <div v-for="gr in selectedSpice.amountPrice" :key="gr" class="pl-2 float-left">
+                <div v-for="gr in selectedSpice.amountPrice" :key="gr">
                   <input type="radio" :id="gr" :value="gr" v-model="selectedSpice.amountP">
-                  <label class="pl-1" :for="gr">{{gr[0]}} gram - € {{gr[1]}}</label>
+                  <label class="pl-1" :for="gr"> {{gr[0]}} gr</label> 
+                  <label class="pr-2 float-right" :for="gr"> € {{gr[1]}}</label>
                 </div>
-                <p class="float-left pt-2">In what form would you like it?</p>
-                <div v-for="optie in selectedSpice.crushed" :key="optie" class="pl-2 float-left">
+                <hr>
+                <div v-for="optie in selectedSpice.crushed" :key="optie" class="mx-auto d-inline">
                   <input type="radio" :id="optie" :value="optie" v-model="selectedSpice.crushS">
-                  <label class="pl-1" :for="optie">{{optie}}</label>
-                </div>              
+                  <label class="pl-1 pr-2" :for="optie">{{optie}}</label>
+                </div>
+                <!--
+                <div>
+                  <input type="checkbox" v-model="selectedSpice.crushS"/>
+                  <label class="pl-2"><i class="fas fa-mortar-pestle fa-2x"></i> </label>
+                </div>
+                -->
+                <add-to-cart class="float-left pl-5 pt-2" :crushS="selectedSpice.crushS" :amountP="selectedSpice.amountP" :image="selectedSpice.image" :origin="selectedSpice.origin" :name="selectedSpice.name"> </add-to-cart>
               </div>
             </div>
-            <add-to-cart class="float-left pl-5 pt-2" :crushS="selectedSpice.crushS" :amountP="selectedSpice.amountP" :image="selectedSpice.image" :origin="selectedSpice.origin" :name="selectedSpice.name"> </add-to-cart>
-          </div>
+            </div>
         </div>
       </div>
     </div>
@@ -90,7 +96,6 @@
     <Footer></Footer>
   </div>
 </template>
-
 
 <script>
 import { VueEditor } from "vue2-editor";
@@ -246,7 +251,6 @@ body {
     }
     
   }
+
 }
-
-
 </style>

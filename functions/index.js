@@ -1,9 +1,20 @@
-const functions = require("firebase-functions");
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp();
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+exports.myFunction = functions.firestore
+  .document('orders/{docId}')
+  .onCreate((snap, context) => { const newValue = snap.data(); 
+                                 const recipient = newValue.userMail;
+                                 const totPrice = newValue.totalPrice;
+                                 email(recipient, totPrice);});
+
+function email(recipient, totPrice) {
+  admin.firestore().collection('mail').add({
+    to: recipient,
+    message: {
+      subject: 'Total Price: ' + totPrice,
+      html: 'This is an <code>HTML</code> email body.',
+    },
+  })
+}

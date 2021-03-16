@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
           <div class="modal-body">
 
@@ -19,13 +19,10 @@
 
               <!--Login form-->
               <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
-                <h5 class="text-center">Login Please</h5>
                 <div class="form-group">
-                  <label for="loginEmail">Email address</label>
                   <input type="email" v-model="loginEmail" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                  <label for="loginPassword">Password</label>
                   <input type="password" @keyup.enter="login" v-model="loginPassword" class="form-control" id="loginPassword" placeholder="Enter password">
                 </div>
                 <div class="form-group">

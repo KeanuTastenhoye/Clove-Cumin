@@ -4,51 +4,43 @@
     <Login></Login>
     <Logout></Logout>
     <MiniCart></MiniCart>
-    <div class="container">
+    <div class="container pb-5">
       <div class="row">
         <div class="col-md-8">
-          <h4 class="py-4">Checkout page</h4>
-          <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Name</th>
-                <th scope="col">Origin</th>
-                <th scope="col">Portion</th>
-                <th scope="col">Form</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Delete?</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="item in this.$store.state.cart" :key="item">
-                <th><img :src="item.spiceImage" width="80px" class="align-self-center mr-3" alt=""></th>
-                <td>{{item.spiceName}}</td>
-                <td>{{item.spiceOrigin}}</td>
-                <td>{{item.spiceAmount}}</td>
-                <td>{{item.spiceCrush}}</td>
-                <td>€ {{item.spicePrice}}</td>
-                <td>
-                  <a class="dropdown-toggle text-secondary" data-toggle="dropdown">{{item.spiceQuantity}} </a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a @click="$store.commit('changeQuantity1', item)">1</a></li>
-                      <li><a @click="$store.commit('changeQuantity2', item)">2</a></li>
-                      <li><a @click="$store.commit('changeQuantity3', item)">3</a></li>
-                      <li><a @click="$store.commit('changeQuantity4', item)">4</a></li>
-                      <li><a @click="$store.commit('changeQuantity5', item)">5</a></li>
-                      <li><a @click="$store.commit('changeQuantity6', item)">6</a></li>
-                      <li><a @click="$store.commit('changeQuantity7', item)">7</a></li>
-                      <li><a @click="$store.commit('changeQuantity8', item)">8</a></li>
-                      <li><a @click="$store.commit('changeQuantity9', item)">9</a></li>
-                      <li><a @click="$store.commit('changeQuantity10', item)">10</a></li>
-                    </ul>
-                </td>
-                <td class="text-center" @click="$store.commit('removeFromCart',item)">X</td>
-              </tr>
-            </tbody>
-          </table>
+          <div v-for="item in this.$store.state.cart" :key="item">
+            <div class="row">
+              <div class="col">
+                <img :src="item.spiceImage" width="80px" class="align-self-center mr-3" alt="">
+              </div>
+              <div class="col">
+                <p><strong>{{item.spiceName}}</strong></p>
+                <p>{{item.spiceAmount}}</p>
+                <p>{{item.spiceCrush}}</p>
+              </div>
+              <div class="col">
+                <p><strong>Quantity</strong></p>
+                <a class="dropdown-toggle text-secondary" data-toggle="dropdown">{{item.spiceQuantity}} </a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a @click="$store.commit('changeQuantity1', item)">1</a></li>
+                        <li><a @click="$store.commit('changeQuantity2', item)">2</a></li>
+                        <li><a @click="$store.commit('changeQuantity3', item)">3</a></li>
+                        <li><a @click="$store.commit('changeQuantity4', item)">4</a></li>
+                        <li><a @click="$store.commit('changeQuantity5', item)">5</a></li>
+                        <li><a @click="$store.commit('changeQuantity6', item)">6</a></li>
+                        <li><a @click="$store.commit('changeQuantity7', item)">7</a></li>
+                        <li><a @click="$store.commit('changeQuantity8', item)">8</a></li>
+                        <li><a @click="$store.commit('changeQuantity9', item)">9</a></li>
+                        <li><a @click="$store.commit('changeQuantity10', item)">10</a></li>
+                      </ul>
+              </div>
+              <div class="col">
+                <p>€ {{item.spicePrice}}</p>
+              </div>
+              <div class="col">
+                <p @click="$store.commit('removeFromCart',item)">X</p>
+              </div>
+            </div>
+            <hr>
           </div>
         </div>
         <div class="col-md-4">
@@ -97,6 +89,12 @@
             </div>
           </form>
           <br>
+          <div v-if="user">
+            <div v-for="x in (userdata)" :key="x">
+              <p v-if="user.email == x.userMail"><strong>Name: </strong> {{x.userName}}</p>
+              <p v-if="user.email == x.userMail"><strong>Address: </strong>{{x.userAddress}} {{x.userBus}}, {{x.userPostCode}} {{x.userCity}}</p>
+            </div>
+          </div>
           <p><strong>Total price: </strong> € {{this.$store.getters.totalPrice}}</p>
           <button class="btn btn-secondary" @click="save()" v-if="user">Place order</button>
         </div>
@@ -154,7 +152,11 @@ export default {
           productPrice: [],
           productAmount: [],
           productCrush: [],
+          productImage: [],
           totalPrice: null,
+          orderNr: null,
+          date: null,
+          finished: null,
         },
         checkoutB: {
           userMail: null,
@@ -163,31 +165,52 @@ export default {
           productPrice: [],
           productAmount: [],
           productCrush: [],
+          productImage: [],
           totalPrice: null,
+          orderNr: null,
+          date: null,
+          finished: null,
         },
+        userdata: [],
         user: null,
+        userDataName: null,
+        userDataAddress: null,
     }
   },
   firestore(){
     return {
         orders: db.collection('orders'),
+        userdata: db.collection('userdata')
     }
   },
   methods: {
     saveData() {
       this.checkout.totalPrice = this.$store.getters.totalPrice;
-      
+
+      this.checkout.orderNr = "" + (Math.floor(Math.random() * 999) + 100) + (Math.floor(Math.random() * 999) + 100);
+      this.checkout.date = new Date().toLocaleString();
+      this.checkout.finished = false;
+
       this.$store.state.cart.forEach(item => {
         this.checkout.productName.push(item.spiceName);
         this.checkout.productQuantity.push(item.spiceQuantity);
         this.checkout.productPrice.push(item.spicePrice);
         this.checkout.productAmount.push(item.spiceAmount);
         this.checkout.productCrush.push(item.spiceCrush);
+        this.checkout.productImage.push(item.spiceImage);
       });
       db.collection('orders').add(this.checkout);
       this.checkout.productName.forEach(item => {
         this.$store.commit('emptyCart');
       })
+      /*
+      db.collection("mail").add({to: this.checkout.userMail, 
+                                 message: {subject: "Your order from Clove & Cumin",
+                                           text: "You ordered following items:",
+                                           html: "<table><thead><tr><th>Name</th></tr></thead><tbody><tr v-for=item in this.checkout.productName :key=item><td>{{item.spiceName}}</td></tr></tbody></table>"
+                                          }
+                                }
+                               )*/
       this.checkout.userMail = "";
       this.checkout.userName = "";
       this.checkout.userSex = "";
@@ -203,12 +226,18 @@ export default {
       this.checkoutB.totalPrice = this.$store.getters.totalPrice;
       this.checkoutB.userMail = fb.auth().currentUser.email;
       
+      this.checkoutB.orderNr = "" + (Math.floor(Math.random() * 999) + 100) + (Math.floor(Math.random() * 999) + 100);
+      this.checkoutB.date = new Date().toLocaleString();
+
+      this.checkoutB.finished = false;
+      
       this.$store.state.cart.forEach(item => {
         this.checkoutB.productName.push(item.spiceName);
         this.checkoutB.productQuantity.push(item.spiceQuantity);
         this.checkoutB.productPrice.push(item.spicePrice);
         this.checkoutB.productAmount.push(item.spiceAmount);
         this.checkoutB.productCrush.push(item.spiceCrush);
+        this.checkoutB.productImage.push(item.spiceImage);
       });
       db.collection('orders').add(this.checkoutB);
       this.checkoutB.productName.forEach(item => {
@@ -219,14 +248,21 @@ export default {
   },
   created () { 
     this.user = fb.auth().currentUser || false;
+  },
+  mounted() {
+    this.userdata.forEach(u => {
+      if (u.userMail == this.user) {
+        this.userDataName = u.userName;
+        this.userDataAddress = u.userAddress + " " + u.userBus + ", " + u.userPostCode + " " + u.userCity;
+      }
+    });
   }
 }
 </script>
 
 <style>
   .chekout {
-    background-color: bisque;
-    padding-top: 7rem;
+    padding-top: 9rem;
     width: 100%;
   }
 </style>

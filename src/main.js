@@ -40,6 +40,7 @@ import store from './store.js';
 
 Vue.component('Navbar', require('./components/Navbar.vue').default);
 Vue.component('Footer', require('./components/Footer.vue').default);
+Vue.component('Disclaimer', require('./components/Disclaimer.vue').default);
 Vue.component('Login', require('./components/Login.vue').default);
 Vue.component('Logout', require('./components/Logout.vue').default);
 Vue.component('AddToCart', require('./components/AddToCart.vue').default);

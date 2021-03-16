@@ -13,13 +13,14 @@
             </div>
             <div class="col-md-2 col-sm-4 col-xs-4 text-center divS">
                 <h4 class="heading pt-5">Shop</h4>
-                <ul class="card-text ulS pt-5">
+                <ul class="card-text ulS pt-4">
                     <li class="px-2">
                         <router-link to="/boxes">Boxes</router-link>
                     </li>
                     <li class="px-2">
                         <router-link to="/recipes">Recipes</router-link>
                     </li>
+                    <br>
                     <li class="px-2">
                         <router-link to="/rubs">Rubs</router-link>
                     </li>
@@ -30,14 +31,15 @@
             </div>
             <div class="col-md-3 col-sm-4 col-xs-4 text-center divS">
                 <h4 class="heading pt-5">Contact us</h4>
-                <ul class="card-text ulS pt-5">
+                <ul class="card-text ulS pt-4">
                     <li class="px-2">letscook@clovencumin.com</li>
+                    <br>
                     <li class="px-2">0475 86 25 80</li>
                 </ul>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-4 text-center">
                 <h4 class="heading pt-5">FOLLOW US!</h4>
-                <ul class="card-text pt-4">
+                <ul class="card-text pt-3">
                     <div class="social mt-2 mb-3">
                       <i class="fab fa-facebook fa-3x px-2"></i>
                       <i class="fab fa-instagram fa-3x px-2"></i>

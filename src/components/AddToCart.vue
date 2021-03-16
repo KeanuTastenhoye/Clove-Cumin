@@ -1,6 +1,6 @@
 <template>
-  <div class="addToCart text-center">
-    <button class="btn" style="background-color: #64A425; color: white" @click="addToCart"> Add to cart</button>
+  <div class="addToCart text-center float-right">
+    <button class="btn btn-block" style="background-color: #64A425; color: white;" @click="addToCart"> Add to cart</button>
   </div>
 </template>
 

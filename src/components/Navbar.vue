@@ -2,8 +2,11 @@
   <div>
    <nav class="navbar custom-nav fixed-top navbar-expand-lg navbar-light">
       <router-link class="navbar-brand pl-2" to="/">
+      <!--
         <h7 class="font-weight-bold mr-2 px-3" style="font-size: 150%; color:#16151a; background-color:#FBBC0E"> Clove</h7>
         <h7 style="font-size: 150%; color: #FBBC0E">& Cumin</h7>
+        -->
+        <img src="/img/C&C.png" alt="logo" class="miniLogo">
       </router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,21 +29,20 @@
             <li class="nav-item px-5" v-if="user">
               <router-link to="/user" class="nav-link"><a class="navTekst">User</a></router-link>
             </li>
+            <li class="nav-item px-5" v-if="user.email == 'teamblackcardamom@cnc.com'">
+              <router-link to="/admin" class="nav-link"><a class="navTekst">Admin</a></router-link>
+            </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <a class="btn btn-outline my-2 my-sm-0" style="border-color:#64A425; color:#64A425; font-weight: bold" data-toggle="modal" data-target="#login" v-if="!user">Login</a>
             <a class="btn btn-outline my-2 my-sm-0" style="border-color:#AC0818; color:#AC0818; font-weight: bold" data-toggle="modal" data-target="#logout" v-if="user">Logout</a>
-            <a class="btn btn-outline-info border-0 mx-2 my-2 my-sm-0" data-toggle="modal" data-target="#miniCart">
-              <i class="fas fa-shopping-cart fa-2x" style="color:#FBBC0E;"></i>
+            <a class="btn btn-outline border-0 mx-2 my-2 my-sm-0" data-toggle="modal" data-target="#miniCart">
+              <i class="fas fa-shopping-cart fa-2x kar"></i>
             </a>
           </form>
         </div>
       </div>
     </nav>
-      <div class="container alert alert-danger alert-server" role="alert">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>DISCLAIMER</strong> We offer FREE shipping when the order is above €30.
-      </div>
   </div>
 </template>
 
@@ -68,6 +70,11 @@ export default {
     }
    }
 
+   .miniLogo {
+     width: 100px;
+     height: 50px;
+   }
+
    li {
       display:inline-block;
    }
@@ -85,31 +92,48 @@ export default {
    li:hover {
       transform: scale(1.1);
    }
-/*
-.link--elara {
-    font-family: aktiv-grotesk-extended, sans-serif;
-    font-size: 1.375rem;
-}
 
-.link--elara::before {
-    transform-origin: 50% 100%;
-    transition: clip-path 0.3s, transform 0.3s cubic-bezier(0.2, 1, 0.8, 1);
-    clip-path: polygon(0% 0%, 0% 100%, 0 100%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%, 100% 100%, 100% 0%);
-}
+   .kar {
+    color:#FBBC0E;
+   }  
+   
+   .kar:hover {
+    color:#64A425;
+   }
 
-.link--elara:hover::before {
-    transform: translate3d(0, 2px, 0) scale3d(1.08, 3, 1);
-    clip-path: polygon(0% 0%, 0% 100%, 50% 100%, 50% 0, 50% 0, 50% 100%, 50% 100%, 0 100%, 100% 100%, 100% 0%);
-}
+$primary-color: #64A425;
 
-.link--elara span {
-    display: inline-block;
-    transition: transform 0.3s cubic-bezier(0.2, 1, 0.8, 1);
+.navTekst {
+  border: 0;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 3px 0px 0 rgba(0, 0, 0, .08);
+  box-shadow: 0 3px 0px 0 rgba(0, 0, 0, .08);
+  transition: all .3s ease-in-out;
+  //padding: 2.25rem 0;
+  position: relative;
+  will-change:transform; 
+  
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: $primary-color;
+    transition: 0.5s;
+  }
+  
+  &:hover {
+    transform: scale(1.05);
+    -webkit-box-shadow: 0 20px 35px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 20px 35px 0 rgba(0, 0, 0, .08);
+    
+    &:after {
+      width: 100%;
+    }
+    
+  }
 }
-
-.link--elara:hover span {
-    transform: translate3d(0, -2px, 0);
-}
-*/
 
 </style>
