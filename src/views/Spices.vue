@@ -42,7 +42,7 @@
               <div class="col">
                 <div v-for="gr in selectedSpice.amountPrice" :key="gr">
                   <input type="radio" :id="gr" :value="gr" v-model="selectedSpice.amountP">
-                  <label class="pl-1" :for="gr"> {{gr[0]}} gr</label> 
+                  <label class="pl-1" :for="gr"> {{gr[0]}} </label> 
                   <label class="pr-2 float-right" :for="gr"> € {{gr[1]}}</label>
                 </div>
                 <hr>

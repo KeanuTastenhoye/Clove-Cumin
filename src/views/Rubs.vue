@@ -8,7 +8,31 @@
         <div class="col mb-4" v-for="(rub, index) in rubs" :key="index" data-aos="fade-up">
           <div class="card-deck" style="margin-left:1rem; margin-right: 1rem;">
             <div class="card text-gray bg-light con" style="width: 18rem;">
-              <img class="card-img-top image" :src="rub.image" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;" @click="info(rub)">
+
+              <div :id="rub.origin" class="carousel" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li :data-target="getRubIDForCarrousel(rub)" data-slide-to="0" class="active"></li>
+                  <li :data-target="getRubIDForCarrousel(rub)" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="card-img-top image" :src="rub.imageU" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;" @click="info(rub)">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="card-img-top image" :src="rub.imageM" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;" @click="info(rub)">
+                  </div>
+                </div>
+                <a class="carousel-control-prev" :href="getRubIDForCarrousel(rub)" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" :href="getRubIDForCarrousel(rub)" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+
+              <!--<img class="card-img-top image" :src="rub.image" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;" @click="info(rub)">-->
               <div class="card-header bg-light">
                 <h4 class="text-center" @click="info(rub)">{{rub.name}}</h4>
               </div>
@@ -37,26 +61,39 @@
           <div class="modal-body">
             <div class="row">
               <div class="col">
-                <img :src="selectedRub.image" alt="rub image" style="width: 200px; margin-left: auto; margin-right: auto;">
+                <div id="SelectedRubIndicators" class="carousel" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                    <li data-target="#SelectedRubIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#SelectedRubIndicators" data-slide-to="1"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img class="card-img-top image" :src="selectedRub.imageU" alt="Card image" style="width: 200; margin-left: auto; margin-right: auto;">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="card-img-top image" :src="selectedRub.imageM" alt="Card image" style="width: 200; margin-left: auto; margin-right: auto;">
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#SelectedRubIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#SelectedRubIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
               </div>
               <div class="col text-center">
                 <p class="text-center">Amount</p>
                 <hr>
-                <!--         
-                <form class="form cf">
-                  <section class="plan cf">
-                -->
                 <div v-for="gr in selectedRub.amountPrice" :key="gr">
                   <input type="radio" :id="gr" :value="gr" v-model="selectedRub.amountP">
-                  <label class="pl-1" :for="gr">{{gr[0]}} gr - € {{gr[1]}}</label>
-                </div>
-                <!--
-                  </section>
-                </form>
-                -->             
+                  <label class="pl-1" :for="gr">{{gr[0]}} - € {{gr[1]}}</label>
+                </div>      
               </div>
             </div>
-            <add-to-cart class="float-left pl-5 pt-2" :crushS="selectedRub.crushS" :amountP="selectedRub.amountP" :image="selectedRub.image" :origin="selectedRub.origin" :name="selectedRub.name"> </add-to-cart>
+            <add-to-cart class="float-left pl-5 pt-2" crushS="Mixed" :amountP="selectedRub.amountP" :image="selectedRub.imageM" :origin="selectedRub.origin" :name="selectedRub.name"> </add-to-cart>
           </div>
         </div>
       </div>
@@ -139,6 +176,9 @@ export default {
       $('#rubDescr').modal('show');
       $('#rubInfo').modal('hide');
       this.selectedRub = rub;
+    },
+    getRubIDForCarrousel(rub) {
+      return "" + "#" + rub.origin;
     }
   }
 };

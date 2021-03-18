@@ -51,6 +51,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @media (max-width: 992px) { 
+    .introPage {
+      padding-top: 50px;
+    }
+   }
+
   .introPage{
     width: 100%;
     text-align: left;

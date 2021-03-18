@@ -6,7 +6,7 @@
           <div class="modal-body">
             <div class="tab-content text-center" id="pills-tabContent">
               <h4>Are you sure?</h4>
-              <button class="btn btn-primary" @click="logout">Logout</button>
+              <button class="btn" style="background-color:#64A425; color:white;" @click="logout">Logout</button>
             </div>
           </div>
         </div>
@@ -28,6 +28,7 @@ export default {
         .then(() => { 
             //? Hides the Account menu
             $('#logout').modal('hide');
+            window.localStorage.setItem('userName', '');
             this.$router.push('/');
         })
         .catch((error) => { console.log(error); });

@@ -4,7 +4,7 @@
     <Login></Login>
     <Logout></Logout>
     <MiniCart></MiniCart>
-    <div class="container pb-5">
+    <div class="container pb-3">
       <div class="row">
         <div class="col-md-8">
           <div v-for="item in this.$store.state.cart" :key="item">
@@ -84,7 +84,7 @@
               </div>
               <div class="col-md-12 mt-4">
                 <label for="save"></label>
-                <input type="submit" id="save" value="Plaats bestelling" class="btn btn-primary w-100">
+                <input type="submit" id="save" value="Plaats bestelling" class="btn w-100" style="background-color:#64A425; color:white;">
               </div>
             </div>
           </form>
@@ -96,7 +96,7 @@
             </div>
           </div>
           <p><strong>Total price: </strong> € {{this.$store.getters.totalPrice}}</p>
-          <button class="btn btn-secondary" @click="save()" v-if="user">Place order</button>
+          <button class="btn" style="background-color:#64A425; color:white;" @click="save()" v-if="user">Place order</button>
         </div>
       </div>
     </div>
@@ -203,14 +203,6 @@ export default {
       this.checkout.productName.forEach(item => {
         this.$store.commit('emptyCart');
       })
-      /*
-      db.collection("mail").add({to: this.checkout.userMail, 
-                                 message: {subject: "Your order from Clove & Cumin",
-                                           text: "You ordered following items:",
-                                           html: "<table><thead><tr><th>Name</th></tr></thead><tbody><tr v-for=item in this.checkout.productName :key=item><td>{{item.spiceName}}</td></tr></tbody></table>"
-                                          }
-                                }
-                               )*/
       this.checkout.userMail = "";
       this.checkout.userName = "";
       this.checkout.userSex = "";
@@ -261,6 +253,17 @@ export default {
 </script>
 
 <style>
+  @media (max-width: 992px) { 
+    .container {
+      font-size: 70%;
+    }
+
+    img {
+      width: 50px;
+    }
+
+  }
+
   .chekout {
     padding-top: 9rem;
     width: 100%;

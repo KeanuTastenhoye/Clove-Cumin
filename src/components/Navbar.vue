@@ -2,10 +2,6 @@
   <div>
    <nav class="navbar custom-nav fixed-top navbar-expand-lg navbar-light">
       <router-link class="navbar-brand pl-2" to="/">
-      <!--
-        <h7 class="font-weight-bold mr-2 px-3" style="font-size: 150%; color:#16151a; background-color:#FBBC0E"> Clove</h7>
-        <h7 style="font-size: 150%; color: #FBBC0E">& Cumin</h7>
-        -->
         <img src="/img/C&C.png" alt="logo" class="miniLogo">
       </router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +23,7 @@
               <router-link to="/spices" class="nav-link"><a class="navTekst">Spices</a></router-link>
             </li>
             <li class="nav-item px-5" v-if="user">
-              <router-link to="/user" class="nav-link"><a class="navTekst">User</a></router-link>
+              <router-link to="/user" class="nav-link"><a class="navTekst">My account</a></router-link>
             </li>
             <li class="nav-item px-5" v-if="user.email == 'teamblackcardamom@cnc.com'">
               <router-link to="/admin" class="nav-link"><a class="navTekst">Admin</a></router-link>
@@ -35,7 +31,7 @@
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <a class="btn btn-outline my-2 my-sm-0" style="border-color:#64A425; color:#64A425; font-weight: bold" data-toggle="modal" data-target="#login" v-if="!user">Login</a>
-            <a class="btn btn-outline my-2 my-sm-0" style="border-color:#AC0818; color:#AC0818; font-weight: bold" data-toggle="modal" data-target="#logout" v-if="user">Logout</a>
+            <a class="btn btn-outline my-2 my-sm-0" style="border-color:#AC0818; color:#AC0818; font-weight: bold" data-toggle="modal" data-target="#logout" v-if="user">Hi, {{userN}}</a>
             <a class="btn btn-outline border-0 mx-2 my-2 my-sm-0" data-toggle="modal" data-target="#miniCart">
               <i class="fas fa-shopping-cart fa-2x kar"></i>
             </a>
@@ -47,14 +43,33 @@
 </template>
 
 <script>
-import {fb} from '../firebase'
+
+import { VueEditor } from "vue2-editor";
+import {fb, db} from '../firebase';
 export default {
   name: "Navbar",
+  components: {
+    VueEditor
+  },
   props: {
     msg: String
   },
-  created() {
+  data () {
+    return {
+      userdata: [],
+      user: null,
+      userN: null,
+    }
+  },
+  firestore(){
+    return {
+      userdata: db.collection('userdata')
+    }
+  },
+  created () { 
     this.user = fb.auth().currentUser || false;
+
+    this.userN = window.localStorage.getItem('userName');
   }
 };
 </script>
@@ -70,6 +85,14 @@ export default {
     }
    }
 
+  @media (max-width: 992px) { 
+    .navbar.custom-nav{
+      background-color: #3A2F25;
+      color: black;
+      font-weight: bold;
+    }
+   }
+
    .miniLogo {
      width: 100px;
      height: 50px;
@@ -81,7 +104,7 @@ export default {
 
   .navTekst {
     color:white;
-    font-size:150%;
+    font-size:125%;
   }
 
    .navTekst:hover {

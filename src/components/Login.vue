@@ -8,10 +8,10 @@
             <!--Login Buttons: Login or sign up-->
             <ul class="nav nav-fill nav-pills mb-3" id="pills-tab" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true" style="background-color:#64A425; color:white;">Login</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="pills-register-tab" data-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Signup</a>
+                <a class="nav-link" id="pills-register-tab" data-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false" style="background-color:#64A425; color:white;">Signup</a>
               </li>
             </ul>
 
@@ -26,7 +26,7 @@
                   <input type="password" @keyup.enter="login" v-model="loginPassword" class="form-control" id="loginPassword" placeholder="Enter password">
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-primary" @click="login">Login</button>
+                  <button class="btn" style="background-color:#64A425; color:white;" @click="login">Login</button>
                 </div>
               </div>
 
@@ -74,7 +74,7 @@
                   <input type="text" v-model="userdata.userCity" class="form-control" placeholder="Your city">
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-primary" @click="register">Signup</button>
+                  <button class="btn" style="background-color:#64A425; color:white;" @click="register">Signup</button>
                 </div>
               </div>
             </div>
@@ -97,6 +97,7 @@ export default {
       password: null,
       loginEmail: null,
       loginPassword: null,
+      usernameke: null,
       userdata: {
         userName: null,
         userMail: null,
@@ -115,6 +116,12 @@ export default {
       fb.auth().createUserWithEmailAndPassword(this.userdata.userMail, this.password)
         .then(() => {
             console.log(this.userdata.userName + ' is succesfully signed in');
+            var user = fb.auth().currentUser;
+            user.updateProfile({
+              displayName: this.userdata.userName
+            })
+            this.usernameke = this.userdata.userName.split(' ')[0];
+            window.localStorage.setItem('userName', this.usernameke);
             db.collection('userdata').add(this.userdata);
             //? Hides the Account menu
             $('#login').modal('hide');
@@ -136,7 +143,8 @@ export default {
     login() {
       fb.auth().signInWithEmailAndPassword(this.loginEmail, this.loginPassword)
         .then(() => {
-            console.log(this.loginEmail + ' is succesfully logged in');
+            this.usernameke = fb.auth().currentUser.displayName.split(' ')[0];
+            window.localStorage.setItem('userName', this.usernameke);
             //? Hides the Account menu
             $('#login').modal('hide');
             this.$router.push('/');

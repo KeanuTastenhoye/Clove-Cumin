@@ -94,8 +94,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button @click="updateData()" type="button" class="btn btn-primary">Finished</button>
+            <button type="button" class="btn" style="background-color:#AC0818; color:white;" data-dismiss="modal">Close</button>
+            <button @click="updateData()" type="button" class="btn" style="background-color:#64A425; color:white;">Finished</button>
           </div>
         </div>
       </div>

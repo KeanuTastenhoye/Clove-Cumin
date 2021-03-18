@@ -58,7 +58,6 @@
                 <div class="pull-right mr-4 d-flex policy">
                     <div>Terms of Use</div>
                     <div>Privacy Policy</div>
-                    <div>Cookie Policy</div>
                 </div>
             </div>
         </div>

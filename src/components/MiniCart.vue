@@ -28,8 +28,8 @@
             </ul>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue Shopping</button>
-            <button type="button" class="btn btn-primary" @click="checkout">Checkout</button>
+            <button type="button" class="btn" style="background-color:#AC0818; color:white;" data-dismiss="modal">Continue Shopping</button>
+            <button type="button" class="btn" style="background-color:#64A425; color:white;" @click="checkout">Checkout</button>
           </div>
         </div>
       </div>

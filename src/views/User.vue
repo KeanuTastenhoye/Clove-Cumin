@@ -87,47 +87,47 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="form-group">
-                  <input type="text" placeholder="User Name" v-model="profile.userName" class="form-control">
+                  <input type="text" placeholder="Name" v-model="profile.userName" class="form-control">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <input type="text" placeholder="User Birthday" v-model="profile.userBirthday" class="form-control">
+                  <input type="text" placeholder="Birthday" v-model="profile.userBirthday" class="form-control">
                 </div>
               </div>
               <div class="col-md-8">
                 <div class="form-group">
-                  <input type="text" placeholder="User Mail" v-model="profile.userMail" class="form-control">
+                  <input type="text" placeholder="Mail" v-model="profile.userMail" class="form-control">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <input type="text" placeholder="User Sex" v-model="profile.userSex" class="form-control">
+                  <input type="text" placeholder="Sex" v-model="profile.userSex" class="form-control">
                 </div>
               </div>
               <div class="col-md-5">
                 <div class="form-group">
-                  <input type="text" placeholder="User Phone" v-model="profile.userPhone" class="form-control">
+                  <input type="text" placeholder="Phone" v-model="profile.userPhone" class="form-control">
                 </div>
               </div>
               <div class="col-md-7">
                 <div class="form-group">
-                  <input type="text" placeholder="User Address" v-model="profile.userAddress" class="form-control">
+                  <input type="text" placeholder="Address" v-model="profile.userAddress" class="form-control">
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" placeholder="User Bus" v-model="profile.userBus" class="form-control">
+                  <input type="text" placeholder="Bus" v-model="profile.userBus" class="form-control">
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" placeholder="User Postcode" v-model="profile.userPostcode" class="form-control">
+                  <input type="text" placeholder="Postcode" v-model="profile.userPostcode" class="form-control">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" placeholder="User City" v-model="profile.userCity" class="form-control">
+                  <input type="text" placeholder="City" v-model="profile.userCity" class="form-control">
                 </div>
               </div>
             </div>

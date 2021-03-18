@@ -29,7 +29,7 @@ export default {
   },
   methods:{
     addToCart(){
-      this.item.spiceAmount = this.amountP[0] + ' gram';
+      this.item.spiceAmount = this.amountP[0];
       this.item.spicePrice = this.amountP[1];
       this.item.spiceCrush = this.crushS;
       this.item.spiceImage = this.image;
@@ -37,6 +37,8 @@ export default {
       this.item.spiceOrigin = this.origin;
       this.$store.commit('addToCart', this.item);
       $('#spiceInfo').modal('hide');
+      $('#rubInfo').modal('hide');
+      $('#recipeInfo').modal('hide');
       $('#miniCart').modal('show');
     }
   },

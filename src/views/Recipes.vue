@@ -26,7 +26,7 @@
         <div class="col mb-4" data-aos="fade-up">
           <div class="card-deck" style="margin-left:1rem; margin-right: 1rem;">
             <div class="card text-gray bg-light con" style="width: 18rem;">
-              <img class="card-img-top image" src="/img/CloveCumin.png" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;" @click="info(recipe)">
+              <img class="card-img-top image" src="/img/ComingSoon.jpg" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;">
               <div class="card-header bg-light">
                 <h4 class="text-center">Coming Soon</h4>
               </div>
@@ -41,7 +41,7 @@
         <div class="col mb-4" data-aos="fade-up">
           <div class="card-deck" style="margin-left:1rem; margin-right: 1rem;">
             <div class="card text-gray bg-light con" style="width: 18rem;">
-              <img class="card-img-top image" src="/img/CloveCumin.png" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;" @click="info(recipe)">
+              <img class="card-img-top image" src="/img/ComingSoon.jpg" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;">
               <div class="card-header bg-light">
                 <h4 class="text-center">Coming Soon</h4>
               </div>
@@ -74,20 +74,12 @@
               <div class="col text-center">
                 <p class="text-center">Amount</p>
                 <hr>
-                <!--         
-                <form class="form cf">
-                  <section class="plan cf">
-                -->
                 <div v-for="gr in selectedRecipe.amountPrice" :key="gr">
                   <input type="radio" :id="gr" :value="gr" v-model="selectedRecipe.amountP">
-                  <label class="pl-1" :for="gr">{{gr[0]}} porties - € {{gr[1]}}</label>
+                  <label class="pl-1" :for="gr">{{gr[0]}} - € {{gr[1]}}</label>
                 </div>
-                <!--
-                  </section>
-                </form>
-                -->
                 <hr>
-                <p class="text-center">Format</p>
+                <p class="text-center">Spices</p>
                 <hr>
                 <div v-for="optie in selectedRecipe.crushed" :key="optie" class="mx-auto d-inline">
                   <input type="radio" :id="optie" :value="optie" v-model="selectedRecipe.crushS">
