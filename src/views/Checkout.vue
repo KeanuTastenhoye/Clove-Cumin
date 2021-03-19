@@ -96,7 +96,8 @@
               <p v-if="user.email == x.userMail"><strong>Adres: </strong>{{x.userAddress}} {{x.userBus}}, {{x.userPostCode}} {{x.userCity}}</p>
             </div>
           </div>
-          <p><strong>Totaal prijs: </strong> € {{this.$store.getters.totalPrice}}</p>
+          <p><strong>Shipping: </strong> € 5</p>
+          <p><strong>Totaal prijs (excl shipping): </strong> € {{this.$store.getters.totalPrice}}</p>
           <button class="btn" style="background-color:#64A425; color:white;" @click="save()" v-if="user">Plaats bestelling</button>
         </div>
       </div>
@@ -155,6 +156,7 @@ export default {
           productCrush: [],
           productImage: [],
           totalPrice: null,
+          totalShipping: null,
           orderNr: null,
           date: null,
           finished: null,
@@ -168,6 +170,7 @@ export default {
           productCrush: [],
           productImage: [],
           totalPrice: null,
+          totalShipping: null,
           orderNr: null,
           date: null,
           finished: null,
@@ -189,12 +192,13 @@ export default {
   methods: {
     saveData() {
       this.checkout.totalPrice = this.$store.getters.totalPrice;
+      this.checkout.totalShipping = parseFloat(this.$store.getters.totalPrice) + parseFloat(5);
 
       this.checkout.orderNr = "" + (Math.floor(Math.random() * 999) + 100) + (Math.floor(Math.random() * 999) + 100);
       this.checkout.date = new Date().toLocaleString();
       this.checkout.finished = false;
 
-      window.localStorage.setItem('bedrag', this.checkout.totalPrice);
+      window.localStorage.setItem('bedrag', parseFloat(this.checkout.totalShipping));
       window.localStorage.setItem('orderNr', this.checkout.orderNr);
 
       this.$store.state.cart.forEach(item => {
@@ -222,6 +226,8 @@ export default {
     },
     save() {
       this.checkoutB.totalPrice = this.$store.getters.totalPrice;
+      this.checkoutB.totalShipping = parseFloat(this.$store.getters.totalPrice) + parseFloat(5);
+
       this.checkoutB.userMail = fb.auth().currentUser.email;
       
       this.checkoutB.orderNr = "" + (Math.floor(Math.random() * 999) + 100) + (Math.floor(Math.random() * 999) + 100);
@@ -240,7 +246,7 @@ export default {
 
       this.checkoutB.finished = false;
 
-      window.localStorage.setItem('bedrag', this.checkoutB.totalPrice);
+      window.localStorage.setItem('bedrag', parseFloat(this.checkoutB.totalShipping));
       window.localStorage.setItem('orderNr', this.checkoutB.orderNr);
       
       this.$store.state.cart.forEach(item => {
@@ -260,7 +266,6 @@ export default {
   },
   created () { 
     this.user = fb.auth().currentUser || false;
-    window.localStorage.setItem('addy', )
   }
 }
 </script>

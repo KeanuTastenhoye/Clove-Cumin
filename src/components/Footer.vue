@@ -7,7 +7,7 @@
             <div class="col-md-4 col-sm-11 col-xs-11">
                 <div class="footer-text">
                     <div class="d-flex">
-                        <img src="/img/CloveCuminT.png" style="width:200px; margin-left:auto; margin-right:auto;" alt="logo">
+                        <img src="/img/CloveCuminT.png" style="margin-left:auto; margin-right:auto;" alt="logo">
                     </div>
                 </div>
             </div>
@@ -85,6 +85,19 @@ export default {
 
 
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap');
+
+  @media (max-width: 992px) { 
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }  
+  
+  @media (min-width: 992px) { 
+    img {
+      width: 200px;
+    }
+  }
 
 body {
     background-color: #f3f6fd;

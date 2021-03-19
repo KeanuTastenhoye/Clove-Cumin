@@ -157,7 +157,7 @@
                 <button class="btn btn-light" @click="descr(order)"><strong>Bekijk deze bestelling > </strong></button>
               </div>
               <div class="card-footer">
-                <a><strong>Totaal Prijs:</strong> € {{order.totalPrice}}</a>
+                <a><strong>Totaal Prijs:</strong> € {{order.totalShipping}}</a>
               </div>
             </div>
           </div>
