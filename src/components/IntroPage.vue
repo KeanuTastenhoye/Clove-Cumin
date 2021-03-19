@@ -9,23 +9,19 @@
           <div class="carousel-inner " >
             <div class="carousel-item active">
               <img class="d-block w-100" src="/img/slideshow/Banner.jpg" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>testtt</h5>
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat explicabo voluptates praesentium eaque repellat, harum quisquam doloribus eveniet iste? Doloribus repellendus, distinctio est voluptatibus dicta et exercitationem vero omnis cupiditate!.</p>
+                <div class="carousel-caption d-none d-md-block" style="color:black;">
+                  <h5>Missie</h5>
+                  <p>Mensen verschillende culturen te laten beleven door middel van verschillende smaken (lekker eten), en dit alles vanuit uw eigen keuken.</p>
                 </div>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="/img/slideshow/Tripple.png" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>This is the second photo</h5>
-                  <p>yeah looks mad cool bruh</p>
-                </div>
+              <img class="d-block w-100" src="/img/slideshow/ADDelhaize.jpg" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="/img/slideshow/First.jpg" alt="Third slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Last</h5>
-                  <p>I am the best pîcture</p>
+              <img class="d-block w-100" src="/img/slideshow/Banner-Spices.jpg" alt="Second slide">
+                <div class="carousel-caption d-none d-md-block" style="color:white;">
+                  <h5>Visie</h5>
+                  <p>We willen grenzen verleggen en mensen samenbrengen door hun gedeelde passie voor eten. Door de ervaring van het koken en eten van authentieke keukens van over heel de wereld, willen we een appreciatie kweken voor verschillende culturen en diversiteit bevorderen.</p>
                 </div>
             </div>
           </div>

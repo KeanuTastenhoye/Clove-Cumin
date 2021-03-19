@@ -7,10 +7,10 @@
 
             <!--Login Buttons: Login or sign up-->
             <ul class="nav nav-fill nav-pills mb-3" id="pills-tab" role="tablist">
-              <li class="nav-item">
+              <li class="nav-item mr-2">
                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true" style="background-color:#64A425; color:white;">Login</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item ml-2">
                 <a class="nav-link" id="pills-register-tab" data-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false" style="background-color:#64A425; color:white;">Signup</a>
               </li>
             </ul>
@@ -20,61 +20,61 @@
               <!--Login form-->
               <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
                 <div class="form-group">
-                  <input type="email" v-model="loginEmail" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input type="email" v-model="loginEmail" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Email adres">
                 </div>
                 <div class="form-group">
-                  <input type="password" @keyup.enter="login" v-model="loginPassword" class="form-control" id="loginPassword" placeholder="Enter password">
+                  <input type="password" @keyup.enter="login" v-model="loginPassword" class="form-control" id="loginPassword" placeholder="Wachtwoord">
                 </div>
-                <div class="form-group">
+                <div class="form-group text-center">
                   <button class="btn" style="background-color:#64A425; color:white;" @click="login">Login</button>
                 </div>
               </div>
 
               <!--Sign up form-->
               <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab">
-                <h5 class="text-center">Create New Account</h5>
+                <h5 class="text-center">Maak een nieuw account</h5>
                 <div class="form-group">
-                  <label for="userdata.userName">Your name</label>
-                  <input type="text" v-model="userdata.userName" class="form-control" placeholder="Your name">
+                  <label for="userdata.userName">Naam</label>
+                  <input type="text" v-model="userdata.userName" class="form-control" placeholder="Je naam" required>
                 </div>
                 <div class="form-group">
-                  <label for="userdata.userMail">Email address</label>
-                  <input type="email"  v-model="userdata.userMail" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                  <label for="userdata.userMail">Email adres</label>
+                  <input type="email"  v-model="userdata.userMail" class="form-control" aria-describedby="emailHelp" placeholder="Je email adres" required>
                 </div>
                 <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" v-model="password" class="form-control" placeholder="Password">
+                  <label for="password">Wachtwoord</label>
+                  <input type="password" v-model="password" class="form-control" placeholder="Je wachtwoord" required>
                 </div>
                 <div class="form-group">
-                  <label for="userdata.userPhone">Your Phone</label>
-                  <input type="text" v-model="userdata.userPhone" class="form-control" placeholder="Your phone">
+                  <label for="userdata.userPhone">Telefoonnummer</label>
+                  <input type="tel" v-model="userdata.userPhone" class="form-control" pattern="0[0-9]{9}" placeholder="Je telefoonnummer" required>
                 </div>
                 <div class="form-group">
-                  <label for="userdata.userSex">Your Sex</label>
-                  <input type="text" v-model="userdata.userSex" class="form-control" placeholder="Your sex">
+                  <label for="userdata.userSex">Geslacht</label>
+                  <input type="text" v-model="userdata.userSex" class="form-control" placeholder="Je geslacht" required>
                 </div>
                 <div class="form-group">
-                  <label for="userdata.userBirthday">Your Birthday</label>
-                  <input type="text" v-model="userdata.userBirthday" class="form-control" placeholder="Your birthday">
+                  <label for="userdata.userBirthday">Geboortedatum</label>
+                  <input type="date" v-model="userdata.userBirthday" class="form-control" placeholder="Je geboortedatum" required>
                 </div>
                 <div class="form-group">
-                  <label for="userdata.userAddress">Your Address</label>
-                  <input type="text" v-model="userdata.userAddress" class="form-control" placeholder="Your address">
+                  <label for="userdata.userAddress">Adres</label>
+                  <input type="text" v-model="userdata.userAddress" class="form-control" placeholder="Je adres" required>
                 </div>
                 <div class="form-group">
-                  <label for="userdata.userBus">Your Bus</label>
-                  <input type="text" v-model="userdata.userBus" class="form-control" placeholder="Your Bus">
+                  <label for="userdata.userBus">Bus</label>
+                  <input type="text" v-model="userdata.userBus" class="form-control" placeholder="Je bus" required>
                 </div>
                 <div class="form-group">
-                  <label for="userdata.userPostCode">Your PostCode</label>
-                  <input type="text" v-model="userdata.userPostCode" class="form-control" placeholder="Your post code">
+                  <label for="userdata.userPostCode">Postcode</label>
+                  <input type="text" v-model="userdata.userPostCode" class="form-control" placeholder="Je postcode" required>
                 </div>
                 <div class="form-group">
-                  <label for="userdata.userCity">Your City</label>
-                  <input type="text" v-model="userdata.userCity" class="form-control" placeholder="Your city">
+                  <label for="userdata.userCity">Stad/gemeente</label>
+                  <input type="text" v-model="userdata.userCity" class="form-control" placeholder="Je stad/gemeente" required>
                 </div>
-                <div class="form-group">
-                  <button class="btn" style="background-color:#64A425; color:white;" @click="register">Signup</button>
+                <div class="form-group text-center">
+                  <button class="btn" style="background-color:#64A425; color:white;" @click="register">Maak mijn account aan!</button>
                 </div>
               </div>
             </div>

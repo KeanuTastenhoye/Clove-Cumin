@@ -6,7 +6,7 @@
     <MiniCart></MiniCart>
 
     <div class="container">
-      <h3 class="text-center">My personal data</h3> 
+      <h3 class="text-center">Mijn gegevens</h3> 
       <div class="profile-content" v-for="u in userCheckP" :key="u" @click="editData(u)">
         <div class="container">
           <div class="row">
@@ -15,7 +15,7 @@
                 <div class="card-body cb">
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
+                      <h6 class="mb-0">Naam</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                      {{u.userName}} <i class="fas fa-pencil-alt"></i>
@@ -24,7 +24,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
+                      <h6 class="mb-0">Email adres</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{u.userMail}} <i class="fas fa-pencil-alt"></i>
@@ -33,7 +33,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Phone</h6>
+                      <h6 class="mb-0">Telefoonnummer</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{u.userPhone}} <i class="fas fa-pencil-alt"></i>
@@ -42,7 +42,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Gender</h6>
+                      <h6 class="mb-0">Geslacht</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{u.userSex}} <i class="fas fa-pencil-alt"></i>
@@ -51,7 +51,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Birthday</h6>
+                      <h6 class="mb-0">Geboortedatum</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{u.userBirthday}} <i class="fas fa-pencil-alt"></i>
@@ -60,7 +60,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Address</h6>
+                      <h6 class="mb-0">Adres</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{u.userAddress}} {{u.userBus}}, {{u.userPostcode}} {{u.userCity}} <i class="fas fa-pencil-alt"></i>
@@ -78,7 +78,7 @@
       <div class="modal-dialog modal-mdialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="editLabel">Your data</h5>
+            <h5 class="modal-title" id="editLabel">Mijn gegevens</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -87,32 +87,32 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="form-group">
-                  <input type="text" placeholder="Name" v-model="profile.userName" class="form-control">
+                  <input type="text" placeholder="Naam" v-model="profile.userName" class="form-control">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <input type="text" placeholder="Birthday" v-model="profile.userBirthday" class="form-control">
+                  <input type="text" placeholder="Geboortedatum" v-model="profile.userBirthday" class="form-control">
                 </div>
               </div>
               <div class="col-md-8">
                 <div class="form-group">
-                  <input type="text" placeholder="Mail" v-model="profile.userMail" class="form-control">
+                  <input type="text" placeholder="Email adres" v-model="profile.userMail" class="form-control">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <input type="text" placeholder="Sex" v-model="profile.userSex" class="form-control">
+                  <input type="text" placeholder="Geslacht" v-model="profile.userSex" class="form-control">
                 </div>
               </div>
               <div class="col-md-5">
                 <div class="form-group">
-                  <input type="text" placeholder="Phone" v-model="profile.userPhone" class="form-control">
+                  <input type="text" placeholder="Telefoonnummer" v-model="profile.userPhone" class="form-control">
                 </div>
               </div>
               <div class="col-md-7">
                 <div class="form-group">
-                  <input type="text" placeholder="Address" v-model="profile.userAddress" class="form-control">
+                  <input type="text" placeholder="Adres" v-model="profile.userAddress" class="form-control">
                 </div>
               </div>
               <div class="col-md-3">
@@ -127,37 +127,37 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" placeholder="City" v-model="profile.userCity" class="form-control">
+                  <input type="text" placeholder="Stad/Gemeente" v-model="profile.userCity" class="form-control">
                 </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button @click="updateData()" type="button" class="btn btn-primary" >Apply changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
+            <button @click="updateData()" type="button" class="btn btn-primary">Opslaan</button>
           </div>
         </div>
       </div>
     </div>
 
     <div class="container py-4">
-      <h3 class="text-center">My order overview</h3> 
+      <h3 class="text-center">Mijn bestellingen</h3> 
       <div class="row row-cols-1 row-cols-md-3">
         <div class="col mb-4" v-for="order in userCheckO" :key="order" data-aos="fade-up">
           <div class="card-deck" style="margin-left:1rem; margin-right: 1rem;">
             <div class="card cardOrder text-gray bg-light con" style="width: 18rem;">
               <div class="card-header bg-light">
-                <h4 class="text-center" @click="descr(order)">Order: {{order.orderNr}}</h4>
+                <h4 class="text-center" @click="descr(order)">Bestelling: {{order.orderNr}}</h4>
               </div>
               <div class="hovIco">
                 <div class="icoontje"><i class="far fa-eye fa-4x" @click="descr(order)"></i></div>
               </div>
               <div class="card-body">
                 <p class= "text-center">{{order.date.split(' ')[0]}} &nbsp; &nbsp; {{order.date.split(' ')[1]}}</p>
-                <button class="btn btn-light" @click="descr(order)"><strong>See this order > </strong></button>
+                <button class="btn btn-light" @click="descr(order)"><strong>Bekijk deze bestelling > </strong></button>
               </div>
               <div class="card-footer">
-                <a><strong>Total Price:</strong> € {{order.totalPrice}}</a>
+                <a><strong>Totaal Prijs:</strong> € {{order.totalPrice}}</a>
               </div>
             </div>
           </div>
@@ -169,7 +169,7 @@
       <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="spiceDescr"><strong>Order: {{selectedOrder.orderNr}}</strong></h4>
+            <h4 class="modal-title" id="spiceDescr"><strong>Bestelling: {{selectedOrder.orderNr}}</strong></h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -185,17 +185,17 @@
                 <p>{{selectedOrder.productCrush[index]}}</p>
               </div>
               <div class="col text-center">
-                <p><strong>Quantity</strong></p>
+                <p><strong>Aantal</strong></p>
                 <p>{{selectedOrder.productQuantity[index]}}</p>
               </div>
               <div class="col text-center">
-                <p><strong>Price</strong></p>
+                <p><strong>Prijs</strong></p>
                 <p>€ {{selectedOrder.productPrice[index]}}</p>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn" style="background-color: #AC0818; color: white" data-dismiss="modal">Close</button>
+            <button type="button" class="btn" style="background-color: #AC0818; color: white" data-dismiss="modal">Sluit</button>
           </div>
         </div>
       </div>

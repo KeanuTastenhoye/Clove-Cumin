@@ -6,7 +6,7 @@
     <MiniCart></MiniCart>
 
     <div class="container py-4">
-      <h3 class="text-center">Open orders</h3> 
+      <h3 class="text-center">Openstaande bestellingen</h3> 
       <div class="row row-cols-1 row-cols-md-3">
         <div class="col mb-4" v-for="order in orderCheck" :key="order" data-aos="fade-up">
           <div class="card-deck" style="margin-left:1rem; margin-right: 1rem;">
@@ -19,10 +19,10 @@
               </div>
               <div class="card-body">
                 <p class= "text-center">{{order.date.split(' ')[0]}} &nbsp; &nbsp; {{order.date.split(' ')[1]}}</p>
-                <button class="btn btn-light" @click="descr(order)"><strong>See this order > </strong></button>
+                <button class="btn btn-light" @click="descr(order)"><strong>Meer van deze bestelling > </strong></button>
               </div>
               <div class="card-footer">
-                <a><strong>Total Price:</strong> € {{order.totalPrice}}</a>
+                <a><strong>Totaal prijs:</strong> € {{order.totalPrice}}</a>
               </div>
             </div>
           </div>
@@ -42,12 +42,12 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <input type="text" placeholder="Order Nr" v-model="order.orderNr" class="form-control" disabled>
+                  <input type="text" placeholder="Bestelnummer" v-model="order.orderNr" class="form-control" disabled>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" placeholder="Order Date" v-model="order.date" class="form-control" disabled>
+                  <input type="text" placeholder="Bestel datum" v-model="order.date" class="form-control" disabled>
                 </div>
               </div>
             </div>
@@ -76,7 +76,7 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <input type="text" placeholder="Total Price" v-model="order.totalPrice" class="form-control" disabled>
+                  <input type="text" placeholder="Totaal Prijs" v-model="order.totalPrice" class="form-control" disabled>
                 </div>
               </div>
               <div class="col-md-8">
@@ -84,18 +84,18 @@
                   <input type="text" placeholder="User Email" v-model="order.userMail" class="form-control" disabled>
                 </div>
               </div>
-              <!--
-              <div class="col-md-2">
+            </div>
+            <div class="row">
+              <div class="col-md-4">
                 <div class="form-group">
-                  <input type="checkbox" placeholder="Finished?" v-model="order.finished" class="form-control">
+                  <input type="text" placeholder="User Adres" v-model="order.userAddress" class="form-control" disabled>
                 </div>
               </div>
-              -->
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn" style="background-color:#AC0818; color:white;" data-dismiss="modal">Close</button>
-            <button @click="updateData()" type="button" class="btn" style="background-color:#64A425; color:white;">Finished</button>
+            <button type="button" class="btn" style="background-color:#AC0818; color:white;" data-dismiss="modal">Sluit</button>
+            <button @click="updateData()" type="button" class="btn" style="background-color:#64A425; color:white;">Klaar voor verzending</button>
           </div>
         </div>
       </div>

@@ -18,7 +18,7 @@
                 <p>{{item.spiceCrush}}</p>
               </div>
               <div class="col">
-                <p><strong>Quantity</strong></p>
+                <p><strong>Aantal</strong></p>
                 <a class="dropdown-toggle text-secondary" data-toggle="dropdown">{{item.spiceQuantity}} </a>
                       <ul class="dropdown-menu" role="menu">
                         <li><a @click="$store.commit('changeQuantity1', item)">1</a></li>
@@ -48,7 +48,7 @@
             <div class="form-row">
               <div class="col-md-12">
                 <label for="validMail"></label>
-                <input type="email" id="validMail" v-model="checkout.userMail" placeholder="Email" class="form-control" required>
+                <input type="email" id="validMail" v-model="checkout.userMail" placeholder="Email adres" class="form-control" required>
               </div>
               <div class="col-md-12">
                 <label for="validName"></label>
@@ -56,7 +56,7 @@
               </div>
               <div class="col-md-12">
                 <label for="validPhone"></label>
-                <input type="tel" id="validPhone" v-model="checkout.userPhone" placeholder="Gsm nr" class="form-control" pattern="0[0-9]{9}" required>
+                <input type="tel" id="validPhone" v-model="checkout.userPhone" placeholder="Telefoonnummer" class="form-control" pattern="0[0-9]{9}" required>
               </div>
               <div class="col-md-6">
                 <label for="validSex"></label>
@@ -68,7 +68,7 @@
               </div>
               <div class="col-md-12">
                 <label for="validAddress"></label>
-                <input type="text" id="validAddress" v-model="checkout.userAddress" placeholder="Address" class="form-control" required>
+                <input type="text" id="validAddress" v-model="checkout.userAddress" placeholder="Adres" class="form-control" required>
               </div>
               <div class="col-md-12">
                 <label for="validBus"></label>
@@ -80,7 +80,7 @@
               </div>
               <div class="col-md-8">
                 <label for="validCity"></label>
-                <input type="text" id="validCity" v-model="checkout.userCity" placeholder="City/Gemeente" class="form-control" required>
+                <input type="text" id="validCity" v-model="checkout.userCity" placeholder="Stad/Gemeente" class="form-control" required>
               </div>
               <div class="col-md-12 mt-4">
                 <label for="save"></label>
@@ -91,12 +91,13 @@
           <br>
           <div v-if="user">
             <div v-for="x in (userdata)" :key="x">
-              <p v-if="user.email == x.userMail"><strong>Name: </strong> {{x.userName}}</p>
-              <p v-if="user.email == x.userMail"><strong>Address: </strong>{{x.userAddress}} {{x.userBus}}, {{x.userPostCode}} {{x.userCity}}</p>
+              <p v-if="user.email == x.userMail"><strong>Naam: </strong> {{x.userName}}</p>
+              <p v-if="user.email == x.userMail"><strong>Email adres: </strong> {{x.userMail}}</p>
+              <p v-if="user.email == x.userMail"><strong>Adres: </strong>{{x.userAddress}} {{x.userBus}}, {{x.userPostCode}} {{x.userCity}}</p>
             </div>
           </div>
-          <p><strong>Total price: </strong> € {{this.$store.getters.totalPrice}}</p>
-          <button class="btn" style="background-color:#64A425; color:white;" @click="save()" v-if="user">Place order</button>
+          <p><strong>Totaal prijs: </strong> € {{this.$store.getters.totalPrice}}</p>
+          <button class="btn" style="background-color:#64A425; color:white;" @click="save()" v-if="user">Plaats bestelling</button>
         </div>
       </div>
     </div>
@@ -170,11 +171,13 @@ export default {
           orderNr: null,
           date: null,
           finished: null,
+          userName: null,
+          userAddress: null,
+
         },
         userdata: [],
         user: null,
         userDataName: null,
-        userDataAddress: null,
     }
   },
   firestore(){
@@ -190,6 +193,9 @@ export default {
       this.checkout.orderNr = "" + (Math.floor(Math.random() * 999) + 100) + (Math.floor(Math.random() * 999) + 100);
       this.checkout.date = new Date().toLocaleString();
       this.checkout.finished = false;
+
+      window.localStorage.setItem('bedrag', this.checkout.totalPrice);
+      window.localStorage.setItem('orderNr', this.checkout.orderNr);
 
       this.$store.state.cart.forEach(item => {
         this.checkout.productName.push(item.spiceName);
@@ -221,7 +227,21 @@ export default {
       this.checkoutB.orderNr = "" + (Math.floor(Math.random() * 999) + 100) + (Math.floor(Math.random() * 999) + 100);
       this.checkoutB.date = new Date().toLocaleString();
 
+      this.checkoutB.userName = window.localStorage.getItem('userName');
+
+      this.userdata.forEach(ud => {
+        if (ud.userMail == this.user.email) {
+          var addy = "" + ud.userAddress + " " + ud.userBus + ", " + ud.userPostCode + " " + ud.userCity;
+          window.localStorage.setItem('addy', addy);
+        }
+      })
+
+      this.checkoutB.userAddress = window.localStorage.getItem('addy');
+
       this.checkoutB.finished = false;
+
+      window.localStorage.setItem('bedrag', this.checkoutB.totalPrice);
+      window.localStorage.setItem('orderNr', this.checkoutB.orderNr);
       
       this.$store.state.cart.forEach(item => {
         this.checkoutB.productName.push(item.spiceName);
@@ -240,14 +260,7 @@ export default {
   },
   created () { 
     this.user = fb.auth().currentUser || false;
-  },
-  mounted() {
-    this.userdata.forEach(u => {
-      if (u.userMail == this.user) {
-        this.userDataName = u.userName;
-        this.userDataAddress = u.userAddress + " " + u.userBus + ", " + u.userPostCode + " " + u.userCity;
-      }
-    });
+    window.localStorage.setItem('addy', )
   }
 }
 </script>

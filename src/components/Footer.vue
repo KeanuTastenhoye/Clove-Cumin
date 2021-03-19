@@ -14,23 +14,25 @@
             <div class="col-md-2 col-sm-4 col-xs-4 text-center divS">
                 <h4 class="heading pt-5">Shop</h4>
                 <ul class="card-text ulS pt-4">
+                    <!--
                     <li class="px-2">
                         <router-link to="/boxes">Boxes</router-link>
                     </li>
+                    -->
                     <li class="px-2">
-                        <router-link to="/recipes">Recipes</router-link>
+                        <router-link to="/recipes">Recepten</router-link>
                     </li>
                     <br>
                     <li class="px-2">
-                        <router-link to="/rubs">Rubs</router-link>
+                        <router-link to="/rubs">Mixes</router-link>
                     </li>
                     <li class="px-2">
-                        <router-link to="/spices">Spices</router-link>
+                        <router-link to="/spices">Kruiden</router-link>
                     </li>
                 </ul>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-4 text-center divS">
-                <h4 class="heading pt-5">Contact us</h4>
+                <h4 class="heading pt-5">Contacteer ons</h4>
                 <ul class="card-text ulS pt-4">
                     <li class="px-2">letscook@clovencumin.com</li>
                     <br>
@@ -38,7 +40,7 @@
                 </ul>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-4 text-center">
-                <h4 class="heading pt-5">FOLLOW US!</h4>
+                <h4 class="heading pt-5">Volg Ons!</h4>
                 <ul class="card-text pt-3">
                     <div class="social mt-2 mb-3">
                       <i class="fab fa-facebook fa-3x px-2"></i>
@@ -49,16 +51,18 @@
         </div>
         <div class="divider mb-4"> </div>
         <div class="row" style="font-size:10px;">
-            <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="col">
                 <div class="pull-left">
                     <p><i class="fa fa-copyright"></i> Clove & Cumin</p>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-6">
-                <div class="pull-right mr-4 d-flex policy">
-                    <div>Terms of Use</div>
+            <div class="col text-center">
+                <div class="policy">
                     <div>Privacy Policy</div>
                 </div>
+            </div>
+            <div class="col text-right">
+                <img src="/img/VLAJO.jpg" style="width:40px">
             </div>
         </div>
     </div>

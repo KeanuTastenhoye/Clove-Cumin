@@ -11,17 +11,20 @@ function email(newValue) {
   admin.firestore().collection('mail').add({
     to: newValue.userMail,
     message: {
-      subject: 'Thank you for your order! It is almost done now.',
-      html: '<p>Thank you for trusting us! Before we begin working on your order we ask you to fullfill your purchase on thz following account.</p>'+
+      subject: 'Bedankt van je bestelling, we gaan er bijna mee beginnen.',
+      html: '<p>Bedankt voor je vertrouwen! Voor dat we beginnen met je bestelling, vragen we je om de betaling uit te voeren. Aangezien wij een SBP zijn en geen ondernemings nummer hebben, zijn we verplicht dit via een overschirjving te laten gebeuren. De overschrijving mag uitgevoerd worden met volgende gegevens.</p>'+
+            '<p>Rekening nummer: BE06 0018 9899 0622</p>' +
+            '<p>Bedrag: ' + newValue.totalPrice + '</p>' +
+            '<p>Mededeling: ' + newValue.userName + ' - ' + newValue.orderNr + '</p>' +
             '<table>'+
               '<thead>'+
                 '<tr>'+
                   '<th></th>'+
-                  '<th>Name</th>'+
-                  '<th>Format</th>'+
-                  '<th>Amount</th>'+
-                  '<th>Quanity</th>'+
-                  '<th>Price</th>'+
+                  '<th>Naam</th>'+
+                  '<th>Vorm</th>'+
+                  '<th>Hoeveelheid</th>'+
+                  '<th>Aantal</th>'+
+                  '<th>Prijs</th>'+
                 '</tr>'+
               '</thead>'+
               '<tbody>'+
@@ -35,7 +38,7 @@ function email(newValue) {
                 '</tr>'+
               '</tbody>'+
             '</table>'+
-            '<p>Total Price: <strong>€' + newValue.totalPrice + '</strong></p>',
+            '<p>Totaal Prijs: <strong>€' + newValue.totalPrice + '</strong></p>',
     },
   })
 }

@@ -1,7 +1,10 @@
 <template>
   <div class="spices">
     <Navbar></Navbar>
+
+    <!--
     <Disclaimer></Disclaimer>
+    -->
 
     <div class="container pb-5">
       <div class="row row-cols-1 row-cols-md-3">
@@ -16,8 +19,8 @@
                 <div class="icoontje"><i class="fas fa-cart-plus fa-4x" @click="info(spice)"></i></div>
               </div>
               <div class="card-body">
-                <p>Lorem ipsum dolor sit amet conse...</p>
-                <button class="btn btn-light" @click="descr(spice)"><strong>Read More > </strong></button>
+                <p></p>
+                <button class="btn btn-light" @click="descr(spice)"><strong>Lees meer > </strong></button>
               </div>
             </div>
           </div>
@@ -40,22 +43,20 @@
                 <img :src="selectedSpice.image" alt="spice image" style="width: 200px; margin-left: auto; margin-right: auto;">
               </div>
               <div class="col">
+                <p class="text-center">Hoeveelheid</p>
+                <hr>
                 <div v-for="gr in selectedSpice.amountPrice" :key="gr">
                   <input type="radio" :id="gr" :value="gr" v-model="selectedSpice.amountP">
                   <label class="pl-1" :for="gr"> {{gr[0]}} </label> 
                   <label class="pr-2 float-right" :for="gr"> € {{gr[1]}}</label>
                 </div>
                 <hr>
+                <p class="text-center">Vorm van de kruiden</p>
+                <hr>
                 <div v-for="optie in selectedSpice.crushed" :key="optie" class="mx-auto d-inline">
                   <input type="radio" :id="optie" :value="optie" v-model="selectedSpice.crushS">
                   <label class="pl-1 pr-2" :for="optie">{{optie}}</label>
                 </div>
-                <!--
-                <div>
-                  <input type="checkbox" v-model="selectedSpice.crushS"/>
-                  <label class="pl-2"><i class="fas fa-mortar-pestle fa-2x"></i> </label>
-                </div>
-                -->
                 <add-to-cart class="float-left pl-5 pt-2" :crushS="selectedSpice.crushS" :amountP="selectedSpice.amountP" :image="selectedSpice.image" :origin="selectedSpice.origin" :name="selectedSpice.name"> </add-to-cart>
               </div>
             </div>
@@ -65,7 +66,7 @@
     </div>
 
     <div class="modal fade" id="spiceDescr" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title" id="spiceDescr"><strong>{{selectedSpice.name}}</strong></h4>
@@ -74,13 +75,43 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
+            <h6><strong>Land van herkomst</strong></h6>
+            <p>{{selectedSpice.origin}}</p>
+            <hr>
+            <h6><strong>Beschrijving</strong></h6>
+            <p>We zijn momenteel druk bezig met een accurate, informatieve en een aangenaam om te lezen beschrijving te ontwikkelen voor elk van onze kruiden. </p>
+            <p>Kom binnenkort nog eens kijken!</p>
+            <hr>
+            <h6><strong>Keukens</strong></h6>
+            <p>...</p>
+            <hr>
+            <h6><strong>Smaak</strong></h6>
+            <p>...</p>
+            <hr>
+            <h6><strong>Hoe te gebruiken</strong></h6>
+            <p>...</p>
+            <hr>
+            <h6><strong>Wordt gebruikt in</strong></h6>
+            <p>...</p>
+            <hr>
+            <h6><strong>Beschrijving plant</strong></h6>
+            <p>...</p>
+            <hr>
+            <h6><strong>Hoe bewaren</strong></h6>
+            <p>...</p>
+            <hr>
+            <h6><strong>Past goed bij</strong></h6>
+            <p>...</p>
+            <hr>
+            <h6><strong>Weetjes</strong></h6>
+            <p>...</p>
+            <hr>
+            <h6><strong>Geschiedenis</strong></h6>
+            <p>...</p>
+            <hr>
+            <h6><strong>Gezondheids voordelen</strong></h6>
+            <p>...</p>
+            <hr>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn" style="background-color: #AC0818; color: white" data-dismiss="modal">Close</button>

@@ -1,8 +1,9 @@
 <template>
   <div class="recipes">
     <Navbar></Navbar>
+    <!--
     <Disclaimer></Disclaimer>
-
+    -->
     <div class="container pb-5">
       <div class="row row-cols-1 row-cols-md-3">
         <div class="col mb-4" v-for="(recipe, index) in recipes" :key="index" data-aos="fade-up">
@@ -16,8 +17,8 @@
                 <div class="icoontje"><i class="fas fa-cart-plus fa-4x" @click="info(recipe)"></i></div>
               </div>
               <div class="card-body">
-                <p>Lorem ipsum dolor sit amet conse...</p>
-                <button class="btn btn-light" @click="descr(recipe)"><strong>Read More > </strong></button>
+                <p></p>
+                <button class="btn btn-light" @click="descr(recipe)"><strong>Lees meer > </strong></button>
               </div>
             </div>
           </div>
@@ -28,11 +29,11 @@
             <div class="card text-gray bg-light con" style="width: 18rem;">
               <img class="card-img-top image" src="/img/ComingSoon.jpg" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;">
               <div class="card-header bg-light">
-                <h4 class="text-center">Coming Soon</h4>
+                <h4 class="text-center">Binnenkort</h4>
               </div>
               <div class="card-body">
-                <p>Lorem ipsum dolor sit amet conse...</p>
-                <button class="btn btn-light" disabled><strong>Read More > </strong></button>
+                <p></p>
+                <button class="btn btn-light" disabled><strong>Lees meer > </strong></button>
               </div>
             </div>
           </div>
@@ -43,11 +44,11 @@
             <div class="card text-gray bg-light con" style="width: 18rem;">
               <img class="card-img-top image" src="/img/ComingSoon.jpg" alt="Card image" style="width: 250; margin-left: auto; margin-right: auto;">
               <div class="card-header bg-light">
-                <h4 class="text-center">Coming Soon</h4>
+                <h4 class="text-center">Binnenkort</h4>
               </div>
               <div class="card-body">
-                <p>Lorem ipsum dolor sit amet conse...</p>
-                <button class="btn btn-light" disabled><strong>Read More > </strong></button>
+                <p></p>
+                <button class="btn btn-light" disabled><strong>Lees meer > </strong></button>
               </div>
             </div>
           </div>
@@ -72,14 +73,14 @@
                 <img :src="selectedRecipe.image" alt="recipe image" style="width: 200px; margin-left: auto; margin-right: auto;">
               </div>
               <div class="col text-center">
-                <p class="text-center">Amount</p>
+                <p class="text-center">Hoeveelheid</p>
                 <hr>
                 <div v-for="gr in selectedRecipe.amountPrice" :key="gr">
                   <input type="radio" :id="gr" :value="gr" v-model="selectedRecipe.amountP">
                   <label class="pl-1" :for="gr">{{gr[0]}} - € {{gr[1]}}</label>
                 </div>
                 <hr>
-                <p class="text-center">Spices</p>
+                <p class="text-center">Vorm van de kruiden</p>
                 <hr>
                 <div v-for="optie in selectedRecipe.crushed" :key="optie" class="mx-auto d-inline">
                   <input type="radio" :id="optie" :value="optie" v-model="selectedRecipe.crushS">
@@ -103,17 +104,18 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
+            <h6><strong>Plaats van herkomst</strong></h6>
+            <p>{{selectedRecipe.origin}}</p>
+            <hr>
+            <h6><strong>Inhoud</strong></h6>
+            <p>{{selectedRecipe.inhoud}}</p>
+            <hr>
+            <h6><strong>Extra</strong></h6>
+            <p>{{selectedRecipe.smaak}}</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn" style="background-color: #AC0818; color: white" data-dismiss="modal">Close</button>
-            <button type="button" class="btn" style="background-color: #64A425; color: white" @click="info(selectedRecipe)">Buy</button>
+            <button type="button" class="btn" style="background-color: #AC0818; color: white" data-dismiss="modal">Sluit</button>
+            <button type="button" class="btn" style="background-color: #64A425; color: white" @click="info(selectedRecipe)">Kopen</button>
           </div>
         </div>
       </div>

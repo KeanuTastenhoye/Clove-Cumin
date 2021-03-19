@@ -5,8 +5,9 @@
         <div class="modal-content">
           <div class="modal-body">
             <div class="tab-content text-center" id="pills-tabContent">
-              <h4>Are you sure?</h4>
-              <button class="btn" style="background-color:#64A425; color:white;" @click="logout">Logout</button>
+              <h4 class="pb-3">Ben je zeker dat je wilt uitloggen?</h4>
+              <button class="btn px-5 mr-3" style="background-color:#64A425; color:white;" @click="logout">Ja</button>
+              <button class="btn px-5 ml-3" style="background-color:#AC0818; color:white;" data-dismiss="modal">Neen</button>
             </div>
           </div>
         </div>

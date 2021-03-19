@@ -1,8 +1,11 @@
 <template>
   <div class="rubs">
     <Navbar></Navbar>
+
+    <!--
     <Disclaimer></Disclaimer>
-  
+    -->
+
     <div class="container pb-5">
       <div class="row row-cols-1 row-cols-md-3">
         <div class="col mb-4" v-for="(rub, index) in rubs" :key="index" data-aos="fade-up">
@@ -40,8 +43,8 @@
                 <div class="icoontje"><i class="fas fa-cart-plus fa-4x" @click="info(rub)"></i></div>
               </div>
               <div class="card-body">
-                <p>Lorem ipsum dolor sit amet conse...</p>
-                <button class="btn btn-light" @click="descr(rub)"><strong>Read More > </strong></button>
+                <p></p>
+                <button class="btn btn-light" @click="descr(rub)"><strong>Lees meer > </strong></button>
               </div>
             </div>
           </div>
@@ -85,7 +88,7 @@
                 </div>
               </div>
               <div class="col text-center">
-                <p class="text-center">Amount</p>
+                <p class="text-center">Hoeveelheid</p>
                 <hr>
                 <div v-for="gr in selectedRub.amountPrice" :key="gr">
                   <input type="radio" :id="gr" :value="gr" v-model="selectedRub.amountP">
@@ -109,17 +112,15 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ipsum facere delectus ipsam temporibus alias mollitia quibusdam ut, magni, debitis consequuntur. Minus enim excepturi dolorum laboriosam aut nostrum ullam eveniet!</p>
+            <h6><strong>Inhoud</strong></h6>
+            <p>{{selectedRub.inhoud}}</p>
+            <hr>
+            <h6><strong>Extra</strong></h6>
+            <p>{{selectedRub.pastBij}}</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn" style="background-color: #AC0818; color: white" data-dismiss="modal">Close</button>
-            <button type="button" class="btn" style="background-color: #64A425; color: white" @click="info(selectedRub)">Buy</button>
+            <button type="button" class="btn" style="background-color: #AC0818; color: white" data-dismiss="modal">Sluit</button>
+            <button type="button" class="btn" style="background-color: #64A425; color: white" @click="info(selectedRub)">Kopen</button>
           </div>
         </div>
       </div>
