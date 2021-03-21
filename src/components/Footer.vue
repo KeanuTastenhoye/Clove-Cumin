@@ -34,17 +34,21 @@
             <div class="col-md-3 col-sm-4 col-xs-4 text-center divS">
                 <h4 class="heading pt-5">Contacteer ons</h4>
                 <ul class="card-text ulS pt-4">
-                    <li class="px-2">letscook@clovencumin.com</li>
+                    <li class="px-2"><a href="mailto:letscook@clovencumin.com" target="_new">letscook@clovencumin.com</a></li>
                     <br>
-                    <li class="px-2">0475 86 25 80</li>
+                    <li class="px-2"><a href="tel:+32 475 86 25 80">+32 475 86 25 80</a></li>
                 </ul>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-4 text-center">
                 <h4 class="heading pt-5">Volg Ons!</h4>
                 <ul class="card-text pt-3">
                     <div class="social mt-2 mb-3">
-                      <i class="fab fa-facebook fa-3x px-2"></i>
-                      <i class="fab fa-instagram fa-3x px-2"></i>
+                        <a href="https://www.facebook.com/clovencumin" target="_new">
+                            <i class="fab fa-facebook fa-2x px-2"></i>
+                        </a>
+                        <a href="https://www.instagram.com/clovencumin" target="_new">
+                            <i class="fab fa-instagram fa-2x px-2"></i>
+                        </a>
                     </div>
                 </ul>
             </div>
@@ -146,7 +150,7 @@ hr {
     font-size: 30px
 }
 
-.social>i:hover {
+.social>a>i:hover {
     color: #AC0818 ;
     cursor: pointer
 }

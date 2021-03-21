@@ -43,7 +43,7 @@
                 <img :src="selectedSpice.image" alt="spice image" style="width: 200px; margin-left: auto; margin-right: auto;">
               </div>
               <div class="col">
-                <p class="text-center">Hoeveelheid</p>
+                <p class="text-center">Hoeveelheid *</p>
                 <hr>
                 <div v-for="gr in selectedSpice.amountPrice" :key="gr">
                   <input type="radio" :id="gr" :value="gr" v-model="selectedSpice.amountP">
@@ -51,13 +51,13 @@
                   <label class="pr-2 float-right" :for="gr"> € {{gr[1]}}</label>
                 </div>
                 <hr>
-                <p class="text-center">Vorm van de kruiden</p>
+                <p class="text-center">Vorm van de kruiden *</p>
                 <hr>
                 <div v-for="optie in selectedSpice.crushed" :key="optie" class="mx-auto d-inline">
                   <input type="radio" :id="optie" :value="optie" v-model="selectedSpice.crushS">
                   <label class="pl-1 pr-2" :for="optie">{{optie}}</label>
                 </div>
-                <add-to-cart class="float-left pl-5 pt-2" :crushS="selectedSpice.crushS" :amountP="selectedSpice.amountP" :image="selectedSpice.image" :origin="selectedSpice.origin" :name="selectedSpice.name"> </add-to-cart>
+                <add-to-cart class="float-left pl-5 pt-2" :crushS="selectedSpice.crushS" :amountP="selectedSpice.amountP" :image="selectedSpice.image" :name="selectedSpice.name"> </add-to-cart>
               </div>
             </div>
             </div>

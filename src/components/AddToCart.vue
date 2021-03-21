@@ -9,7 +9,6 @@ export default {
   name: "AddToCart",
   props: {
     name: String,
-    origin: String,
     image: String,
     amountP: String,
     crushS: String,
@@ -18,7 +17,6 @@ export default {
       return {
           item :{
             spiceName: this.name,
-            spiceOrigin: this.origin,
             spiceCrush: this.crushS,
             spicePrice: this.price,
             spiceImage: this.image,
@@ -29,17 +27,27 @@ export default {
   },
   methods:{
     addToCart(){
-      this.item.spiceAmount = this.amountP[0];
-      this.item.spicePrice = this.amountP[1];
-      this.item.spiceCrush = this.crushS;
-      this.item.spiceImage = this.image;
-      this.item.spiceName = this.name;
-      this.item.spiceOrigin = this.origin;
-      this.$store.commit('addToCart', this.item);
-      $('#spiceInfo').modal('hide');
-      $('#rubInfo').modal('hide');
-      $('#recipeInfo').modal('hide');
-      $('#miniCart').modal('show');
+      if (this.item.spiceAmount === null ||
+          this.item.spiceCrush === null) {      
+        Swal.fire({
+          title: 'Oops',
+          text: "Je hebt niet al de velden ingevuld. Vul al de velden met een '*' in alsjeblief.",
+          type: 'warning',
+          confirmButtonColor: '#64A425',
+          confirmButtonText: 'Ok'
+        })
+      } else {
+          this.item.spiceAmount = this.amountP[0];
+          this.item.spicePrice = this.amountP[1];
+          this.item.spiceCrush = this.crushS;
+          this.item.spiceImage = this.image;
+          this.item.spiceName = this.name;
+          this.$store.commit('addToCart', this.item);
+          $('#spiceInfo').modal('hide');
+          $('#rubInfo').modal('hide');
+          $('#recipeInfo').modal('hide');
+          $('#miniCart').modal('show');
+      }
     }
   },
 };

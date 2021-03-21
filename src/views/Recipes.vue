@@ -73,22 +73,15 @@
                 <img :src="selectedRecipe.image" alt="recipe image" style="width: 200px; margin-left: auto; margin-right: auto;">
               </div>
               <div class="col text-center">
-                <p class="text-center">Hoeveelheid</p>
+                <p class="text-center">Hoeveelheid *</p>
                 <hr>
                 <div v-for="gr in selectedRecipe.amountPrice" :key="gr">
                   <input type="radio" :id="gr" :value="gr" v-model="selectedRecipe.amountP">
                   <label class="pl-1" :for="gr">{{gr[0]}} - € {{gr[1]}}</label>
-                </div>
-                <hr>
-                <p class="text-center">Vorm van de kruiden</p>
-                <hr>
-                <div v-for="optie in selectedRecipe.crushed" :key="optie" class="mx-auto d-inline">
-                  <input type="radio" :id="optie" :value="optie" v-model="selectedRecipe.crushS">
-                  <label class="pl-1 pr-2" :for="optie">{{optie}}</label>
-                </div>              
+                </div>            
               </div>
             </div>
-            <add-to-cart class="float-left pl-5 pt-2" :crushS="selectedRecipe.crushS" :amountP="selectedRecipe.amountP" :image="selectedRecipe.image" :origin="selectedRecipe.origin" :name="selectedRecipe.name"> </add-to-cart>
+            <add-to-cart class="float-left pl-5 pt-2" crushS="Mixed" :amountP="selectedRecipe.amountP" :image="selectedRecipe.image" :name="selectedRecipe.name"> </add-to-cart>
           </div>
         </div>
       </div>

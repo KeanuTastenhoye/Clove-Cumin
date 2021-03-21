@@ -23,7 +23,7 @@
               <router-link to="/spices" class="nav-link"><a class="navTekst">Kruiden</a></router-link>
             </li>
             <li class="nav-item px-5" v-if="user">
-              <router-link to="/user" class="nav-link"><a class="navTekst">Mijn account</a></router-link>
+              <router-link to="/user" class="nav-link"><a class="btn btn-outline my-2 my-sm-0" style="border-color:#FBBC0E; color:#FBBC0E; font-weight: bold">Hey, {{userN}}</a></router-link>
             </li>
             <li class="nav-item px-5" v-if="user.email == 'teamblackcardamom@cnc.com'">
               <router-link to="/admin" class="nav-link"><a class="navTekst">Admin</a></router-link>
@@ -31,7 +31,7 @@
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <a class="btn btn-outline my-2 my-sm-0" style="border-color:#64A425; color:#64A425; font-weight: bold" data-toggle="modal" data-target="#login" v-if="!user">Login</a>
-            <a class="btn btn-outline my-2 my-sm-0" style="border-color:#AC0818; color:#AC0818; font-weight: bold" data-toggle="modal" data-target="#logout" v-if="user">Hey, {{userN}}</a>
+            <a class="btn btn-outline my-2 my-sm-0" style="border-color:#AC0818; color:#AC0818; font-weight: bold" data-toggle="modal" data-target="#logout" v-if="user">Logout</a>
             <a class="btn btn-outline border-0 mx-2 my-2 my-sm-0" data-toggle="modal" data-target="#miniCart">
               <i class="fas fa-shopping-cart fa-2x kar"></i>
             </a>

@@ -47,28 +47,33 @@
           <form v-on:submit.prevent="saveData" id="checkoutForm" name="checkoutForm" v-if="!user">
             <div class="form-row">
               <div class="col-md-12">
-                <label for="validMail"></label>
-                <input type="email" id="validMail" v-model="checkout.userMail" placeholder="Email adres" class="form-control" required>
+                <label for="validName"></label>
+                <input type="text" id="validName" v-model="checkout.userName" placeholder="Voornaam en achternaam *" class="form-control">  
               </div>
               <div class="col-md-12">
-                <label for="validName"></label>
-                <input type="text" id="validName" v-model="checkout.userName" placeholder="Naam" class="form-control" required>  
+                <label for="validMail"></label>
+                <input type="email" id="validMail" v-model="checkout.userMail" placeholder="Email adres *" class="form-control">
               </div>
               <div class="col-md-12">
                 <label for="validPhone"></label>
-                <input type="tel" id="validPhone" v-model="checkout.userPhone" placeholder="Telefoonnummer" class="form-control" pattern="0[0-9]{9}" required>
+                <input type="tel" id="validPhone" v-model="checkout.userPhone" placeholder="Telefoonnummer *" class="form-control" pattern="0[0-9]{9}">
               </div>
               <div class="col-md-6">
-                <label for="validSex"></label>
-                <input type="text" id="validSex" v-model="checkout.userSex" placeholder="Geslacht" class="form-control" required>
+                <label for="validSex">*</label>
+                <select id="sex" name="sex" v-model="checkout.userSex" class="form-control">
+                    <option value="" selected disabled hidden>Duid je geslacht hier aan</option>
+                    <option value="Man">Man</option>
+                    <option value="Vrouw">Vrouw</option>
+                    <option value="Anders">Anders</option>
+                  </select>
               </div>
               <div class="col-md-6">
-                <label for="validBirthday"></label>
-                <input type="date" id="validBirthday" v-model="checkout.userBirthday" placeholder="Geboortedatum" class="form-control" required>
+                <label for="validBirthday">*</label>
+                <input type="date" id="validBirthday" v-model="checkout.userBirthday" placeholder="gGboortedatum *" class="form-control">
               </div>
               <div class="col-md-12">
                 <label for="validAddress"></label>
-                <input type="text" id="validAddress" v-model="checkout.userAddress" placeholder="Adres" class="form-control" required>
+                <input type="text" id="validAddress" v-model="checkout.userAddress" placeholder="Adres *" class="form-control">
               </div>
               <div class="col-md-12">
                 <label for="validBus"></label>
@@ -76,11 +81,11 @@
               </div>
               <div class="col-md-4">
                 <label for="validPostCode"></label>
-                <input type="number" id="validPostCode" v-model="checkout.userPostCode" placeholder="Postcode" class="form-control" required>
+                <input type="number" id="validPostCode" v-model="checkout.userPostCode" placeholder="Postcode *" class="form-control">
               </div>
               <div class="col-md-8">
                 <label for="validCity"></label>
-                <input type="text" id="validCity" v-model="checkout.userCity" placeholder="Stad/Gemeente" class="form-control" required>
+                <input type="text" id="validCity" v-model="checkout.userCity" placeholder="Stad/gemeente *" class="form-control">
               </div>
               <div class="col-md-12 mt-4">
                 <label for="save"></label>
@@ -156,7 +161,7 @@ export default {
           productCrush: [],
           productImage: [],
           totalPrice: null,
-          totalShipping: null,
+          totalInclShipping: null,
           orderNr: null,
           date: null,
           finished: null,
@@ -170,7 +175,7 @@ export default {
           productCrush: [],
           productImage: [],
           totalPrice: null,
-          totalShipping: null,
+          totalInclShipping: null,
           orderNr: null,
           date: null,
           finished: null,
@@ -191,48 +196,80 @@ export default {
   },
   methods: {
     saveData() {
-      this.checkout.totalPrice = this.$store.getters.totalPrice;
-      this.checkout.totalShipping = parseFloat(this.$store.getters.totalPrice) + parseFloat(5);
+      if (this.checkout.userName === null ||
+          this.checkout.userMail === null ||
+          this.checkout.userPhone === null ||
+          this.checkout.userSex === null ||
+          this.checkout.userBirthday === null ||
+          this.checkout.userAddress === null ||
+          this.checkout.userPostCode === null ||
+          this.checkout.userCity === null) {
+        Swal.fire({
+          title: 'Oops',
+          text: "Je hebt niet al de velden ingevuld. Vul al de velden met een '*' in alsjeblief.",
+          type: 'warning',
+          confirmButtonColor: '#64A425',
+          confirmButtonText: 'Ok'
+        })
+      } else {
+          this.checkout.totalPrice = this.$store.getters.totalPrice;
+          this.checkout.totalInclShipping = parseFloat(this.$store.getters.totalPrice) + parseFloat(5);
+          this.checkout.orderNr = "" + (Math.floor(Math.random() * 999) + 100) + (Math.floor(Math.random() * 999) + 100);
+          this.checkout.date = new Date().toLocaleString();
+          this.checkout.finished = false;
 
-      this.checkout.orderNr = "" + (Math.floor(Math.random() * 999) + 100) + (Math.floor(Math.random() * 999) + 100);
-      this.checkout.date = new Date().toLocaleString();
-      this.checkout.finished = false;
+          window.localStorage.setItem('bedrag', parseFloat(this.checkout.totalInclShipping));
+          window.localStorage.setItem('orderNr', this.checkout.orderNr);
 
-      window.localStorage.setItem('bedrag', parseFloat(this.checkout.totalShipping));
-      window.localStorage.setItem('orderNr', this.checkout.orderNr);
+          this.$store.state.cart.forEach(item => {
+            this.checkout.productName.push(item.spiceName);
+            this.checkout.productQuantity.push(item.spiceQuantity);
+            this.checkout.productPrice.push(item.spicePrice);
+            this.checkout.productAmount.push(item.spiceAmount);
+            this.checkout.productCrush.push(item.spiceCrush);
+            this.checkout.productImage.push(item.spiceImage);
+          });
 
-      this.$store.state.cart.forEach(item => {
-        this.checkout.productName.push(item.spiceName);
-        this.checkout.productQuantity.push(item.spiceQuantity);
-        this.checkout.productPrice.push(item.spicePrice);
-        this.checkout.productAmount.push(item.spiceAmount);
-        this.checkout.productCrush.push(item.spiceCrush);
-        this.checkout.productImage.push(item.spiceImage);
-      });
-      db.collection('orders').add(this.checkout);
-      this.checkout.productName.forEach(item => {
-        this.$store.commit('emptyCart');
-      })
-      this.checkout.userMail = "";
-      this.checkout.userName = "";
-      this.checkout.userSex = "";
-      this.checkout.userBirthday = "";
-      this.checkout.userAddress = "";
-      this.checkout.userBus = "";
-      this.checkout.userPostCode = "";
-      this.checkout.userCity = "";
-      this.checkout.userPhone = "";
-      this.$router.push('/orderConfirmation');
+/*
+          Swal.fire({
+            title: 'Ben je zeker',
+            text: 'Ben je zeker dat je dit wil bestellen?',
+            icon: 'warning',
+            showCancelButton: true,
+            showDenyButton: true,
+            confirmButtonText: 'Ja',
+            confirmButtonColor: '#64A425',
+            denyButtonText: 'Neen',
+            denyButtonColor: '#64A425'
+          }).then((result) => {
+              if (result.isConfirmed) { */
+                db.collection('orders').add(this.checkout);
+
+                this.checkout.productName.forEach(item => {
+                  this.$store.commit('emptyCart');
+                })
+
+                this.checkout.userMail = "";
+                this.checkout.userName = "";
+                this.checkout.userSex = "";
+                this.checkout.userBirthday = "";
+                this.checkout.userAddress = "";
+                this.checkout.userBus = "";
+                this.checkout.userPostCode = "";
+                this.checkout.userCity = "";
+                this.checkout.userPhone = "";
+
+                this.$router.push('/orderConfirmation');
+              /*}
+          })*/
+      }
     },
     save() {
       this.checkoutB.totalPrice = this.$store.getters.totalPrice;
-      this.checkoutB.totalShipping = parseFloat(this.$store.getters.totalPrice) + parseFloat(5);
-
+      this.checkoutB.totalInclShipping = parseFloat(this.$store.getters.totalPrice) + parseFloat(5);
       this.checkoutB.userMail = fb.auth().currentUser.email;
-      
       this.checkoutB.orderNr = "" + (Math.floor(Math.random() * 999) + 100) + (Math.floor(Math.random() * 999) + 100);
       this.checkoutB.date = new Date().toLocaleString();
-
       this.checkoutB.userName = window.localStorage.getItem('userName');
 
       this.userdata.forEach(ud => {
@@ -243,10 +280,9 @@ export default {
       })
 
       this.checkoutB.userAddress = window.localStorage.getItem('addy');
-
       this.checkoutB.finished = false;
 
-      window.localStorage.setItem('bedrag', parseFloat(this.checkoutB.totalShipping));
+      window.localStorage.setItem('bedrag', parseFloat(this.checkoutB.totalInclShipping));
       window.localStorage.setItem('orderNr', this.checkoutB.orderNr);
       
       this.$store.state.cart.forEach(item => {
@@ -257,11 +293,28 @@ export default {
         this.checkoutB.productCrush.push(item.spiceCrush);
         this.checkoutB.productImage.push(item.spiceImage);
       });
-      db.collection('orders').add(this.checkoutB);
-      this.checkoutB.productName.forEach(item => {
-        this.$store.commit('emptyCart');
-      })
-      this.$router.push('/orderConfirmation');
+
+/*
+      Swal.fire({
+        title: 'Ben je zeker',
+        text: "Ben je zeker dat je dit wil bestellen?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: `Ja`,
+        denyButtonText: `Neen`,
+      }).then((result) => {
+          if (result.isConfirmed) {*/
+            db.collection('orders').add(this.checkoutB);
+
+            this.checkoutB.productName.forEach(item => {
+              this.$store.commit('emptyCart');
+            })
+            
+            this.$router.push('/orderConfirmation');
+          /*} else if (result.isDenied) {
+                
+          }
+        })*/
     }
   },
   created () { 

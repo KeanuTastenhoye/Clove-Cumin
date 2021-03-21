@@ -88,7 +88,7 @@
                 </div>
               </div>
               <div class="col text-center">
-                <p class="text-center">Hoeveelheid</p>
+                <p class="text-center">Hoeveelheid *</p>
                 <hr>
                 <div v-for="gr in selectedRub.amountPrice" :key="gr">
                   <input type="radio" :id="gr" :value="gr" v-model="selectedRub.amountP">
@@ -96,7 +96,7 @@
                 </div>      
               </div>
             </div>
-            <add-to-cart class="float-left pl-5 pt-2" crushS="Mixed" :amountP="selectedRub.amountP" :image="selectedRub.imageM" :origin="selectedRub.origin" :name="selectedRub.name"> </add-to-cart>
+            <add-to-cart class="float-left pl-5 pt-2" crushS="Mixed" :amountP="selectedRub.amountP" :image="selectedRub.imageM" :name="selectedRub.name"> </add-to-cart>
           </div>
         </div>
       </div>
