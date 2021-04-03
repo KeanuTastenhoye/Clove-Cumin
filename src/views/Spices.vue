@@ -1,10 +1,7 @@
 <template>
   <div class="spices">
     <Navbar></Navbar>
-
-    <!--
     <Disclaimer></Disclaimer>
-    -->
 
     <div class="container pb-5">
       <div class="row row-cols-1 row-cols-md-3">
@@ -51,16 +48,17 @@
                   <label class="pr-2 float-right" :for="gr"> € {{gr[1]}}</label>
                 </div>
                 <hr>
-                <p class="text-center">Vorm van de kruiden *</p>
+                <p class="text-center">Vorm van de kruiden * <i class="far fa-question-circle iconQ"  title="De smaak van de kruiden komt meer tot zijn recht als het net voor gebruik gecrushed wordt."></i></p>
                 <hr>
                 <div v-for="optie in selectedSpice.crushed" :key="optie" class="mx-auto d-inline">
                   <input type="radio" :id="optie" :value="optie" v-model="selectedSpice.crushS">
                   <label class="pl-1 pr-2" :for="optie">{{optie}}</label>
+                  <br>
                 </div>
-                <add-to-cart class="float-left pl-5 pt-2" :crushS="selectedSpice.crushS" :amountP="selectedSpice.amountP" :image="selectedSpice.image" :name="selectedSpice.name"> </add-to-cart>
               </div>
             </div>
-            </div>
+            <add-to-cart class="float-left pl-5 pt-2" :crushS="selectedSpice.crushS" :amountP="selectedSpice.amountP" :image="selectedSpice.image" :name="selectedSpice.name"> </add-to-cart>
+          </div>
         </div>
       </div>
     </div>
@@ -178,6 +176,12 @@ export default {
 </script>
  
 <style scoped lang="scss">
+  @media (max-width: 992px) { 
+    .iconQ {
+      visibility: hidden;
+    }
+  }
+
 .spices {
     padding-top: 7rem;
     width: 100%;

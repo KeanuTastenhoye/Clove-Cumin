@@ -1,10 +1,7 @@
 <template>
   <div class="rubs">
     <Navbar></Navbar>
-
-    <!--
     <Disclaimer></Disclaimer>
-    -->
 
     <div class="container pb-5">
       <div class="row row-cols-1 row-cols-md-3">

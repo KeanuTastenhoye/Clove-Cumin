@@ -27,8 +27,8 @@ export default {
   },
   methods:{
     addToCart(){
-      if (this.item.spiceAmount === null ||
-          this.item.spiceCrush === null) {      
+      if (this.amountP === undefined ||
+          this.crushS === undefined) {      
         Swal.fire({
           title: 'Oops',
           text: "Je hebt niet al de velden ingevuld. Vul al de velden met een '*' in alsjeblief.",

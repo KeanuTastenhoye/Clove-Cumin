@@ -46,7 +46,7 @@
                   <input type="tel" v-model="userdata.userPhone" class="form-control" pattern="0[0-9]{9}" placeholder="Je telefoonnummer *">
                 </div>
                 <div class="form-group">
-                  <label for="sex">Geslacht *:</label>
+                  <label for="sex">Geslacht *</label>
                   <select id="sex" name="sex" v-model="userdata.userSex" class="form-control">
                     <option value="" selected disabled hidden>Duid je geslacht hier aan</option>
                     <option value="Man">Man</option>
@@ -55,6 +55,7 @@
                   </select>
                 </div>
                 <div class="form-group">
+                  <label>Geboortedatum *</label>
                   <input type="date" v-model="userdata.userBirthday" class="form-control" placeholder="Je geboortedatum *">
                 </div>
                 <div class="form-group">

@@ -10,9 +10,9 @@
           <p> Zouden we je daarom mogen vragen om een betaling met volgende gegevens uit te voeren</p>
           <div>
             <div>
-              <p><strong>Rekening nummer: </strong>BE06 0018 9899 0622</p>
-              <p><strong>Bedrag: </strong> € {{bedrag}} </p>
-              <p><strong>Mededeling: </strong>{{naam}} - {{orderNr}} </p>
+              <p class="bet"><strong>Rekening nummer: </strong>BE06 0018 9899 0622</p>
+              <p class="bet"><strong>Bedrag: </strong> € {{bedrag}} </p>
+              <p class="bet"><strong>Mededeling: </strong>{{naam}} - {{orderNr}} </p>
             </div>
           </div>
         </div>
@@ -67,5 +67,8 @@ export default {
 }
 i {
     color: green;
+}
+p.bet {
+  font-size:150%;
 }
 </style>

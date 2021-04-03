@@ -18,7 +18,7 @@
                       <h6 class="mb-0">Naam</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                     {{u.userName}} <i class="fas fa-pencil-alt"></i>
+                     {{u.userName}}
                     </div>
                   </div>
                   <hr>
@@ -87,7 +87,7 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="form-group">
-                  <input type="text" placeholder="Naam" v-model="profile.userName" class="form-control">
+                  <input type="text" placeholder="Naam" v-model="profile.userName" class="form-control" disabled>
                 </div>
               </div>
               <div class="col-md-4">
@@ -157,7 +157,7 @@
                 <button class="btn btn-light" @click="descr(order)"><strong>Bekijk deze bestelling > </strong></button>
               </div>
               <div class="card-footer">
-                <a><strong>Totaal Prijs:</strong> € {{order.totalShipping}}</a>
+                <a><strong>Totaal Prijs:</strong> € {{order.totalInclShipping}}</a>
               </div>
             </div>
           </div>

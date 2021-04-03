@@ -1,9 +1,7 @@
 <template>
   <div class="recipes">
     <Navbar></Navbar>
-    <!--
     <Disclaimer></Disclaimer>
-    -->
     <div class="container pb-5">
       <div class="row row-cols-1 row-cols-md-3">
         <div class="col mb-4" v-for="(recipe, index) in recipes" :key="index" data-aos="fade-up">
@@ -78,10 +76,18 @@
                 <div v-for="gr in selectedRecipe.amountPrice" :key="gr">
                   <input type="radio" :id="gr" :value="gr" v-model="selectedRecipe.amountP">
                   <label class="pl-1" :for="gr">{{gr[0]}} - € {{gr[1]}}</label>
-                </div>            
+                </div>  
+                <hr>
+                <p class="text-center">Vorm van de kruiden * <i class="far fa-question-circle iconQ"  title="De smaak van de kruiden komt meer tot zijn recht als het net voor gebruik gecrushed wordt."></i></p>
+                <hr>
+                <div v-for="optie in selectedRecipe.crushed" :key="optie" class="mx-auto d-inline">
+                  <input type="radio" :id="optie" :value="optie" v-model="selectedRecipe.crushS">
+                  <label class="pl-1 pr-2" :for="optie">{{optie}}</label>
+                  <br>
+                </div>          
               </div>
             </div>
-            <add-to-cart class="float-left pl-5 pt-2" crushS="Mixed" :amountP="selectedRecipe.amountP" :image="selectedRecipe.image" :name="selectedRecipe.name"> </add-to-cart>
+            <add-to-cart class="float-left pl-5 pt-2" :crushS="selectedRecipe.crushS" :amountP="selectedRecipe.amountP" :image="selectedRecipe.image" :name="selectedRecipe.name"> </add-to-cart>
           </div>
         </div>
       </div>
@@ -171,6 +177,12 @@ export default {
 </script>
  
 <style scoped lang="scss">
+  @media (max-width: 992px) { 
+    .iconQ {
+      visibility: hidden;
+    }
+  }
+
   .recipes {
     padding-top: 7rem;
     width: 100%;

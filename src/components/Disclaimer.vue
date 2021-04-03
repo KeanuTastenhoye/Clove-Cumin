@@ -1,7 +1,7 @@
 <template>
     <div class="container alert alert-danger alert-server" role="alert">
         <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>DISCLAIMER</strong> Wij voorzien een gratis verzending op alles bestellingen boven de €30.
+        Wij voorzien een gratis verzending op alles bestellingen boven de €30.
     </div>
 </template>
 

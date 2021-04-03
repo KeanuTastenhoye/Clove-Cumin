@@ -29,9 +29,7 @@
                 <div class="container">
                   <h4 class="text-center">Waar?</h4>
                   Elke vrijdag en zaterdag staan wij in de AD Delhaize te Hoeilaart.
-                  <br>
                   Zoals je ziet kan je ons ook online vinden. Hou deze website goed in het oog, want we releasen hier regelmatig nieuwe producten.
-                  <br>
                   Volg onze instagram pagina voor meer inspiratie.
                 </div>
               </div>

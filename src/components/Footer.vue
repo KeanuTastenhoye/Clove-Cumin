@@ -62,7 +62,7 @@
             </div>
             <div class="col text-center">
                 <div class="policy">
-                    <div>Privacy Policy</div>
+                    <a href="/PrivacyPolicy.pdf" target="blank">Privacy Policy</a>
                 </div>
             </div>
             <div class="col text-right">
