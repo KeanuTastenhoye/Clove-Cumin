@@ -69,6 +69,11 @@
                 <img src="/img/VLAJO.jpg" style="width:40px">
             </div>
         </div>
+        
+            <div style="font-size:10px;">
+                <a>Deze website is gemaakt door Keanu & Phloy op basis van vue.js en Bootstrap en er is geen gebruik gemaakt van een template.</a>
+                <a>Errors gevonden? Contacteer ons op letscook@clovencumin.com</a>
+            </div>
     </div>
 </div>
   </footer>

@@ -129,18 +129,73 @@
               </form>
             </div>
           </div>
-          <p class="mt-3" v-if="checkoutB.levering === null && checkout.levering === null"><strong>Totaal prijs (incl shipping): </strong> € {{parseFloat(this.$store.getters.totalPrice)}}</p>
-          <p class="mt-3" v-if="checkoutB.levering === 'Thuis'"><strong>Totaal prijs (incl shipping): </strong> € {{parseFloat(this.$store.getters.totalPrice) + parseFloat(5.70)}}</p>
-          <p class="mt-3" v-if="checkoutB.levering === 'Afhaalpunt'"><strong>Totaal prijs (incl shipping): </strong> € {{parseFloat(this.$store.getters.totalPrice) + parseFloat(4.40)}}</p>
-          <p class="mt-3" v-if="checkout.levering === 'Thuis'"><strong>Totaal prijs (incl shipping): </strong> € {{parseFloat(this.$store.getters.totalPrice) + parseFloat(5.70)}}</p>
-          <p class="mt-3" v-if="checkout.levering === 'Afhaalpunt'"><strong>Totaal prijs (incl shipping): </strong> € {{parseFloat(this.$store.getters.totalPrice) + parseFloat(4.40)}}</p>
+          <p class="mt-3" v-if="checkoutB.levering === null && checkout.levering === null"><strong>Totaal prijs (incl verzending): </strong> € {{(parseFloat(this.$store.getters.totalPrice)).toFixed(2)}}</p>
+
+          <p class="mt-3" v-if="checkoutB.levering === 'Thuis' && this.$store.getters.totalPrice >= 30"><strong>Totaal prijs (incl verzending): </strong> € {{(parseFloat(this.$store.getters.totalPrice)).toFixed(2)}}</p>
+          <p class="mt-3" v-if="checkoutB.levering === 'Thuis' && this.$store.getters.totalPrice < 30"><strong>Totaal prijs (incl verzending): </strong> € {{(parseFloat(this.$store.getters.totalPrice) + parseFloat(5.70)).toFixed(2)}}</p>
+          <p class="mt-3" v-if="checkoutB.levering === 'Afhaalpunt' && this.$store.getters.totalPrice >= 30"><strong>Totaal prijs (incl verzending): </strong> € {{(parseFloat(this.$store.getters.totalPrice)).toFixed(2)}}</p>
+          <p class="mt-3" v-if="checkoutB.levering === 'Afhaalpunt' && this.$store.getters.totalPrice < 30"><strong>Totaal prijs (incl verzending): </strong> € {{(parseFloat(this.$store.getters.totalPrice) + parseFloat(4.40)).toFixed(2)}}</p>
+
+          <p class="mt-3" v-if="checkout.levering === 'Thuis' && this.$store.getters.totalPrice >= 30"><strong>Totaal prijs (incl verzending): </strong> € {{(parseFloat(this.$store.getters.totalPrice)).toFixed(2)}}</p>
+          <p class="mt-3" v-if="checkout.levering === 'Thuis' && this.$store.getters.totalPrice < 30"><strong>Totaal prijs (incl verzending): </strong> € {{(parseFloat(this.$store.getters.totalPrice) + parseFloat(5.70)).toFixed(2)}}</p>
+          <p class="mt-3" v-if="checkout.levering === 'Afhaalpunt' && this.$store.getters.totalPrice >= 30"><strong>Totaal prijs (incl verzending): </strong> € {{(parseFloat(this.$store.getters.totalPrice)).toFixed(2)}}</p>
+          <p class="mt-3" v-if="checkout.levering === 'Afhaalpunt' && this.$store.getters.totalPrice < 30"><strong>Totaal prijs (incl verzending): </strong> € {{(parseFloat(this.$store.getters.totalPrice) + parseFloat(4.40)).toFixed(2)}}</p>
+
           <button class="btn" style="background-color:#64A425; color:white;" @click="save()" v-if="user">Plaats bestelling</button>
         </div>
       </div>
     </div>
 
+    <div class="modal fade" id="orderConf" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+                <h4><strong>Bevestig je bestelling</strong></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="text-center">Persoonlijke gegevens</h5>
+                <p>{{checkout.userName}}</p>
+                <p>{{checkout.userMail}}</p>
+                <p>{{checkout.userAddress}}<a v-if="checkout.userBus != null"> {{checkout.userBus}}</a>, {{checkout.userPostCode}} {{checkout.userCity}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h5 class="text-center">Bestelling</h5>
+                <div class="row" v-for="(x,index) in checkout.productName" :key="index">
+                  <div class="col">
+                    <p><strong>{{checkout.productName[index]}}</strong></p>
+                    <p>{{checkout.productAmount[index]}}</p>
+                    <p>{{checkout.productCrush[index]}}</p>
+                  </div>
+                  <div class="col text-center">
+                    <p><strong>Aantal</strong></p>
+                    <p>{{checkout.productQuantity[index]}}</p>
+                  </div>
+                  <div class="col text-center">
+                    <p><strong>Prijs</strong></p>
+                    <p>€ {{checkout.productPrice[index]}}</p>
+                  </div>
+                  <hr>
+                </div>
+                <p v-if="checkout.totalInclShipping != null"> <strong>Totaal: </strong> € {{(checkout.totalInclShipping).toFixed(2)}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" style="background-color:#64A425; color:white;" @click="order()">Plaats bestelling</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="modal fade" id="orderConfB" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
           <div class="modal-header">
                 <h4><strong>Bevestig je bestelling</strong></h4>
@@ -176,6 +231,7 @@
                   </div>
                   <hr>
                 </div>
+                <p v-if="checkoutB.totalInclShipping != null"> <strong>Totaal: </strong> € {{(checkoutB.totalInclShipping).toFixed(2)}}</p>
               </div>
             </div>
           </div>
@@ -326,6 +382,57 @@ export default {
               this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
             }
           } 
+          else if (this.checkout.userPromo === 'SOULLIE') {
+            if (this.checkout.levering === 'Thuis') {
+              if (this.checkout.totalPrice >= 30) {
+                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+              } else {
+                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
+              }
+              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
+            } else {
+              if (this.checkout.totalPrice >= 30) {
+                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+              } else {
+                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40));
+              }
+              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
+            }
+          } 
+          else if (this.checkout.userPromo === 'JONAS') {
+            if (this.checkout.levering === 'Thuis') {
+              if (this.checkout.totalPrice >= 30) {
+                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+              } else {
+                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
+              }
+              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
+            } else {
+              if (this.checkout.totalPrice >= 30) {
+                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+              } else {
+                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40));
+              }
+              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
+            }
+          } 
+          else if (this.checkout.userPromo === 'TASTE') {
+            if (this.checkout.levering === 'Thuis') {
+              if (this.checkout.totalPrice >= 30) {
+                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+              } else {
+                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
+              }
+              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
+            } else {
+              if (this.checkout.totalPrice >= 30) {
+                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+              } else {
+                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40));
+              }
+              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
+            }
+          } 
           else {
             if (this.checkout.levering === 'Thuis') {
               if (this.checkout.totalPrice >= 30) {
@@ -370,6 +477,13 @@ export default {
           db.collection('orders').add(this.checkout);         
 */
 
+          this.checkout.productName = [];
+          this.checkout.productQuantity = [];
+          this.checkout.productPrice = [];
+          this.checkout.productAmount = [];
+          this.checkout.productCrush = [];
+          this.checkout.productImage = [];
+
           this.$store.state.cart.forEach(item => {
             this.checkout.productName.push(item.spiceName);
             this.checkout.productQuantity.push(item.spiceQuantity);
@@ -379,23 +493,8 @@ export default {
             this.checkout.productImage.push(item.spiceImage);
           });
 
-          db.collection('orders').add(this.checkout);
+          $('#orderConf').modal('show');
 
-          this.checkout.productName.forEach(item => {
-            this.$store.commit('emptyCart');
-          })
-
-          this.checkout.userMail = "";
-          this.checkout.userName = "";
-          this.checkout.userSex = "";
-          this.checkout.userBirthday = "";
-          this.checkout.userAddress = "";
-          this.checkout.userBus = "";
-          this.checkout.userPostCode = "";
-          this.checkout.userCity = "";
-          this.checkout.userPhone = "";
-
-          this.$router.push('/orderConfirmation');
       }
     },
     save() {
@@ -436,6 +535,57 @@ export default {
                 this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
             }
           }
+          else if (this.checkoutB.userPromo === 'SOULLIE') {
+            if (this.checkoutB.levering === 'Thuis') {
+              if (this.checkoutB.totalPrice >= 30) {
+                this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+              } else {
+                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
+              }
+              this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
+            } else {
+                if (this.checkoutB.totalPrice >= 30) {
+                  this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                } else {
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40));
+                }
+                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
+            }
+          }
+          else if (this.checkoutB.userPromo === 'JONAS') {
+            if (this.checkoutB.levering === 'Thuis') {
+              if (this.checkoutB.totalPrice >= 30) {
+                this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+              } else {
+                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
+              }
+              this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
+            } else {
+                if (this.checkoutB.totalPrice >= 30) {
+                  this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                } else {
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40));
+                }
+                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
+            }
+          }
+          else if (this.checkoutB.userPromo === 'TASTE') {
+            if (this.checkoutB.levering === 'Thuis') {
+              if (this.checkoutB.totalPrice >= 30) {
+                this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+              } else {
+                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
+              }
+              this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
+            } else {
+                if (this.checkoutB.totalPrice >= 30) {
+                  this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                } else {
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40));
+                }
+                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
+            }
+          }
           else {
             if (this.checkoutB.levering === 'Thuis') {
               if (this.checkoutB.totalPrice >= 30) {
@@ -459,44 +609,30 @@ export default {
 
           this.userdata.forEach(ud => {
             if (ud.userMail == this.user.email) {
-              var addy = "" + ud.userAddress + " " + ud.userBus + ", " + ud.userPostCode + " " + ud.userCity;
-              window.localStorage.setItem('addy', addy);
+              if (ud.userBus != null) {              
+                var addy = "" + ud.userAddress + " " + ud.userBus + ", " + ud.userPostCode + " " + ud.userCity;
+                window.localStorage.setItem('addy', addy);
+              } else {
+                  var addy = "" + ud.userAddress + ", " + ud.userPostCode + " " + ud.userCity;
+                  window.localStorage.setItem('addy', addy);
+              }
+
             }
           })
 
           this.checkoutB.userAddress = window.localStorage.getItem('addy');
           this.checkoutB.finished = false;
 
+          window.localStorage.setItem('userName', this.checkoutB.userName);
           window.localStorage.setItem('bedrag', this.checkoutB.totalInclShipping.toFixed(2));
           window.localStorage.setItem('orderNr', this.checkoutB.orderNr);
 
-/*
-          this.$store.state.cart.forEach(item => {
-            if (this.checkoutB.productName.length != 0) {
-                this.checkoutB.productName.forEach(n => {
-                  if (n == item.spiceName || this.checkoutB.productName.indexOf(item.spiceName) >= 0) {
-                    console.log('Zit er al in: ' + item.spiceName);
-                  } else {
-                    console.log('Zit er nog niet in: ' + item.spiceName);
-                    this.checkoutB.productName.push(item.spiceName);
-                    this.checkoutB.productQuantity.push(item.spiceQuantity);
-                    this.checkoutB.productPrice.push(item.spicePrice);
-                    this.checkoutB.productAmount.push(item.spiceAmount);
-                    this.checkoutB.productCrush.push(item.spiceCrush);
-                    this.checkoutB.productImage.push(item.spiceImage);
-                  }
-                })
-              } else {
-                console.log('List is nog leeg');
-                  this.checkoutB.productName.push(item.spiceName);
-                  this.checkoutB.productQuantity.push(item.spiceQuantity);
-                  this.checkoutB.productPrice.push(item.spicePrice);
-                  this.checkoutB.productAmount.push(item.spiceAmount);
-                  this.checkoutB.productCrush.push(item.spiceCrush);
-                  this.checkoutB.productImage.push(item.spiceImage);
-              }
-          });
-*/
+          this.checkoutB.productName = [];
+          this.checkoutB.productQuantity = [];
+          this.checkoutB.productPrice = [];
+          this.checkoutB.productAmount = [];
+          this.checkoutB.productCrush = [];
+          this.checkoutB.productImage = [];
 
           this.$store.state.cart.forEach(item => {
             this.checkoutB.productName.push(item.spiceName);
@@ -507,26 +643,39 @@ export default {
             this.checkoutB.productImage.push(item.spiceImage);
           });
 
-          db.collection('orders').add(this.checkoutB);
-
-          this.checkoutB.productName.forEach(item => {
-            this.$store.commit('emptyCart');
-          })
-                
-          this.$router.push('/orderConfirmation');
-
-          //$('#orderConfB').modal('show');
+          $('#orderConfB').modal('show');
         }
     },
-    orderB() {
-      $('#orderConfB').modal('hide');
+    order() {
+       db.collection('orders').add(this.checkout);
 
+       this.checkout.productName.forEach(item => {
+         this.$store.commit('emptyCart');
+       })
+            
+       $('#orderConf').modal('hide');
+
+       this.checkout.userMail = "";
+       this.checkout.userName = "";
+       this.checkout.userSex = "";
+       this.checkout.userBirthday = "";
+       this.checkout.userAddress = "";
+       this.checkout.userBus = "";
+       this.checkout.userPostCode = "";
+       this.checkout.userCity = "";
+       this.checkout.userPhone = "";
+
+       this.$router.push('/orderConfirmation');
+    },
+    orderB() {
        db.collection('orders').add(this.checkoutB);
 
        this.checkoutB.productName.forEach(item => {
          this.$store.commit('emptyCart');
        })
             
+       $('#orderConfB').modal('hide');
+
        this.$router.push('/orderConfirmation');
     }
   },

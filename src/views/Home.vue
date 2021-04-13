@@ -6,7 +6,7 @@
               <div class="col pl-5 pb-5">
                 <div class="container">
                   <h4 class="text-center">Wie?</h4>
-                  Wij (Thibaut, Hassan, Keanu & Phloy) zijn 4 laatstejaars studenten van UCLL en hebben samen een bedrijf opgericht. Dit doen we voor ons eindwerk ipv een stage te doen. We hopen hiermee meer bijteleren over ondernemerschap en zo onze kennis te verbreden. Niet alleen door de ervaring die we oprapen, maar ook door te leren van elkaar, want we zijn namelijk 4 studenten van 3 verschillende richtingen. Dit doen we natuurlijk niet alleen, we doen dit onder VLAJO en met advies van enkele ondernemers van de Rotary Club en de steun van Robrecht Van Goolen, Anouk Vermeyen & Serhat Erdogan.
+                  Wij (Thibaut, Hassan, Keanu & Phloy) zijn 4 laatstejaars studenten van UCLL en hebben samen een bedrijf opgericht. Dit doen we voor ons eindwerk ipv een stage te doen. We hopen hiermee meer bij te leren over ondernemerschap en zo onze kennis te verbreden. Niet alleen door de ervaring die we oprapen, maar ook door te leren van elkaar, want we zijn namelijk 4 studenten van 3 verschillende richtingen. Dit doen we natuurlijk niet alleen, we doen dit onder VLAJO en met advies van enkele ondernemers van de Rotary Club en de steun van Robrecht Van Goolen, Anouk Vermeyen & Serhat Erdogan.
                 </div>
               </div>
               <div class="col px-5 pb-5">
