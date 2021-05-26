@@ -6,18 +6,18 @@
               <div class="col pl-5 pb-5">
                 <div class="container">
                   <h4 class="text-center">Wie?</h4>
-                  Wij (Thibaut, Hassan, Keanu & Phloy) zijn 4 laatstejaars studenten van UCLL en hebben samen een bedrijf opgericht. Dit doen we voor ons eindwerk ipv een stage te doen. We hopen hiermee meer bij te leren over ondernemerschap en zo onze kennis te verbreden. Niet alleen door de ervaring die we oprapen, maar ook door te leren van elkaar, want we zijn namelijk 4 studenten van 3 verschillende richtingen. Dit doen we natuurlijk niet alleen, we doen dit onder VLAJO en met advies van enkele ondernemers van de Rotary Club en de steun van Robrecht Van Goolen, Anouk Vermeyen & Serhat Erdogan.
+                  Wij (Thibaut, Hassan, Keanu & Phloy) zijn 4 laatstejaars studenten van UCLL en hebben samen een bedrijf opgericht. We doen dit als eindwerk i.p.v een stage. We hopen hiermee meer bij te leren over ondernemerschap en zo onze kennis te verbreden. Niet alleen door de ervaring die we op doen, maar ook door te leren van elkaar, want we zijn namelijk 4 studenten van 3 verschillende richtingen. We doen dit natuurlijk niet alleen, maar onder VLAJO en met advies van enkele ondernemers van de Rotary Club en de steun van Robrecht Van Goolen, Anouk Vermeyen & Serhat Erdogan.
                 </div>
               </div>
               <div class="col px-5 pb-5">
                 <div class="container">
                   <h4 class="text-center">Wat?</h4>
-                  In de eerste instantie verkopen wij receptdozen, gevuld met al de benodigede droge ingrediënten (zoals kruiden en rijst). 
+                  In eerste instantie verkopen wij receptdozen, gevuld met al de nodige droge ingrediënten (zoals kruiden en rijst). 
                   <br>
-                  We verkopen ook onze eigen kruiden mixes, die super makkelijk te gebruiken zijn en veel meer smaak toevoegen aan al uw gerechten zonder heel veel moeite te moeten doen. 
+                  We verkopen ook onze eigen kruidenmixes, die super makkelijk te gebruiken zijn en veel meer smaak toevoegen aan al uw gerechten zonder heel veel moeite te moeten doen. 
                   <br>
                   Bijkomend verkopen we ook 26 verschillende soorten kruiden. Hieronder sommige die zeer moeilijk te vinden zijn in de grootwarenhuizen. Bij sommige van deze kruiden heeft U de optie om ze in de hele vorm of in de poeder vorm te bestellen.
-                  We geven deze optie omdat de kruiden hun natuurlijke smaken beter behouden als ze net voor gebruik 'gecrushed' worden. 
+                  We geven deze optie omdat de kruiden hun natuurlijke smaken beter behouden als ze net voor gebruik vermalen worden. 
                 </div>
               </div>
             </div>
@@ -36,9 +36,9 @@
               <div class="col px-5 pb-5">
                 <div class="container">
                   <h4 class="text-center">Waarom?</h4>
-                  In tijden van corona merkten we dat mensen het vakantie gevoel misten. Dit willen we graag aan de mensen terug geven aan de hand van kruiden/recepten.
+                  In tijden van corona merkten we op dat mensen het vakantie gevoel misten. Dit willen we graag aan de mensen teruggeven aan de hand van kruiden en recepten.
                   <br>
-                  Ook merkten we dat het moeilijk was voor mensen om specifieke kruiden te vinden. Wij willen hiervoor de oplossing zijn.
+                  We merkten ook op dat het moeilijk was voor mensen om specifieke kruiden te vinden. Wij willen hiervoor de oplossing zijn.
                 </div>
               </div>
             </div>

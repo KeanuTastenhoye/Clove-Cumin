@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import User from "./views/User.vue";
 import Admin from "./views/Admin.vue";
+import Dashboard from "./views/Dashboard.vue";
 import Recipes from "./views/Recipes.vue";
 import Rubs from "./views/Rubs.vue";
 import Spices from "./views/Spices.vue";
@@ -45,6 +46,12 @@ const router =  new Router({
       path: "/admin",
       name: "admin",
       component: Admin,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/dashboard",
+      name: "dashboard",
+      component: Dashboard,
       meta: { requiresAuth: true },
     },
     {

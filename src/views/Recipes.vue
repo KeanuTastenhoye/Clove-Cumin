@@ -3,6 +3,36 @@
     <Navbar></Navbar>
     <Disclaimer></Disclaimer>
     <div class="container pb-5">
+      <div class="row">
+        <div class="col">
+              <div id="bannerRecipe" class="carousel pb-3" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#bannerRecipe" data-slide-to="0" class="active"></li>
+                  <li data-target="#bannerRecipe" data-slide-to="1"></li>
+                  <li data-target="#bannerRecipe" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="card-img-top image" src="/img/Recipe-BOX-1.jpg" alt="Card image" style="width: 100; margin-left: auto; margin-right: auto;">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="card-img-top image" src="/img/recipe-BOX-2.jpg" alt="Card image" style="width: 100; margin-left: auto; margin-right: auto;">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="card-img-top image" src="/img/recipe-BOX-3.jpg" alt="Card image" style="width: 100; margin-left: auto; margin-right: auto;">
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#bannerRecipe" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#bannerRecipe" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+        </div>
+      </div>
       <div class="row row-cols-1 row-cols-md-3">
         <div class="col mb-4" v-for="(recipe, index) in recipes" :key="index" data-aos="fade-up">
           <div class="card-deck" style="margin-left:1rem; margin-right: 1rem;">
@@ -74,8 +104,10 @@
                 <p class="text-center">Hoeveelheid *</p>
                 <hr>
                 <div v-for="gr in selectedRecipe.amountPrice" :key="gr">
-                  <input type="radio" :id="gr" :value="gr" v-model="selectedRecipe.amountP">
-                  <label class="pl-1" :for="gr">{{gr[0]}} - € {{gr[1]}}</label>
+                  <a v-if="gr[2] === true"><input type="radio" :id="gr" :value="gr" v-model="selectedRecipe.amountP" disabled></a>
+                  <a  v-if="gr[2] === true"><label class="pl-1" :for="gr" style="color:red; opacity: 0.5">{{gr[0]}} - € {{gr[1].toFixed(2)}}</label></a>
+                  <a v-if="gr[2] === false"><input type="radio" :id="gr" :value="gr" v-model="selectedRecipe.amountP"></a>
+                  <a  v-if="gr[2] === false"><label class="pl-1" :for="gr">{{gr[0]}} - € {{gr[1].toFixed(2)}}</label></a>
                 </div>  
                 <hr>
                 <p class="text-center">Vorm van de kruiden * <i class="far fa-question-circle iconQ"  title="De smaak van de kruiden komt meer tot zijn recht als het net voor gebruik gecrushed wordt."></i></p>

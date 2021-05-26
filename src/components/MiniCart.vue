@@ -17,7 +17,7 @@
                   <h5 class="mt-0">{{item.spiceName}}
                     <span class='float-right' @click="$store.commit('removeFromCart',item)">X</span>
                   </h5>
-                  <p class="mt-0">Prijs: € {{item.spicePrice}}</p>
+                  <p class="mt-0">Prijs: € {{item.spicePrice.toFixed(2)}}</p>
                   <p class="mt-0">Hoeveelheid: {{item.spiceAmount}}</p>
                   <p class="mt-0">Aantal: {{item.spiceQuantity}}</p>
                   <p class="mt-0">Vorm: {{item.spiceCrush}}</p>

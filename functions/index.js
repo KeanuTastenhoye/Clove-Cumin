@@ -1,44 +1,60 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+
+/*
+const http = require('http');
+const PAYCONIQ_PROD_HOST = 'https://api.payconiq.com';
+const PAYCONIQ_API_BASE = '/v3';
+*/
+
 admin.initializeApp();
 
-exports.myFunction = functions.firestore
+exports.myFunction = functions.region('europe-west1').firestore
   .document('orders/{docId}')
-  .onCreate((snap, context) => { const newValue = snap.data(); 
-                                 email(newValue);});
+  .onCreate((snap, context) => { 
+      const newValue = snap.data(); 
+      email(newValue);
+  });
+
+/*
+      const req = http.request({
+        host: PAYCONIQ_PROD_HOST,
+        path: PAYCONIQ_API_BASE+ '/payments',
+        headers: {
+          Authorization: 'Bearer f749c661-ab9f-44e2-bedc-3d44d20f732c',
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      },
+      res => {
+        console.log(res.statusCode);
+        res.on('data', data => {
+          console.log(JSON.stringify(data));
+        })
+      }
+      )
+      req.write(JSON.stringify({
+        amount: newValue.totalPriceInclShipping,
+        currency: 'EUR',
+        //callbackUrl: 'https://europe-west1-clove-and-cumin.cloudfunctions.net/payconiqcallback',
+        description: 'Mededeling',
+        reference: snap.id
+      }))
+      req.end();
+      return null});
+
+exports.payconiqcallback = functions.region('europe-west1').https.onRequest((req, res) => {
+  console.log(JSON.stringify(req));
+  res.send('');
+});
+*/
 
 function email(newValue) {
   admin.firestore().collection('mail').add({
     to: newValue.userMail,
     message: {
       subject: 'Bedankt van je bestelling, we gaan er bijna mee beginnen.',
-      html: '<p>Bedankt voor je vertrouwen! Voor dat we beginnen met je bestelling, vragen we je om de betaling uit te voeren. Aangezien wij een SBP zijn en geen ondernemings nummer hebben, zijn we verplicht dit via een overschirjving te laten gebeuren. De overschrijving mag uitgevoerd worden met volgende gegevens.</p>'+
-            '<p>Rekening nummer: BE06 0018 9899 0622</p>' +
-            '<p>Bedrag: ' + newValue.totalPrice + '</p>' +
-            '<p>Mededeling: ' + newValue.userName + ' - ' + newValue.orderNr + '</p>' +
-            '<table>'+
-              '<thead>'+
-                '<tr>'+
-                  '<th></th>'+
-                  '<th>Naam</th>'+
-                  '<th>Vorm</th>'+
-                  '<th>Hoeveelheid</th>'+
-                  '<th>Aantal</th>'+
-                  '<th>Prijs</th>'+
-                '</tr>'+
-              '</thead>'+
-              '<tbody>'+
-                '<tr>'+
-                  '<td><img style="width:75px" src='+ newValue.productImage+'></td>'+
-                  '<td>'+ newValue.productName +'</td>'+
-                  '<td>'+ newValue.productCrush +'</td>'+
-                  '<td>'+ newValue.productAmount +'</td>'+
-                  '<td>'+ newValue.productQuantity +'</td>'+
-                  '<td>'+ newValue.productPrice +'</td>'+
-                '</tr>'+
-              '</tbody>'+
-            '</table>'+
-            '<p>Totaal Prijs: <strong>€' + newValue.totalPrice + '</strong></p>',
+      html: '<p>Bedankt voor je vertrouwen! Voor dat we beginnen met je bestelling.</p>'
     },
   })
 }

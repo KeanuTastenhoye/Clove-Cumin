@@ -28,6 +28,9 @@
             <li class="nav-item px-5" v-if="user.email == 'teamblackcardamom@cnc.com'">
               <router-link to="/admin" class="nav-link"><a class="navTekst">Admin</a></router-link>
             </li>
+            <li class="nav-item px-5" v-if="user.email == 'teamblackcardamom@cnc.com'">
+              <router-link to="/dashboard" class="nav-link"><a class="navTekst">Dashboard</a></router-link>
+            </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <a class="btn btn-outline my-2 my-sm-0" style="border-color:#64A425; color:#64A425; font-weight: bold" data-toggle="modal" data-target="#login" v-if="!user">Login</a>

@@ -34,7 +34,7 @@
                       </ul>
               </div>
               <div class="col">
-                <p>€ {{item.spicePrice}}</p>
+                <p>€ {{item.spicePrice.toFixed(2)}}</p>
               </div>
               <div class="col">
                 <p @click="$store.commit('removeFromCart',item)">X</p>
@@ -69,7 +69,7 @@
               </div>
               <div class="col-md-6 pt-2">
                 <label for="validBirthday">Geboortedatum *</label>
-                <input type="date" id="validBirthday" v-model="checkout.userBirthday" placeholder="gGboortedatum *" class="form-control" required>
+                <input type="date" id="validBirthday" v-model="checkout.userBirthday" placeholder="Geboortedatum *" class="form-control" required>
               </div>
               <div class="col-md-12">
                 <label for="validAddress"></label>
@@ -90,6 +90,18 @@
               <div class="col-md-12">
                 <label for="validPromo"></label>
                 <input type="text" id="validPromo" v-model="checkout.userPromo" placeholder="Promo Code " class="form-control">
+              </div>
+              <div class="col-md-12 pt-3">
+                <form>
+                  <p>Cadeau optie</p>
+                  <input type="checkbox" name="cadeau" value="Cadeau" v-model="checkout.cadeau">
+                  <label class="pl-1 pr-2">Cadeau (€5.00)</label>
+                  <br>
+                  <div v-if="checkout.cadeau === true">
+                    <label for="textAreaGift">Berichtje: </label>
+                    <textarea class="form-control" id="textAreaGift" v-model="checkout.cadeauBericht"></textarea>
+                  </div>
+                </form>
               </div>
               <div class="col-md-12 pt-3">
                 <form>
@@ -117,6 +129,18 @@
             <div>
               <label for="validPromo"></label>
               <input type="text" id="validPromo" v-model="checkoutB.userPromo" placeholder="Promo Code " class="form-control">
+            </div>
+            <div class="col-md-12 pt-3">
+              <form>
+                <p>Cadeau optie</p>
+                <input type="checkbox" name="cadeau" value="Cadeau" v-model="checkoutB.cadeau">
+                <label class="pl-1 pr-2">Cadeau (€5.00)</label>
+                <br>
+                <div v-if="checkoutB.cadeau === true">
+                  <label for="textAreaGiftB">Berichtje: </label>
+                  <textarea class="form-control" id="textAreaGiftB" v-model="checkoutB.cadeauBericht"></textarea>
+                </div>
+              </form>
             </div>
             <div class="pt-3">
               <form>
@@ -164,6 +188,7 @@
                 <p>{{checkout.userAddress}}<a v-if="checkout.userBus != null"> {{checkout.userBus}}</a>, {{checkout.userPostCode}} {{checkout.userCity}}</p>
               </div>
             </div>
+            <hr>
             <div class="row">
               <div class="col">
                 <h5 class="text-center">Bestelling</h5>
@@ -183,7 +208,15 @@
                   </div>
                   <hr>
                 </div>
-                <p v-if="checkout.totalInclShipping != null"> <strong>Totaal: </strong> € {{(checkout.totalInclShipping).toFixed(2)}}</p>
+                <hr>
+                <p><strong>Totaal (excl verzending): </strong>€ {{checkout.totalPrice}}</p>
+                <p v-if="checkout.cadeau === true"><strong>Cadeau: </strong>€ 5.00</p>
+                <p v-if="checkout.cadeau === true"><strong>Berichtje: </strong>{{checkout.cadeauBericht}}</p>
+                <p v-if="checkout.levering != null && checkout.levering == 'Thuis'"><strong>Verzending: </strong>€ 5.70</p>
+                <p v-if="checkout.levering != null && checkout.levering == 'Afhaalpunt'"><strong>Verzending: </strong>€ 4.40</p>
+                <p v-if="checkout.levering != null && checkout.levering == 'Thuis' && checkout.userPromo != null && ((checkout.totalPrice - checkout.totalInclShipping) + 5.70).toFixed(2) != '0.00'"><strong>Korting: </strong>€ {{((checkout.totalPrice - checkout.totalInclShipping) + 5.70).toFixed(2)}} (Korting door code {{checkout.userPromo}})</p>
+                <p v-if="checkout.levering != null && checkout.levering == 'Afhaalpunt' && checkout.userPromo != null && ((checkout.totalPrice - checkout.totalInclShipping) + 4.40).toFixed(2) != '0.00'"><strong>Korting: </strong>€ {{((checkout.totalPrice - checkout.totalInclShipping) + 4.40).toFixed(2)}} (Korting door code {{checkout.userPromo}})</p>
+                <p v-if="checkout.totalInclShipping != null"> <strong>Totaal (incl verzending): </strong>€ {{checkout.totalInclShipping}}</p>
               </div>
             </div>
           </div>
@@ -231,7 +264,15 @@
                   </div>
                   <hr>
                 </div>
-                <p v-if="checkoutB.totalInclShipping != null"> <strong>Totaal: </strong> € {{(checkoutB.totalInclShipping).toFixed(2)}}</p>
+                <hr>
+                <p><strong>Totaal (excl verzending): </strong>€ {{checkoutB.totalPrice}}</p>
+                <p v-if="checkoutB.cadeau === true"><strong>Cadeau: </strong>€ 5.00</p>
+                <p v-if="checkoutB.cadeau === true"><strong>Berichtje: </strong>{{checkoutB.cadeauBericht}}</p>
+                <p v-if="checkoutB.levering != null && checkoutB.levering == 'Thuis'"><strong>Verzending: </strong>€ 5.70</p>
+                <p v-if="checkoutB.levering != null && checkoutB.levering == 'Afhaalpunt'"><strong>Verzending: </strong>€ 4.40</p>
+                <p v-if="checkoutB.levering != null && checkoutB.levering == 'Thuis' && checkoutB.userPromo != null && ((checkoutB.totalPrice - checkoutB.totalInclShipping) + 5.70).toFixed(2) != '0.00'"><strong>Korting: </strong>€ {{((checkoutB.totalPrice - checkoutB.totalInclShipping) + 5.70).toFixed(2)}} (Korting door code {{checkoutB.userPromo}})</p>
+                <p v-if="checkoutB.levering != null && checkoutB.levering == 'Afhaalpunt' && checkoutB.userPromo != null && ((checkoutB.totalPrice - checkoutB.totalInclShipping) + 4.40).toFixed(2) != '0.00'"><strong>Korting: </strong>€ {{((checkoutB.totalPrice - checkoutB.totalInclShipping) + 4.40).toFixed(2)}} (Korting door code {{checkoutB.userPromo}})</p>
+                <p v-if="checkoutB.totalInclShipping != null"> <strong>Totaal (incl verzending): </strong>€ {{checkoutB.totalInclShipping}}</p>
               </div>
             </div>
           </div>
@@ -302,6 +343,8 @@ export default {
           date: null,
           finished: null,
           levering: null,
+          cadeau: null,
+          cadeauBericht: null,
           //bestelMap: new Map(),
           //bestelling: new Map(),
           //i: 0,
@@ -322,7 +365,9 @@ export default {
           finished: null,
           userName: null,
           userAddress: null,
-          levering: null
+          levering: null,
+          cadeau: null,
+          cadeauBericht: null,
         },
         userdata: [],
         user: null,
@@ -356,95 +401,119 @@ export default {
       } else {
           this.checkout.totalPrice = this.$store.getters.totalPrice;
 
-          if (this.checkout.userPromo === 'FRIENDS') {
-            if (this.checkout.levering === 'Thuis') {
-              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
-              this.checkout.totalInclShipping = this.checkout.totalInclShipping - parseFloat(5.70);
-            } else {
-                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40))
-                this.checkout.totalInclShipping = this.checkout.totalInclShipping - parseFloat(4.40);
+          if (this.checkout.userPromo != null) {
+            if (this.checkout.userPromo.toUpperCase() === 'FRIENDS') {
+              if (this.checkout.levering === 'Thuis') {
+                if (this.checkout.cadeau === true) {
+                  this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70) + parseFloat(5.00));
+                  this.checkout.totalInclShipping = this.checkout.totalInclShipping - parseFloat(5.70);
+                } else {
+                  this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
+                  this.checkout.totalInclShipping = this.checkout.totalInclShipping - parseFloat(5.70);
+                }
+              } else {
+                if (this.checkout.cadeau === true) {
+                  this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40) + parseFloat(5.00));
+                  this.checkout.totalInclShipping = this.checkout.totalInclShipping - parseFloat(4.40);
+                } else {
+                  this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40))
+                  this.checkout.totalInclShipping = this.checkout.totalInclShipping - parseFloat(4.40);
+                }
+              }
+            } 
+            else if (this.checkout.userPromo.toUpperCase() === 'SFLEUVEN' || this.checkout.userPromo.toUpperCase() === 'SOULLIE' || this.checkout.userPromo.toUpperCase() === 'JONAS' || this.checkout.userPromo.toUpperCase() === 'TASTE') {
+              if (this.checkout.levering === 'Thuis') {
+                if (this.checkout.totalPrice >= 30) {
+                  if (this.checkout.cadeau === true) {
+                    this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.00));
+                  } else {
+                    this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+                  }
+                } else {
+                    if (this.checkout.cadeau === true) {
+                      this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70) + parseFloat(5.00));
+                    } else {
+                      this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
+                    }
+                }
+                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
+              } else {
+                if (this.checkout.totalPrice >= 30) {
+                  if (this.checkout.cadeau === true) {
+                    this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.00));
+                  } else {
+                    this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+                  }
+                } else {
+                    if (this.checkout.cadeau === true) {
+                      this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40) + parseFloat(5.00));
+                    } else {
+                      this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40));
+                    }
+                }
+                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
+              }
+            } 
+            else {
+              if (this.checkout.levering === 'Thuis') {
+                if (this.checkout.totalPrice >= 30) {
+                  if (this.checkout.cadeau === true) {
+                    this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.00));
+                  } else {
+                    this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+                  }
+                } else {
+                  if (this.checkout.cadeau === true) {
+                    this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70) + parseFloat(5.00));
+                  } else {
+                    this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
+                  }
+                }
+              } else {
+                if (this.checkout.totalPrice >= 30) {
+                  if (this.checkout.cadeau === true) {
+                    this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.00));
+                  } else {
+                    this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+                  }
+                } else {
+                  if (this.checkout.cadeau === true) {
+                    this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40) + parseFloat(5.00));
+                  } else {
+                    this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40));
+                  }
+                }
+              }
             }
-          } 
-          else if (this.checkout.userPromo === 'SFLeuven') {
-            if (this.checkout.levering === 'Thuis') {
-              if (this.checkout.totalPrice >= 30) {
-                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
-              } else {
-                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
-              }
-              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
-            } else {
-              if (this.checkout.totalPrice >= 30) {
-                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
-              } else {
-                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40));
-              }
-              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
-            }
-          } 
-          else if (this.checkout.userPromo === 'SOULLIE') {
-            if (this.checkout.levering === 'Thuis') {
-              if (this.checkout.totalPrice >= 30) {
-                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
-              } else {
-                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
-              }
-              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
-            } else {
-              if (this.checkout.totalPrice >= 30) {
-                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
-              } else {
-                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40));
-              }
-              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
-            }
-          } 
-          else if (this.checkout.userPromo === 'JONAS') {
-            if (this.checkout.levering === 'Thuis') {
-              if (this.checkout.totalPrice >= 30) {
-                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
-              } else {
-                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
-              }
-              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
-            } else {
-              if (this.checkout.totalPrice >= 30) {
-                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
-              } else {
-                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40));
-              }
-              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
-            }
-          } 
-          else if (this.checkout.userPromo === 'TASTE') {
-            if (this.checkout.levering === 'Thuis') {
-              if (this.checkout.totalPrice >= 30) {
-                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
-              } else {
-                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
-              }
-              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
-            } else {
-              if (this.checkout.totalPrice >= 30) {
-                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
-              } else {
-                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40));
-              }
-              this.checkout.totalInclShipping = (parseFloat(this.checkout.totalInclShipping) - parseFloat((this.checkout.totalInclShipping * 0.05)));
-            }
-          } 
+          }
           else {
             if (this.checkout.levering === 'Thuis') {
               if (this.checkout.totalPrice >= 30) {
-                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+                if (this.checkout.cadeau === true) {
+                  this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.00));
+                } else {
+                  this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+                }
               } else {
-                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
+                if (this.checkout.cadeau === true) {
+                  this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70) + parseFloat(5.00));
+                } else {
+                  this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.70));
+                }
               }
             } else {
               if (this.checkout.totalPrice >= 30) {
-                this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+                if (this.checkout.cadeau === true) {
+                  this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(5.00));
+                } else {
+                  this.checkout.totalInclShipping = parseFloat(this.checkout.totalPrice);
+                }
               } else {
-                this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40));
+                if (this.checkout.cadeau === true) {
+                  this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40) + parseFloat(5.00));
+                } else {
+                  this.checkout.totalInclShipping = (parseFloat(this.checkout.totalPrice) + parseFloat(4.40));
+                }
               }
             }
           }
@@ -457,25 +526,7 @@ export default {
           window.localStorage.setItem('bedrag', this.checkout.totalInclShipping.toFixed(2));
           window.localStorage.setItem('orderNr', this.checkout.orderNr);
 
-/*
-          this.$store.state.cart.forEach(item => {
-            let bestel = [];
-
-            bestel.push(item.spiceName);
-            bestel.push(item.spiceQuantity);
-            bestel.push(item.spicePrice);
-            bestel.push(item.spiceAmount);
-            bestel.push(item.spiceCrush);
-            bestel.push(item.spiceImage);
-        
-            this.checkout.bestelMap.set(this.checkout.i, bestel);
-            this.checkout.i++
-          });
-
-          this.checkout.bestelling.set(this.checkout.orderNr, this.checkout.bestelMap);
-
-          db.collection('orders').add(this.checkout);         
-*/
+          this.checkout.totalInclShipping = this.checkout.totalInclShipping.toFixed(2);
 
           this.checkout.productName = [];
           this.checkout.productQuantity = [];
@@ -509,96 +560,120 @@ export default {
       } else {
           this.checkoutB.totalPrice = this.$store.getters.totalPrice;
 
-          if (this.checkoutB.userPromo === 'FRIENDS') {
-            if (this.checkoutB.levering === 'Thuis') {
-              this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
-              this.checkoutB.totalInclShipping = this.checkoutB.totalInclShipping - parseFloat(5.70);
-            } else {
-                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40));
-                this.checkoutB.totalInclShipping = this.checkoutB.totalInclShipping - parseFloat(4.40);
-            }
-          } 
-          else if (this.checkoutB.userPromo === 'SFLeuven') {
-            if (this.checkoutB.levering === 'Thuis') {
-              if (this.checkoutB.totalPrice >= 30) {
-                this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
-              } else {
-                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
-              }
-              this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
-            } else {
-                if (this.checkoutB.totalPrice >= 30) {
-                  this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+           if (this.checkoutB.userPromo != null) {
+            if (this.checkoutB.userPromo.toUpperCase() === 'FRIENDS') {
+              if (this.checkoutB.levering === 'Thuis') {
+                if (this.checkoutB.cadeau === true) {
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70) + parseFloat(5.00));
+                  this.checkoutB.totalInclShipping = this.checkoutB.totalInclShipping - parseFloat(5.70);
                 } else {
-                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40));
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
+                  this.checkoutB.totalInclShipping = this.checkoutB.totalInclShipping - parseFloat(5.70);
+                }
+              } else {
+                if (this.checkoutB.cadeau === true) {
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40) + parseFloat(5.00));
+                  this.checkoutB.totalInclShipping = this.checkoutB.totalInclShipping - parseFloat(4.40);
+                } else {
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40))
+                  this.checkoutB.totalInclShipping = this.checkoutB.totalInclShipping - parseFloat(4.40);
+                }
+              }
+            } 
+            else if (this.checkoutB.userPromo.toUpperCase() === 'SFLEUVEN' || this.checkoutB.userPromo.toUpperCase() === 'SOULLIE' || this.checkoutB.userPromo.toUpperCase() === 'JONAS' || this.checkoutB.userPromo.toUpperCase() === 'TASTE') {
+              if (this.checkoutB.levering === 'Thuis') {
+                if (this.checkoutB.totalPrice >= 30) {
+                  if (this.checkoutB.cadeau === true) {
+                    this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.00));
+                  } else {
+                    this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                  }
+                } else {
+                    if (this.checkoutB.cadeau === true) {
+                      this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70) + parseFloat(5.00));
+                    } else {
+                      this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
+                    }
                 }
                 this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
-            }
-          }
-          else if (this.checkoutB.userPromo === 'SOULLIE') {
-            if (this.checkoutB.levering === 'Thuis') {
-              if (this.checkoutB.totalPrice >= 30) {
-                this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
               } else {
-                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
-              }
-              this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
-            } else {
                 if (this.checkoutB.totalPrice >= 30) {
-                  this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                  if (this.checkoutB.cadeau === true) {
+                    this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.00));
+                  } else {
+                    this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                  }
                 } else {
-                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40));
+                    if (this.checkoutB.cadeau === true) {
+                      this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40) + parseFloat(5.00));
+                    } else {
+                      this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40));
+                    }
                 }
                 this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
-            }
-          }
-          else if (this.checkoutB.userPromo === 'JONAS') {
-            if (this.checkoutB.levering === 'Thuis') {
-              if (this.checkoutB.totalPrice >= 30) {
-                this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
-              } else {
-                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
               }
-              this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
-            } else {
+            } 
+            else {
+              if (this.checkoutB.levering === 'Thuis') {
                 if (this.checkoutB.totalPrice >= 30) {
-                  this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                  if (this.checkoutB.cadeau === true) {
+                    this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.00));
+                  } else {
+                    this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                  }
                 } else {
-                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40));
+                  if (this.checkoutB.cadeau === true) {
+                    this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70) + parseFloat(5.00));
+                  } else {
+                    this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
+                  }
                 }
-                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
-            }
-          }
-          else if (this.checkoutB.userPromo === 'TASTE') {
-            if (this.checkoutB.levering === 'Thuis') {
-              if (this.checkoutB.totalPrice >= 30) {
-                this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
               } else {
-                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
-              }
-              this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
-            } else {
                 if (this.checkoutB.totalPrice >= 30) {
-                  this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                  if (this.checkoutB.cadeau === true) {
+                    this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.00));
+                  } else {
+                    this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                  }
                 } else {
-                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40));
+                  if (this.checkoutB.cadeau === true) {
+                    this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40) + parseFloat(5.00));
+                  } else {
+                    this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40));
+                  }
                 }
-                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalInclShipping) - parseFloat((this.checkoutB.totalInclShipping * 0.05)));
+              }
             }
           }
           else {
             if (this.checkoutB.levering === 'Thuis') {
               if (this.checkoutB.totalPrice >= 30) {
-                this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                if (this.checkoutB.cadeau === true) {
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.00));
+                } else {
+                  this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                }
               } else {
-                this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
+                if (this.checkoutB.cadeau === true) {
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70) + parseFloat(5.00));
+                } else {
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.70));
+                }
               }
             } else {
-                if (this.checkoutB.totalPrice >= 30) {
+              if (this.checkoutB.totalPrice >= 30) {
+                if (this.checkoutB.cadeau === true) {
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(5.00));
+                } else {
                   this.checkoutB.totalInclShipping = parseFloat(this.checkoutB.totalPrice);
+                }
+              } else {
+                if (this.checkoutB.cadeau === true) {
+                  this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40) + parseFloat(5.00));
                 } else {
                   this.checkoutB.totalInclShipping = (parseFloat(this.checkoutB.totalPrice) + parseFloat(4.40));
                 }
+              }
             }
           }
 
@@ -626,6 +701,8 @@ export default {
           window.localStorage.setItem('userName', this.checkoutB.userName);
           window.localStorage.setItem('bedrag', this.checkoutB.totalInclShipping.toFixed(2));
           window.localStorage.setItem('orderNr', this.checkoutB.orderNr);
+
+          this.checkoutB.totalInclShipping = this.checkoutB.totalInclShipping.toFixed(2);
 
           this.checkoutB.productName = [];
           this.checkoutB.productQuantity = [];

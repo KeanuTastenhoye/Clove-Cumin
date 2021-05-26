@@ -49,6 +49,9 @@ Vue.component('MiniCart', require('./components/MiniCart.vue').default);
 import VueCarousel from 'vue-carousel';
 Vue.use(VueCarousel);
 
+import VueGoogleCharts from 'vue-google-charts';
+Vue.use(VueGoogleCharts);
+
 Vue.config.productionTip = false;
 
 let app = '';

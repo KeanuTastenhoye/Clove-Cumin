@@ -22,7 +22,7 @@
                 <button class="btn btn-light" @click="descr(order)"><strong>Meer van deze bestelling > </strong></button>
               </div>
               <div class="card-footer">
-                <a><strong>Totaal prijs:</strong> € {{order.totalPrice}}</a>
+                <a><strong>Totaal prijs:</strong> € {{order.totalInclShipping}}</a>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <input type="text" placeholder="Totaal Prijs" v-model="order.totalPrice" class="form-control" disabled>
+                  <input type="text" placeholder="Totaal Prijs" v-model="order.totalInclShipping" class="form-control" disabled>
                 </div>
               </div>
               <div class="col-md-8">
@@ -86,9 +86,60 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-8">
                 <div class="form-group">
                   <input type="text" placeholder="User Adres" v-model="order.userAddress" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" placeholder="No bus" v-model="order.userBus" class="form-control" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" placeholder="User postcode" v-model="order.userPostCode" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" placeholder="User City" v-model="order.userCity" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <input type="text" placeholder="User Name" v-model="order.userName" class="form-control" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" placeholder="User phone" v-model="order.userPhone" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" placeholder="Levering" v-model="order.levering" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" placeholder="No promo" v-model="order.userPromo" class="form-control" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" placeholder="No Gift" v-model="order.cadeau" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <input type="text" placeholder="No Gift Message" v-model="order.cadeauBericht" class="form-control" disabled>
                 </div>
               </div>
             </div>
